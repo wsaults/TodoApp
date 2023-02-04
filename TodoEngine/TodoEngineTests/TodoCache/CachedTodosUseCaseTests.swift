@@ -66,13 +66,9 @@ class CachedTodosUseCaseTests: XCTestCase {
     ) {
         action()
         do {
-            try sut.save([uniqueItem(), uniqueItem()])
+            try sut.save(uniqueItems())
         } catch {
             XCTAssertEqual(error as NSError?, expectedError, file: file, line: line)
         }
-    }
-    
-    private func uniqueItem() -> TodoItem {
-        TodoItem(uuid: UUID(), text: "any", createdAt: anyDate, completedAt: anyDate)
     }
 }

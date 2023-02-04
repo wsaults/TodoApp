@@ -43,4 +43,8 @@ class TodoStoreSpy: TodoStore {
     func completeRetrievalWithEmptyCache() {
         retrievalResult = .success(.none)
     }
+    
+    func completeRetrieval(with items: [TodoItem]) {
+        retrievalResult = .success(CachedTodos(items))
+    }
 }

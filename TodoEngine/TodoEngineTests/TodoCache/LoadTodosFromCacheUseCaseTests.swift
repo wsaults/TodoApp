@@ -41,6 +41,15 @@ class LoadTodosFromCacheUseCaseTests: XCTestCase {
         }
     }
     
+    func test_load_deliversCachedTodos() {
+        let items = uniqueItems()
+        let (sut, store) = makeSUT()
+
+        expect(sut, toCompleteWith: .success(items)) {
+            store.completeRetrieval(with: items)
+        }
+    }
+    
     // MARK: Helpers
 
     private func makeSUT(
