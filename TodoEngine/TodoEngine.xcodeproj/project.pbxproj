@@ -14,6 +14,7 @@
 		BE2E170D298E768F00E504E3 /* TodoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE2E170C298E768F00E504E3 /* TodoItem.swift */; };
 		BE2E1710298E78A100E504E3 /* TodoLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE2E170F298E78A100E504E3 /* TodoLoader.swift */; };
 		BE2E1714298E7DFA00E504E3 /* CachedTodosUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE2E1713298E7DFA00E504E3 /* CachedTodosUseCaseTests.swift */; };
+		BE2E1717298E885300E504E3 /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE2E1716298E885300E504E3 /* XCTestCase+MemoryLeakTracking.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +36,7 @@
 		BE2E170C298E768F00E504E3 /* TodoItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoItem.swift; sourceTree = "<group>"; };
 		BE2E170F298E78A100E504E3 /* TodoLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoLoader.swift; sourceTree = "<group>"; };
 		BE2E1713298E7DFA00E504E3 /* CachedTodosUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CachedTodosUseCaseTests.swift; sourceTree = "<group>"; };
+		BE2E1716298E885300E504E3 /* XCTestCase+MemoryLeakTracking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+MemoryLeakTracking.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +90,7 @@
 		BE2E16FF298E74BF00E504E3 /* TodoEngineTests */ = {
 			isa = PBXGroup;
 			children = (
+				BE2E1715298E884400E504E3 /* Helpers */,
 				BE2E1712298E7DCD00E504E3 /* TodoCache */,
 				BE2E1711298E7AB100E504E3 /* TodoFeatures */,
 				BE2E1700298E74BF00E504E3 /* TodoEngineTests.swift */,
@@ -124,6 +127,14 @@
 				BE2E1713298E7DFA00E504E3 /* CachedTodosUseCaseTests.swift */,
 			);
 			path = TodoCache;
+			sourceTree = "<group>";
+		};
+		BE2E1715298E884400E504E3 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				BE2E1716298E885300E504E3 /* XCTestCase+MemoryLeakTracking.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -247,6 +258,7 @@
 			files = (
 				BE2E1701298E74BF00E504E3 /* TodoEngineTests.swift in Sources */,
 				BE2E1714298E7DFA00E504E3 /* CachedTodosUseCaseTests.swift in Sources */,
+				BE2E1717298E885300E504E3 /* XCTestCase+MemoryLeakTracking.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
