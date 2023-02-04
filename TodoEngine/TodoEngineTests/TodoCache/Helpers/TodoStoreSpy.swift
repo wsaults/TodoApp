@@ -10,7 +10,7 @@ import TodoEngine
 
 class TodoStoreSpy: TodoStore {
     enum ReceivedMessage: Equatable {
-        case save([TodoItem])
+        case save(TodoItem)
         case delete(TodoItem)
         case retrieve
     }
@@ -20,8 +20,8 @@ class TodoStoreSpy: TodoStore {
     private var deleteResult: Result<Void, Error>?
     private var retrievalResult: Result<CachedTodos?, Error>?
     
-    func save(_ items: [TodoItem]) throws {
-        receivedMessages.append(.save(items))
+    func save(_ item: TodoItem) throws {
+        receivedMessages.append(.save(item))
         try saveResult?.get()
     }
     

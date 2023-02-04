@@ -17,15 +17,13 @@ class DeleteTodosFromCacheUseCaseTests: XCTestCase {
     }
     
     func test_delete() {
-        let item1 = uniqueItem()
-        let item2 = uniqueItem()
-        let items = [item1, item2]
+        let item = uniqueItem()
         let (sut, store) = makeSUT()
         
-        try? sut.save(items)
-        try? sut.delete(item1)
+        try? sut.save(item)
+        try? sut.delete(item)
         
-        XCTAssertEqual(store.receivedMessages, [.save(items), .delete(item1)])
+        XCTAssertEqual(store.receivedMessages, [.save(item), .delete(item)])
     }
     
     // MARK: Helpers

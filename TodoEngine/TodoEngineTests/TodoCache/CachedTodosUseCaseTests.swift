@@ -17,12 +17,12 @@ class CachedTodosUseCaseTests: XCTestCase {
     }
     
     func test_save() {
-        let items = [uniqueItem(), uniqueItem()]
+        let item = uniqueItem()
         let (sut, store) = makeSUT()
         
-        try? sut.save(items)
+        try? sut.save(item)
         
-        XCTAssertEqual(store.receivedMessages, [.save(items)])
+        XCTAssertEqual(store.receivedMessages, [.save(item)])
     }
     
     func test_save_failsOnSaveError() {
@@ -66,7 +66,7 @@ class CachedTodosUseCaseTests: XCTestCase {
     ) {
         action()
         do {
-            try sut.save(uniqueItems())
+            try sut.save(uniqueItem())
         } catch {
             XCTAssertEqual(error as NSError?, expectedError, file: file, line: line)
         }
