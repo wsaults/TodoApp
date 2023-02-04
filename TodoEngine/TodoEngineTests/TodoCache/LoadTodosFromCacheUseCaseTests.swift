@@ -59,6 +59,16 @@ class LoadTodosFromCacheUseCaseTests: XCTestCase {
         XCTAssertEqual(store.receivedMessages, [.retrieve])
     }
     
+    func test_load_hasNoSideEffectsOnNonEmptyCache() {
+        let items = uniqueItems()
+        let (sut, store) = makeSUT()
+        store.completeRetrieval(with: items)
+
+        _ = try? sut.load()
+
+        XCTAssertEqual(store.receivedMessages, [.retrieve])
+    }
+    
     // MARK: Helpers
 
     private func makeSUT(
