@@ -11,16 +11,23 @@ import TodoEngine
 class TodoStoreSpy: TodoStore {
     enum ReceivedMessage: Equatable {
         case save([TodoItem])
+        case delete(TodoItem)
         case retrieve
     }
     
     private(set) var receivedMessages = [ReceivedMessage]()
     private var saveResult: Result<Void, Error>?
+    private var deleteResult: Result<Void, Error>?
     private var retrievalResult: Result<CachedTodos?, Error>?
     
     func save(_ items: [TodoItem]) throws {
         receivedMessages.append(.save(items))
         try saveResult?.get()
+    }
+    
+    func delete(_ item: TodoItem) throws {
+        receivedMessages.append(.delete(item))
+        try deleteResult?.get()
     }
     
     func completeInsertion(with error: Error) {

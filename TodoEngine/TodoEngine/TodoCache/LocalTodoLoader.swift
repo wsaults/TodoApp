@@ -19,6 +19,10 @@ extension LocalTodoLoader: TodoCache {
     public func save(_ items: [TodoItem]) throws {
         try store.save(items)
     }
+    
+    public func delete(_ item: TodoItem) throws {
+        try store.delete(item)
+    }
 }
 
 extension LocalTodoLoader {

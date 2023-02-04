@@ -21,6 +21,7 @@
 		BE2E1723298E978700E504E3 /* SharedTestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE2E1722298E978700E504E3 /* SharedTestHelpers.swift */; };
 		BE2E1725298E991800E504E3 /* LoadTodosFromCacheUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE2E1724298E991800E504E3 /* LoadTodosFromCacheUseCaseTests.swift */; };
 		BE2E1727298EA84700E504E3 /* TodoTestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE2E1726298EA84700E504E3 /* TodoTestHelpers.swift */; };
+		BE2E1729298F240700E504E3 /* DeleteTodosFromCacheUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE2E1728298F240700E504E3 /* DeleteTodosFromCacheUseCaseTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		BE2E1722298E978700E504E3 /* SharedTestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedTestHelpers.swift; sourceTree = "<group>"; };
 		BE2E1724298E991800E504E3 /* LoadTodosFromCacheUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadTodosFromCacheUseCaseTests.swift; sourceTree = "<group>"; };
 		BE2E1726298EA84700E504E3 /* TodoTestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoTestHelpers.swift; sourceTree = "<group>"; };
+		BE2E1728298F240700E504E3 /* DeleteTodosFromCacheUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteTodosFromCacheUseCaseTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,6 +142,7 @@
 				BE2E171F298E972D00E504E3 /* Helpers */,
 				BE2E1713298E7DFA00E504E3 /* CachedTodosUseCaseTests.swift */,
 				BE2E1724298E991800E504E3 /* LoadTodosFromCacheUseCaseTests.swift */,
+				BE2E1728298F240700E504E3 /* DeleteTodosFromCacheUseCaseTests.swift */,
 			);
 			path = TodoCache;
 			sourceTree = "<group>";
@@ -293,6 +296,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BE2E1721298E973400E504E3 /* TodoStoreSpy.swift in Sources */,
+				BE2E1729298F240700E504E3 /* DeleteTodosFromCacheUseCaseTests.swift in Sources */,
 				BE2E1701298E74BF00E504E3 /* TodoEngineTests.swift in Sources */,
 				BE2E1723298E978700E504E3 /* SharedTestHelpers.swift in Sources */,
 				BE2E1727298EA84700E504E3 /* TodoTestHelpers.swift in Sources */,
