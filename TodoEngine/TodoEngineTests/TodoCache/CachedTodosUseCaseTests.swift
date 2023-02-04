@@ -8,43 +8,9 @@
 import TodoEngine
 import XCTest
 
-class LocalTodoLoader {
-    private let store: TodoStore
-    
-    init(store: TodoStore) {
-        self.store = store
-    }
-    
-    func save(_ items: [TodoItem]) throws {
-        try store.save(items)
-    }
-}
-
-class TodoStore {
-    enum ReceivedMessage: Equatable {
-        case save([TodoItem])
-    }
-    
-    private(set) var receivedMessages = [ReceivedMessage]()
-    private var saveResult: Result<Void, Error>?
-    
-    func save(_ items: [TodoItem]) throws {
-        receivedMessages.append(.save(items))
-        try saveResult?.get()
-    }
-    
-    func completeInsertion(with error: Error) {
-        saveResult = .failure(error)
-    }
-    
-    func completeInsertionSuccessfully() {
-        saveResult = .success(())
-    }
-}
-
 class CachedTodosUseCaseTests: XCTestCase {
     
-    func test_init_doesNotDeleteCacheUponCreation() {
+    func test_init_doesNotMessageStoreUponCreation() {
         let (_, store) = makeSUT()
         
         XCTAssertEqual(store.receivedMessages, [])
@@ -81,8 +47,8 @@ class CachedTodosUseCaseTests: XCTestCase {
     private func makeSUT(
         file: StaticString = #filePath,
         line: UInt = #line
-    ) -> (sut: LocalTodoLoader, store: TodoStore) {
-        let store = TodoStore()
+    ) -> (sut: LocalTodoLoader, store: TodoStoreSpy) {
+        let store = TodoStoreSpy()
         let sut = LocalTodoLoader(store: store)
         
         trackForMemoryLeaks(sut, file: file, line: line)
@@ -109,7 +75,4 @@ class CachedTodosUseCaseTests: XCTestCase {
     private func uniqueItem() -> TodoItem {
         TodoItem(uuid: UUID(), text: "any", createdAt: anyDate, completedAt: anyDate)
     }
-    
-    private let anyDate = Date()
-    private let anyNSError = NSError(domain: "any error", code: 0)
 }

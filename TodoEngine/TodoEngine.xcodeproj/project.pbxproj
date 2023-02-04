@@ -12,9 +12,13 @@
 		BE2E1701298E74BF00E504E3 /* TodoEngineTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE2E1700298E74BF00E504E3 /* TodoEngineTests.swift */; };
 		BE2E1702298E74BF00E504E3 /* TodoEngine.h in Headers */ = {isa = PBXBuildFile; fileRef = BE2E16F4298E74BF00E504E3 /* TodoEngine.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		BE2E170D298E768F00E504E3 /* TodoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE2E170C298E768F00E504E3 /* TodoItem.swift */; };
-		BE2E1710298E78A100E504E3 /* TodoLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE2E170F298E78A100E504E3 /* TodoLoader.swift */; };
+		BE2E1710298E78A100E504E3 /* TodoCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE2E170F298E78A100E504E3 /* TodoCache.swift */; };
 		BE2E1714298E7DFA00E504E3 /* CachedTodosUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE2E1713298E7DFA00E504E3 /* CachedTodosUseCaseTests.swift */; };
 		BE2E1717298E885300E504E3 /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE2E1716298E885300E504E3 /* XCTestCase+MemoryLeakTracking.swift */; };
+		BE2E171C298E95E700E504E3 /* TodoStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE2E171B298E95E700E504E3 /* TodoStore.swift */; };
+		BE2E171E298E96C900E504E3 /* LocalTodoLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE2E171D298E96C900E504E3 /* LocalTodoLoader.swift */; };
+		BE2E1721298E973400E504E3 /* TodoStoreSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE2E1720298E973400E504E3 /* TodoStoreSpy.swift */; };
+		BE2E1723298E978700E504E3 /* SharedTestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE2E1722298E978700E504E3 /* SharedTestHelpers.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,9 +38,13 @@
 		BE2E16FB298E74BF00E504E3 /* TodoEngineTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TodoEngineTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE2E1700298E74BF00E504E3 /* TodoEngineTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoEngineTests.swift; sourceTree = "<group>"; };
 		BE2E170C298E768F00E504E3 /* TodoItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoItem.swift; sourceTree = "<group>"; };
-		BE2E170F298E78A100E504E3 /* TodoLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoLoader.swift; sourceTree = "<group>"; };
+		BE2E170F298E78A100E504E3 /* TodoCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoCache.swift; sourceTree = "<group>"; };
 		BE2E1713298E7DFA00E504E3 /* CachedTodosUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CachedTodosUseCaseTests.swift; sourceTree = "<group>"; };
 		BE2E1716298E885300E504E3 /* XCTestCase+MemoryLeakTracking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+MemoryLeakTracking.swift"; sourceTree = "<group>"; };
+		BE2E171B298E95E700E504E3 /* TodoStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoStore.swift; sourceTree = "<group>"; };
+		BE2E171D298E96C900E504E3 /* LocalTodoLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalTodoLoader.swift; sourceTree = "<group>"; };
+		BE2E1720298E973400E504E3 /* TodoStoreSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoStoreSpy.swift; sourceTree = "<group>"; };
+		BE2E1722298E978700E504E3 /* SharedTestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedTestHelpers.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +87,7 @@
 		BE2E16F3298E74BF00E504E3 /* TodoEngine */ = {
 			isa = PBXGroup;
 			children = (
+				BE2E171A298E95D200E504E3 /* TodoCache */,
 				BE2E170E298E787E00E504E3 /* TodoFeatures */,
 				BE2E170B298E765700E504E3 /* Models */,
 				BE2E16F4298E74BF00E504E3 /* TodoEngine.h */,
@@ -109,7 +118,7 @@
 		BE2E170E298E787E00E504E3 /* TodoFeatures */ = {
 			isa = PBXGroup;
 			children = (
-				BE2E170F298E78A100E504E3 /* TodoLoader.swift */,
+				BE2E170F298E78A100E504E3 /* TodoCache.swift */,
 			);
 			path = TodoFeatures;
 			sourceTree = "<group>";
@@ -124,6 +133,7 @@
 		BE2E1712298E7DCD00E504E3 /* TodoCache */ = {
 			isa = PBXGroup;
 			children = (
+				BE2E171F298E972D00E504E3 /* Helpers */,
 				BE2E1713298E7DFA00E504E3 /* CachedTodosUseCaseTests.swift */,
 			);
 			path = TodoCache;
@@ -133,6 +143,24 @@
 			isa = PBXGroup;
 			children = (
 				BE2E1716298E885300E504E3 /* XCTestCase+MemoryLeakTracking.swift */,
+				BE2E1722298E978700E504E3 /* SharedTestHelpers.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		BE2E171A298E95D200E504E3 /* TodoCache */ = {
+			isa = PBXGroup;
+			children = (
+				BE2E171B298E95E700E504E3 /* TodoStore.swift */,
+				BE2E171D298E96C900E504E3 /* LocalTodoLoader.swift */,
+			);
+			path = TodoCache;
+			sourceTree = "<group>";
+		};
+		BE2E171F298E972D00E504E3 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				BE2E1720298E973400E504E3 /* TodoStoreSpy.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -247,8 +275,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				BE2E170D298E768F00E504E3 /* TodoItem.swift in Sources */,
+				BE2E171C298E95E700E504E3 /* TodoStore.swift in Sources */,
+				BE2E171E298E96C900E504E3 /* LocalTodoLoader.swift in Sources */,
 				BE2E16F6298E74BF00E504E3 /* TodoEngine.docc in Sources */,
-				BE2E1710298E78A100E504E3 /* TodoLoader.swift in Sources */,
+				BE2E1710298E78A100E504E3 /* TodoCache.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -256,7 +286,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BE2E1721298E973400E504E3 /* TodoStoreSpy.swift in Sources */,
 				BE2E1701298E74BF00E504E3 /* TodoEngineTests.swift in Sources */,
+				BE2E1723298E978700E504E3 /* SharedTestHelpers.swift in Sources */,
 				BE2E1714298E7DFA00E504E3 /* CachedTodosUseCaseTests.swift in Sources */,
 				BE2E1717298E885300E504E3 /* XCTestCase+MemoryLeakTracking.swift in Sources */,
 			);
