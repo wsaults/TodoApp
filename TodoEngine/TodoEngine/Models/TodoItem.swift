@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct TodoItem {
+public struct TodoItem: Equatable {
     let uuid: UUID
     let text: String?
     let createdAt: Date?

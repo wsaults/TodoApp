@@ -15,17 +15,30 @@ class LocalTodoLoader {
         self.store = store
     }
     
-    func save(_ items: [TodoItem]) {
-        store.save()
+    func save(_ items: [TodoItem]) throws {
+        try store.save(items)
     }
 }
 
 class TodoStore {
-    var deleteCachedTodoCallCount = 0
-    var savedCachedTodoCallCount = 0
+    enum ReceivedMessage: Equatable {
+        case save([TodoItem])
+    }
     
-    func save() {
-        savedCachedTodoCallCount += 1
+    private(set) var receivedMessages = [ReceivedMessage]()
+    private var saveResult: Result<Void, Error>?
+    
+    func save(_ items: [TodoItem]) throws {
+        receivedMessages.append(.save(items))
+        try saveResult?.get()
+    }
+    
+    func completeInsertion(with error: Error) {
+        saveResult = .failure(error)
+    }
+    
+    func completeInsertionSuccessfully() {
+        saveResult = .success(())
     }
 }
 
@@ -34,17 +47,33 @@ class CachedTodosUseCaseTests: XCTestCase {
     func test_init_doesNotDeleteCacheUponCreation() {
         let (_, store) = makeSUT()
         
-        XCTAssertEqual(store.deleteCachedTodoCallCount, 0)
+        XCTAssertEqual(store.receivedMessages, [])
     }
     
     func test_save() {
         let items = [uniqueItem(), uniqueItem()]
         let (sut, store) = makeSUT()
         
-        sut.save(items)
+        try? sut.save(items)
         
-        XCTAssertEqual(store.deleteCachedTodoCallCount, 0)
-        XCTAssertEqual(store.savedCachedTodoCallCount, 1)
+        XCTAssertEqual(store.receivedMessages, [.save(items)])
+    }
+    
+    func test_save_failsOnSaveError() {
+        let (sut, store) = makeSUT()
+        let saveError = anyNSError
+        
+        expect(sut, toCompleteWithError: saveError) {
+            store.completeInsertion(with: saveError)
+        }
+    }
+    
+    func test_save_succeedsOnSuccessfulSave() {
+        let (sut, store) = makeSUT()
+        
+        expect(sut, toCompleteWithError: nil) {
+            store.completeInsertionSuccessfully()
+        }
     }
     
     // MARK: Helpers
@@ -62,9 +91,25 @@ class CachedTodosUseCaseTests: XCTestCase {
         return (sut, store)
     }
     
+    private func expect(
+        _ sut: LocalTodoLoader,
+        toCompleteWithError expectedError: NSError?,
+        when action: () -> Void,
+        file: StaticString = #filePath,
+        line: UInt = #line
+    ) {
+        action()
+        do {
+            try sut.save([uniqueItem(), uniqueItem()])
+        } catch {
+            XCTAssertEqual(error as NSError?, expectedError, file: file, line: line)
+        }
+    }
+    
     private func uniqueItem() -> TodoItem {
         TodoItem(uuid: UUID(), text: "any", createdAt: anyDate, completedAt: anyDate)
     }
     
     private let anyDate = Date()
+    private let anyNSError = NSError(domain: "any error", code: 0)
 }
