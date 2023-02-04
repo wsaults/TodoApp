@@ -49,9 +49,16 @@ class CachedTodosUseCaseTests: XCTestCase {
     
     // MARK: Helpers
     
-    private func makeSUT() -> (sut: LocalTodoLoader, store: TodoStore) {
+    private func makeSUT(
+        file: StaticString = #filePath,
+        line: UInt = #line
+    ) -> (sut: LocalTodoLoader, store: TodoStore) {
         let store = TodoStore()
         let sut = LocalTodoLoader(store: store)
+        
+        trackForMemoryLeaks(sut, file: file, line: line)
+        trackForMemoryLeaks(store, file: file, line: line)
+        
         return (sut, store)
     }
     
