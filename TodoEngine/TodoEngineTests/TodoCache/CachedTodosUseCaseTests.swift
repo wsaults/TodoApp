@@ -32,16 +32,15 @@ class TodoStore {
 class CachedTodosUseCaseTests: XCTestCase {
     
     func test_init_doesNotDeleteCacheUponCreation() {
-        let store = TodoStore()
-        _ = LocalTodoLoader(store: store)
+        let (_, store) = makeSUT()
         
         XCTAssertEqual(store.deleteCachedTodoCallCount, 0)
     }
     
     func test_save() {
-        let store = TodoStore()
-        let sut = LocalTodoLoader(store: store)
         let items = [uniqueItem(), uniqueItem()]
+        let (sut, store) = makeSUT()
+        
         sut.save(items)
         
         XCTAssertEqual(store.deleteCachedTodoCallCount, 0)
@@ -49,6 +48,12 @@ class CachedTodosUseCaseTests: XCTestCase {
     }
     
     // MARK: Helpers
+    
+    private func makeSUT() -> (sut: LocalTodoLoader, store: TodoStore) {
+        let store = TodoStore()
+        let sut = LocalTodoLoader(store: store)
+        return (sut, store)
+    }
     
     private func uniqueItem() -> TodoItem {
         TodoItem(uuid: UUID(), text: "any", createdAt: anyDate, completedAt: anyDate)
