@@ -35,4 +35,8 @@ class TodoStoreSpy: TodoStore {
         receivedMessages.append(.retrieve)
         return try retrievalResult?.get()
     }
+    
+    func completeRetrieval(with error: Error) {
+        retrievalResult = .failure(error)
+    }
 }
