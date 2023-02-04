@@ -20,3 +20,9 @@ extension LocalTodoLoader: TodoCache {
         try store.save(items)
     }
 }
+
+extension LocalTodoLoader {
+    public func load() throws -> [TodoItem] {
+        try store.retrieve() ?? []
+    }
+}

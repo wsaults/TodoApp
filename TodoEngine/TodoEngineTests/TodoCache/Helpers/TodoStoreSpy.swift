@@ -11,10 +11,12 @@ import TodoEngine
 class TodoStoreSpy: TodoStore {
     enum ReceivedMessage: Equatable {
         case save([TodoItem])
+        case retrieve
     }
     
     private(set) var receivedMessages = [ReceivedMessage]()
     private var saveResult: Result<Void, Error>?
+    private var retrievalResult: Result<CachedTodos?, Error>?
     
     func save(_ items: [TodoItem]) throws {
         receivedMessages.append(.save(items))
@@ -27,5 +29,10 @@ class TodoStoreSpy: TodoStore {
     
     func completeInsertionSuccessfully() {
         saveResult = .success(())
+    }
+    
+    func retrieve() throws -> CachedTodos? {
+        receivedMessages.append(.retrieve)
+        return try retrievalResult?.get()
     }
 }

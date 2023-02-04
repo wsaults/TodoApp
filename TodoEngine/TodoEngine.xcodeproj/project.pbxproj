@@ -19,6 +19,7 @@
 		BE2E171E298E96C900E504E3 /* LocalTodoLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE2E171D298E96C900E504E3 /* LocalTodoLoader.swift */; };
 		BE2E1721298E973400E504E3 /* TodoStoreSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE2E1720298E973400E504E3 /* TodoStoreSpy.swift */; };
 		BE2E1723298E978700E504E3 /* SharedTestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE2E1722298E978700E504E3 /* SharedTestHelpers.swift */; };
+		BE2E1725298E991800E504E3 /* LoadTodosFromCacheUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE2E1724298E991800E504E3 /* LoadTodosFromCacheUseCaseTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +46,7 @@
 		BE2E171D298E96C900E504E3 /* LocalTodoLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalTodoLoader.swift; sourceTree = "<group>"; };
 		BE2E1720298E973400E504E3 /* TodoStoreSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoStoreSpy.swift; sourceTree = "<group>"; };
 		BE2E1722298E978700E504E3 /* SharedTestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedTestHelpers.swift; sourceTree = "<group>"; };
+		BE2E1724298E991800E504E3 /* LoadTodosFromCacheUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadTodosFromCacheUseCaseTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,6 +137,7 @@
 			children = (
 				BE2E171F298E972D00E504E3 /* Helpers */,
 				BE2E1713298E7DFA00E504E3 /* CachedTodosUseCaseTests.swift */,
+				BE2E1724298E991800E504E3 /* LoadTodosFromCacheUseCaseTests.swift */,
 			);
 			path = TodoCache;
 			sourceTree = "<group>";
@@ -290,6 +293,7 @@
 				BE2E1701298E74BF00E504E3 /* TodoEngineTests.swift in Sources */,
 				BE2E1723298E978700E504E3 /* SharedTestHelpers.swift in Sources */,
 				BE2E1714298E7DFA00E504E3 /* CachedTodosUseCaseTests.swift in Sources */,
+				BE2E1725298E991800E504E3 /* LoadTodosFromCacheUseCaseTests.swift in Sources */,
 				BE2E1717298E885300E504E3 /* XCTestCase+MemoryLeakTracking.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
