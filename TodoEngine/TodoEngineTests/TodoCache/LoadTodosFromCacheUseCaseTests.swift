@@ -33,6 +33,14 @@ class LoadTodosFromCacheUseCaseTests: XCTestCase {
         }
     }
     
+    func test_load_deliversNoTodosOnEmptyCache() {
+        let (sut, store) = makeSUT()
+
+        expect(sut, toCompleteWith: .success([])) {
+            store.completeRetrievalWithEmptyCache()
+        }
+    }
+    
     // MARK: Helpers
 
     private func makeSUT(

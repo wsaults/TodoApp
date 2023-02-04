@@ -39,4 +39,8 @@ class TodoStoreSpy: TodoStore {
     func completeRetrieval(with error: Error) {
         retrievalResult = .failure(error)
     }
+    
+    func completeRetrievalWithEmptyCache() {
+        retrievalResult = .success(.none)
+    }
 }
