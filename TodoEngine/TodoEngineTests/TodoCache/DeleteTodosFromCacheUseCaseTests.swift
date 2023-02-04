@@ -16,7 +16,7 @@ class DeleteTodosFromCacheUseCaseTests: XCTestCase {
         XCTAssertEqual(store.receivedMessages, [])
     }
     
-    func test_delete() {
+    func test_delete_savedLastTodoLeavesZeroTodos() {
         let item = uniqueItem()
         let (sut, store) = makeSUT()
         
@@ -24,6 +24,7 @@ class DeleteTodosFromCacheUseCaseTests: XCTestCase {
         try? sut.delete(item)
         
         XCTAssertEqual(store.receivedMessages, [.save(item), .delete(item)])
+        XCTAssertEqual(try sut.load().count, 0)
     }
     
     // MARK: Helpers
