@@ -9,7 +9,7 @@ import TodoEngine
 import XCTest
 import UIKit
 
-final class TodosViewController: UIViewController {
+final class TodosViewController: UITableViewController {
     private var loader: TodoLoader?
     
     convenience init(loader: TodoLoader) {
@@ -20,6 +20,12 @@ final class TodosViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        refreshControl = UIRefreshControl()
+        refreshControl?.addTarget(self, action: #selector(load), for: .valueChanged)
+        load()
+    }
+    
+    @objc private func load() {
         _ = try? loader?.load()
     }
 }
@@ -38,6 +44,17 @@ class TodosViewControllerTests: XCTestCase {
         sut.loadViewIfNeeded()
         
         XCTAssertEqual(loader.loadCallCount, 1)
+    }
+    
+    func test_pullToRefresh_loadsTodos() {
+        let (sut, loader) = makeSUT()
+        sut.loadViewIfNeeded()
+        
+        sut.refreshControl?.simulaterPullToRefresh()
+        XCTAssertEqual(loader.loadCallCount, 2)
+        
+        sut.refreshControl?.simulaterPullToRefresh()
+        XCTAssertEqual(loader.loadCallCount, 3)
     }
     
     // MARK: Helpers
@@ -61,6 +78,16 @@ class TodosViewControllerTests: XCTestCase {
         func load() throws -> [TodoItem] {
             loadCallCount += 1
             return []
+        }
+    }
+}
+
+private extension UIRefreshControl {
+    func simulaterPullToRefresh() {
+        allTargets.forEach { target in
+            actions(forTarget: target, forControlEvent: .valueChanged)?.forEach {
+                (target as NSObject).perform(Selector($0))
+            }
         }
     }
 }
