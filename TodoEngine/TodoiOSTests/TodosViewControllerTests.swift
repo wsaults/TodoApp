@@ -5,13 +5,14 @@
 //  Created by Will Saults on 2/5/23.
 //
 
+import TodoEngine
 import XCTest
 import UIKit
 
 final class TodosViewController: UIViewController {
-    private var loader: TodosViewControllerTests.LoaderSpy?
+    private var loader: TodoLoader?
     
-    convenience init(loader: TodosViewControllerTests.LoaderSpy) {
+    convenience init(loader: TodoLoader) {
         self.init()
         self.loader = loader
     }
@@ -19,7 +20,7 @@ final class TodosViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        loader?.load()
+        _ = try? loader?.load()
     }
 }
 
@@ -43,11 +44,12 @@ class TodosViewControllerTests: XCTestCase {
     
     // MARK: Helpers
     
-    class LoaderSpy {
-        private(set) var loadCallCount: Int = 0
-        
-        func load() {
+    class LoaderSpy: TodoLoader {
+        private(set) var loadCallCount = 0
+
+        func load() throws -> [TodoItem] {
             loadCallCount += 1
+            return []
         }
     }
 }

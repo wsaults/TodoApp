@@ -39,6 +39,9 @@
 		BE2E17592990342C00E504E3 /* TodoiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE2E174F2990342B00E504E3 /* TodoiOS.framework */; };
 		BE2E175F2990342C00E504E3 /* TodoiOS.h in Headers */ = {isa = PBXBuildFile; fileRef = BE2E17512990342B00E504E3 /* TodoiOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		BE2E17672990390000E504E3 /* TodosViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE2E17662990390000E504E3 /* TodosViewControllerTests.swift */; };
+		BE387FD829903F9100BA6712 /* TodoLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE387FD729903F9100BA6712 /* TodoLoader.swift */; };
+		BE387FDA2990402B00BA6712 /* TodoEngine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE2E16F1298E74BF00E504E3 /* TodoEngine.framework */; platformFilter = ios; };
+		BE387FDB2990402B00BA6712 /* TodoEngine.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BE2E16F1298E74BF00E504E3 /* TodoEngine.framework */; platformFilter = ios; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,7 +59,28 @@
 			remoteGlobalIDString = BE2E174E2990342B00E504E3;
 			remoteInfo = TodoiOS;
 		};
+		BE387FDC2990402B00BA6712 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BE2E16E8298E74BE00E504E3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BE2E16F0298E74BE00E504E3;
+			remoteInfo = TodoEngine;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		BE387FDE2990402B00BA6712 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				BE387FDB2990402B00BA6712 /* TodoEngine.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		BE2E16F1298E74BF00E504E3 /* TodoEngine.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TodoEngine.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -93,6 +117,7 @@
 		BE2E17522990342B00E504E3 /* TodoiOS.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = TodoiOS.docc; sourceTree = "<group>"; };
 		BE2E17582990342C00E504E3 /* TodoiOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TodoiOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE2E17662990390000E504E3 /* TodosViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodosViewControllerTests.swift; sourceTree = "<group>"; };
+		BE387FD729903F9100BA6712 /* TodoLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoLoader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +140,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BE387FDA2990402B00BA6712 /* TodoEngine.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -137,6 +163,7 @@
 				BE2E17502990342B00E504E3 /* TodoiOS */,
 				BE2E175C2990342C00E504E3 /* TodoiOSTests */,
 				BE2E16F2298E74BF00E504E3 /* Products */,
+				BE387FD92990402B00BA6712 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -188,6 +215,7 @@
 			isa = PBXGroup;
 			children = (
 				BE2E170F298E78A100E504E3 /* TodoCache.swift */,
+				BE387FD729903F9100BA6712 /* TodoLoader.swift */,
 			);
 			path = TodoFeatures;
 			sourceTree = "<group>";
@@ -289,6 +317,13 @@
 			path = TodoiOSTests;
 			sourceTree = "<group>";
 		};
+		BE387FD92990402B00BA6712 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -355,10 +390,12 @@
 				BE2E174B2990342B00E504E3 /* Sources */,
 				BE2E174C2990342B00E504E3 /* Frameworks */,
 				BE2E174D2990342B00E504E3 /* Resources */,
+				BE387FDE2990402B00BA6712 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				BE387FDD2990402B00BA6712 /* PBXTargetDependency */,
 			);
 			name = TodoiOS;
 			productName = TodoiOS;
@@ -472,6 +509,7 @@
 				BE2E171C298E95E700E504E3 /* TodoStore.swift in Sources */,
 				BE2E173C299017D500E504E3 /* TodoItemViewModel.swift in Sources */,
 				BE2E1730298FE30100E504E3 /* FileManagerTodoStore+TodoStore.swift in Sources */,
+				BE387FD829903F9100BA6712 /* TodoLoader.swift in Sources */,
 				BE2E173A299017C000E504E3 /* TodoPresenter.swift in Sources */,
 				BE2E171E298E96C900E504E3 /* LocalTodoLoader.swift in Sources */,
 				BE2E16F6298E74BF00E504E3 /* TodoEngine.docc in Sources */,
@@ -529,6 +567,12 @@
 			isa = PBXTargetDependency;
 			target = BE2E174E2990342B00E504E3 /* TodoiOS */;
 			targetProxy = BE2E175A2990342C00E504E3 /* PBXContainerItemProxy */;
+		};
+		BE387FDD2990402B00BA6712 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			platformFilter = ios;
+			target = BE2E16F0298E74BE00E504E3 /* TodoEngine */;
+			targetProxy = BE387FDC2990402B00BA6712 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

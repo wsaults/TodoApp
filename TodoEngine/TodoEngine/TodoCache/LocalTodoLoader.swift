@@ -21,11 +21,13 @@ extension LocalTodoLoader: TodoCache {
     }
 }
 
-extension LocalTodoLoader {
+extension LocalTodoLoader: TodoLoader {
     public func load() throws -> [TodoItem] {
         try store.retrieve() ?? []
     }
-    
+}
+
+extension LocalTodoLoader {
     public func delete(_ item: TodoItem) throws {
         try store.delete(item)
     }
