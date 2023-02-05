@@ -12,6 +12,10 @@ func uniqueItem() -> TodoItem {
     TodoItem(uuid: UUID(), text: "any", createdAt: anyDate, completedAt: anyDate)
 }
 
+func uniqueIncompleteItem() -> TodoItem {
+    TodoItem(uuid: UUID(), text: "any", createdAt: anyDate, completedAt: nil)
+}
+
 func uniqueItems() -> [TodoItem] {
     [uniqueItem(), uniqueItem()]
 }
