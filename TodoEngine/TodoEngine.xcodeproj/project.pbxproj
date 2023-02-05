@@ -34,6 +34,7 @@
 		BE2E1740299018A500E504E3 /* TodosPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE2E173F299018A500E504E3 /* TodosPresenter.swift */; };
 		BE2E17422990194D00E504E3 /* TodosLocalizationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE2E17412990194D00E504E3 /* TodosLocalizationTests.swift */; };
 		BE2E1745299019F800E504E3 /* Todos.strings in Resources */ = {isa = PBXBuildFile; fileRef = BE2E1747299019F800E504E3 /* Todos.strings */; };
+		BE2E174929901AA400E504E3 /* SharedLocalizationTestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE2E174829901AA400E504E3 /* SharedLocalizationTestHelpers.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +76,7 @@
 		BE2E173F299018A500E504E3 /* TodosPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodosPresenter.swift; sourceTree = "<group>"; };
 		BE2E17412990194D00E504E3 /* TodosLocalizationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodosLocalizationTests.swift; sourceTree = "<group>"; };
 		BE2E1746299019F800E504E3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Todos.strings; sourceTree = "<group>"; };
+		BE2E174829901AA400E504E3 /* SharedLocalizationTestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedLocalizationTestHelpers.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -180,6 +182,7 @@
 			children = (
 				BE2E1716298E885300E504E3 /* XCTestCase+MemoryLeakTracking.swift */,
 				BE2E1722298E978700E504E3 /* SharedTestHelpers.swift */,
+				BE2E174829901AA400E504E3 /* SharedLocalizationTestHelpers.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -362,6 +365,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BE2E17422990194D00E504E3 /* TodosLocalizationTests.swift in Sources */,
+				BE2E174929901AA400E504E3 /* SharedLocalizationTestHelpers.swift in Sources */,
 				BE2E1721298E973400E504E3 /* TodoStoreSpy.swift in Sources */,
 				BE2E1732298FE81900E504E3 /* FileManagerTodoStoreTestHelpers.swift in Sources */,
 				BE2E172B298F2D2700E504E3 /* FileManagerFeedStoreTests.swift in Sources */,
