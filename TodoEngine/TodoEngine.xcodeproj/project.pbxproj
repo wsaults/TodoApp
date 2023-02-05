@@ -25,6 +25,7 @@
 		BE2E172B298F2D2700E504E3 /* FileManagerFeedStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE2E172A298F2D2700E504E3 /* FileManagerFeedStoreTests.swift */; };
 		BE2E172E298FE2D400E504E3 /* FileManagerTodoStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE2E172D298FE2D400E504E3 /* FileManagerTodoStore.swift */; };
 		BE2E1730298FE30100E504E3 /* FileManagerTodoStore+TodoStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE2E172F298FE30100E504E3 /* FileManagerTodoStore+TodoStore.swift */; };
+		BE2E1732298FE81900E504E3 /* FileManagerTodoStoreTestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE2E1731298FE81900E504E3 /* FileManagerTodoStoreTestHelpers.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +58,7 @@
 		BE2E172A298F2D2700E504E3 /* FileManagerFeedStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManagerFeedStoreTests.swift; sourceTree = "<group>"; };
 		BE2E172D298FE2D400E504E3 /* FileManagerTodoStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManagerTodoStore.swift; sourceTree = "<group>"; };
 		BE2E172F298FE30100E504E3 /* FileManagerTodoStore+TodoStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FileManagerTodoStore+TodoStore.swift"; sourceTree = "<group>"; };
+		BE2E1731298FE81900E504E3 /* FileManagerTodoStoreTestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManagerTodoStoreTestHelpers.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -178,6 +180,7 @@
 			children = (
 				BE2E1720298E973400E504E3 /* TodoStoreSpy.swift */,
 				BE2E1726298EA84700E504E3 /* TodoTestHelpers.swift */,
+				BE2E1731298FE81900E504E3 /* FileManagerTodoStoreTestHelpers.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -315,6 +318,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BE2E1721298E973400E504E3 /* TodoStoreSpy.swift in Sources */,
+				BE2E1732298FE81900E504E3 /* FileManagerTodoStoreTestHelpers.swift in Sources */,
 				BE2E172B298F2D2700E504E3 /* FileManagerFeedStoreTests.swift in Sources */,
 				BE2E1729298F240700E504E3 /* DeleteTodosFromCacheUseCaseTests.swift in Sources */,
 				BE2E1701298E74BF00E504E3 /* TodoEngineTests.swift in Sources */,

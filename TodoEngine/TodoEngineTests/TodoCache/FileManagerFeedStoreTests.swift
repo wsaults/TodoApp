@@ -92,8 +92,7 @@ class FileManagerTodoStoreTests: XCTestCase {
     // MARK: - Helpers
 
     private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> TodoStore {
-        let storeURL = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString, isDirectory: true)
-        let sut = try! FileManagerTodoStore(storeURL: storeURL)
+        let sut = try! FileManagerTodoStore(storeURL: testRandomStoreURL())
         trackForMemoryLeaks(sut, file: file, line: line)
         return sut
     }
