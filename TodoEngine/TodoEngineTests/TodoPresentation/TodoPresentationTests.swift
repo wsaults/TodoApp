@@ -10,7 +10,8 @@ import XCTest
 
 public struct TodoItemViewModel {
     public let text: String?
-    public let completedAt: String?
+    public let createdAt: Date?
+    let completedAt: Date?
 
     public var isComplete: Bool {
         completedAt != nil
@@ -19,16 +20,10 @@ public struct TodoItemViewModel {
 
 public final class TodoPresenter {
     public static func map(_ item: TodoItem) -> TodoItemViewModel {
-        var completedValue: String?
-        if let completedAt = item.completedAt {
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-            completedValue = dateFormatter.string(from: completedAt)
-        }
-        
-        return TodoItemViewModel(
+        TodoItemViewModel(
             text: item.text,
-            completedAt: completedValue
+            createdAt: item.createdAt,
+            completedAt: item.completedAt
         )
     }
 }
@@ -40,6 +35,7 @@ class TodoPresentationTests: XCTestCase {
         let viewModel = TodoPresenter.map(item)
         
         XCTAssertEqual(viewModel.text, item.text)
+        XCTAssertEqual(viewModel.createdAt, item.createdAt)
     }
     
     func test_map_createsNonCompletedViewModel() {
