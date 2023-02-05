@@ -40,6 +40,19 @@ class TodoCacheIntegrationTests: XCTestCase {
         expect(todoLoaderToPerformLoad, toLoad: todos)
     }
     
+    func test_loadTodos_overridesItemsSavedOnASeparateInstance() {
+        let todoLoaderToPerformFirstSave = makeTodoLoader()
+        let todoLoaderToPerformLastSave = makeTodoLoader()
+        let todoLoaderToPerformLoad = makeTodoLoader()
+        let firstTodos = uniqueItems()
+        let latestTodos = uniqueItems()
+
+        save(firstTodos, with: todoLoaderToPerformFirstSave)
+        save(latestTodos, with: todoLoaderToPerformLastSave)
+
+        expect(todoLoaderToPerformLoad, toLoad: latestTodos)
+    }
+    
     // MARK: Helpers
 
     private func makeTodoLoader(file: StaticString = #filePath, line: UInt = #line) -> LocalTodoLoader {
