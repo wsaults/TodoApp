@@ -8,26 +8,6 @@
 import TodoEngine
 import XCTest
 
-public struct TodoItemViewModel {
-    public let text: String?
-    public let createdAt: Date?
-    let completedAt: Date?
-
-    public var isComplete: Bool {
-        completedAt != nil
-    }
-}
-
-public final class TodoPresenter {
-    public static func map(_ item: TodoItem) -> TodoItemViewModel {
-        TodoItemViewModel(
-            text: item.text,
-            createdAt: item.createdAt,
-            completedAt: item.completedAt
-        )
-    }
-}
-
 class TodoPresentationTests: XCTestCase {
     
     func test_map_createsViewModel() {

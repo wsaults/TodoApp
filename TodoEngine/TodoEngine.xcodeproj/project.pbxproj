@@ -28,6 +28,8 @@
 		BE2E1732298FE81900E504E3 /* FileManagerTodoStoreTestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE2E1731298FE81900E504E3 /* FileManagerTodoStoreTestHelpers.swift */; };
 		BE2E1734298FE8F100E504E3 /* TodoCacheIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE2E1733298FE8F100E504E3 /* TodoCacheIntegrationTests.swift */; };
 		BE2E1738298FF0BC00E504E3 /* TodoPresentationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE2E1737298FF0BC00E504E3 /* TodoPresentationTests.swift */; };
+		BE2E173A299017C000E504E3 /* TodoPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE2E1739299017C000E504E3 /* TodoPresenter.swift */; };
+		BE2E173C299017D500E504E3 /* TodoItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE2E173B299017D500E504E3 /* TodoItemViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +65,8 @@
 		BE2E1731298FE81900E504E3 /* FileManagerTodoStoreTestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManagerTodoStoreTestHelpers.swift; sourceTree = "<group>"; };
 		BE2E1733298FE8F100E504E3 /* TodoCacheIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoCacheIntegrationTests.swift; sourceTree = "<group>"; };
 		BE2E1737298FF0BC00E504E3 /* TodoPresentationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoPresentationTests.swift; sourceTree = "<group>"; };
+		BE2E1739299017C000E504E3 /* TodoPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoPresenter.swift; sourceTree = "<group>"; };
+		BE2E173B299017D500E504E3 /* TodoItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoItemViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -204,6 +208,8 @@
 		BE2E1735298FF09000E504E3 /* TodoPresentation */ = {
 			isa = PBXGroup;
 			children = (
+				BE2E1739299017C000E504E3 /* TodoPresenter.swift */,
+				BE2E173B299017D500E504E3 /* TodoItemViewModel.swift */,
 			);
 			path = TodoPresentation;
 			sourceTree = "<group>";
@@ -328,7 +334,9 @@
 				BE2E170D298E768F00E504E3 /* TodoItem.swift in Sources */,
 				BE2E172E298FE2D400E504E3 /* FileManagerTodoStore.swift in Sources */,
 				BE2E171C298E95E700E504E3 /* TodoStore.swift in Sources */,
+				BE2E173C299017D500E504E3 /* TodoItemViewModel.swift in Sources */,
 				BE2E1730298FE30100E504E3 /* FileManagerTodoStore+TodoStore.swift in Sources */,
+				BE2E173A299017C000E504E3 /* TodoPresenter.swift in Sources */,
 				BE2E171E298E96C900E504E3 /* LocalTodoLoader.swift in Sources */,
 				BE2E16F6298E74BF00E504E3 /* TodoEngine.docc in Sources */,
 				BE2E1710298E78A100E504E3 /* TodoCache.swift in Sources */,
