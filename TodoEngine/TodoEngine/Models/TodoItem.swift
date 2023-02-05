@@ -8,10 +8,10 @@
 import Foundation
 
 public struct TodoItem: Equatable, Codable {
-    let uuid: UUID
-    let text: String?
-    let createdAt: Date?
-    let completedAt: Date?
+    public let uuid: UUID
+    public let text: String?
+    public let createdAt: Date?
+    public let completedAt: Date?
     
     public init(uuid: UUID, text: String? = nil, createdAt: Date? = nil, completedAt: Date? = nil) {
         self.uuid = uuid
