@@ -37,8 +37,8 @@
 		BE2E174929901AA400E504E3 /* SharedLocalizationTestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE2E174829901AA400E504E3 /* SharedLocalizationTestHelpers.swift */; };
 		BE2E17532990342C00E504E3 /* TodoiOS.docc in Sources */ = {isa = PBXBuildFile; fileRef = BE2E17522990342B00E504E3 /* TodoiOS.docc */; };
 		BE2E17592990342C00E504E3 /* TodoiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE2E174F2990342B00E504E3 /* TodoiOS.framework */; };
-		BE2E175E2990342C00E504E3 /* TodoiOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE2E175D2990342C00E504E3 /* TodoiOSTests.swift */; };
 		BE2E175F2990342C00E504E3 /* TodoiOS.h in Headers */ = {isa = PBXBuildFile; fileRef = BE2E17512990342B00E504E3 /* TodoiOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		BE2E17672990390000E504E3 /* TodosViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE2E17662990390000E504E3 /* TodosViewControllerTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -92,7 +92,7 @@
 		BE2E17512990342B00E504E3 /* TodoiOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TodoiOS.h; sourceTree = "<group>"; };
 		BE2E17522990342B00E504E3 /* TodoiOS.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = TodoiOS.docc; sourceTree = "<group>"; };
 		BE2E17582990342C00E504E3 /* TodoiOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TodoiOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		BE2E175D2990342C00E504E3 /* TodoiOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoiOSTests.swift; sourceTree = "<group>"; };
+		BE2E17662990390000E504E3 /* TodosViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodosViewControllerTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -284,7 +284,7 @@
 		BE2E175C2990342C00E504E3 /* TodoiOSTests */ = {
 			isa = PBXGroup;
 			children = (
-				BE2E175D2990342C00E504E3 /* TodoiOSTests.swift */,
+				BE2E17662990390000E504E3 /* TodosViewControllerTests.swift */,
 			);
 			path = TodoiOSTests;
 			sourceTree = "<group>";
@@ -404,6 +404,7 @@
 					};
 					BE2E17572990342C00E504E3 = {
 						CreatedOnToolsVersion = 14.2;
+						LastSwiftMigration = 1420;
 					};
 				};
 			};
@@ -512,7 +513,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BE2E175E2990342C00E504E3 /* TodoiOSTests.swift in Sources */,
+				BE2E17672990390000E504E3 /* TodosViewControllerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -818,16 +819,23 @@
 		BE2E17642990342C00E504E3 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 77QB78PHPH;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = saults.TodoiOSTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -836,11 +844,17 @@
 		BE2E17652990342C00E504E3 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 77QB78PHPH;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = saults.TodoiOSTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
