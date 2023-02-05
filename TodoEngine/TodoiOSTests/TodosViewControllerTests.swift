@@ -27,15 +27,13 @@ final class TodosViewController: UIViewController {
 class TodosViewControllerTests: XCTestCase {
     
     func test_init_doesNotLoadTodos() {
-        let loader = LoaderSpy()
-        _ = TodosViewController(loader: loader)
+        let (_, loader) = makeSUT()
         
         XCTAssertEqual(loader.loadCallCount, 0)
     }
     
     func test_viewDidLoad_loadsTodos() {
-        let loader = LoaderSpy()
-        let sut = TodosViewController(loader: loader)
+        let (sut, loader) = makeSUT()
         
         sut.loadViewIfNeeded()
         
@@ -44,7 +42,20 @@ class TodosViewControllerTests: XCTestCase {
     
     // MARK: Helpers
     
-    class LoaderSpy: TodoLoader {
+    private func makeSUT(
+        file: StaticString = #filePath,
+        line: UInt = #line
+    ) -> (sut: TodosViewController, loader: LoaderSpy) {
+        let loader = LoaderSpy()
+        let sut = TodosViewController(loader: loader)
+        
+        trackForMemoryLeaks(sut, file: file, line: line)
+        trackForMemoryLeaks(loader, file: file, line: line)
+        
+        return (sut, loader)
+    }
+    
+    private class LoaderSpy: TodoLoader {
         private(set) var loadCallCount = 0
 
         func load() throws -> [TodoItem] {

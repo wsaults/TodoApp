@@ -42,6 +42,7 @@
 		BE387FD829903F9100BA6712 /* TodoLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE387FD729903F9100BA6712 /* TodoLoader.swift */; };
 		BE387FDA2990402B00BA6712 /* TodoEngine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE2E16F1298E74BF00E504E3 /* TodoEngine.framework */; platformFilter = ios; };
 		BE387FDB2990402B00BA6712 /* TodoEngine.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BE2E16F1298E74BF00E504E3 /* TodoEngine.framework */; platformFilter = ios; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		BE387FDF29904CD800BA6712 /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE2E1716298E885300E504E3 /* XCTestCase+MemoryLeakTracking.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -552,6 +553,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BE2E17672990390000E504E3 /* TodosViewControllerTests.swift in Sources */,
+				BE387FDF29904CD800BA6712 /* XCTestCase+MemoryLeakTracking.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
