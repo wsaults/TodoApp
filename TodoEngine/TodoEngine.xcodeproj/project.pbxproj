@@ -32,6 +32,8 @@
 		BE2E173C299017D500E504E3 /* TodoItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE2E173B299017D500E504E3 /* TodoItemViewModel.swift */; };
 		BE2E173E2990184000E504E3 /* TodosPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE2E173D2990184000E504E3 /* TodosPresenterTests.swift */; };
 		BE2E1740299018A500E504E3 /* TodosPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE2E173F299018A500E504E3 /* TodosPresenter.swift */; };
+		BE2E17422990194D00E504E3 /* TodosLocalizationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE2E17412990194D00E504E3 /* TodosLocalizationTests.swift */; };
+		BE2E1745299019F800E504E3 /* Todos.strings in Resources */ = {isa = PBXBuildFile; fileRef = BE2E1747299019F800E504E3 /* Todos.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +73,8 @@
 		BE2E173B299017D500E504E3 /* TodoItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoItemViewModel.swift; sourceTree = "<group>"; };
 		BE2E173D2990184000E504E3 /* TodosPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodosPresenterTests.swift; sourceTree = "<group>"; };
 		BE2E173F299018A500E504E3 /* TodosPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodosPresenter.swift; sourceTree = "<group>"; };
+		BE2E17412990194D00E504E3 /* TodosLocalizationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodosLocalizationTests.swift; sourceTree = "<group>"; };
+		BE2E1746299019F800E504E3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Todos.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -215,6 +219,7 @@
 				BE2E173B299017D500E504E3 /* TodoItemViewModel.swift */,
 				BE2E1739299017C000E504E3 /* TodoPresenter.swift */,
 				BE2E173F299018A500E504E3 /* TodosPresenter.swift */,
+				BE2E1747299019F800E504E3 /* Todos.strings */,
 			);
 			path = TodoPresentation;
 			sourceTree = "<group>";
@@ -223,6 +228,7 @@
 			isa = PBXGroup;
 			children = (
 				BE2E1737298FF0BC00E504E3 /* TodoPresentationTests.swift */,
+				BE2E17412990194D00E504E3 /* TodosLocalizationTests.swift */,
 				BE2E173D2990184000E504E3 /* TodosPresenterTests.swift */,
 			);
 			path = TodoPresentation;
@@ -320,6 +326,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BE2E1745299019F800E504E3 /* Todos.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -354,6 +361,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BE2E17422990194D00E504E3 /* TodosLocalizationTests.swift in Sources */,
 				BE2E1721298E973400E504E3 /* TodoStoreSpy.swift in Sources */,
 				BE2E1732298FE81900E504E3 /* FileManagerTodoStoreTestHelpers.swift in Sources */,
 				BE2E172B298F2D2700E504E3 /* FileManagerFeedStoreTests.swift in Sources */,
@@ -379,6 +387,17 @@
 			targetProxy = BE2E16FD298E74BF00E504E3 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		BE2E1747299019F800E504E3 /* Todos.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BE2E1746299019F800E504E3 /* en */,
+			);
+			name = Todos.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		BE2E1703298E74BF00E504E3 /* Debug */ = {
