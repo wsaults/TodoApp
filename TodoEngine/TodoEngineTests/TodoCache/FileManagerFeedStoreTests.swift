@@ -55,6 +55,44 @@ class FileManagerTodoStoreTests: XCTestCase {
         expect(sut, toRetrieve: .success(CachedTodos(items)))
     }
     
+    func test_retrieve_hasNoSideEffectsOnNonEmptyCache() {
+        let sut = makeSUT()
+        let items = uniqueItems()
+
+        save(items, to: sut)
+
+        expect(sut, toRetrieveTwice: .success(CachedTodos(items)))
+    }
+    
+    func test_save_deliversNoErrorOnEmptyCache() {
+        let sut = makeSUT()
+
+        let saveError = save(uniqueItems(), to: sut)
+
+        XCTAssertNil(saveError, "Expected to save cache successfully")
+    }
+    
+    func test_save_deliversNoErrorOnNonEmptyCache() {
+        let sut = makeSUT()
+
+        save(uniqueItems(), to: sut)
+
+        let saveError = save(uniqueItems(), to: sut)
+
+        XCTAssertNil(saveError, "Expected to override cache successfully")
+    }
+    
+    func test_save_overridesPreviouslySavedCacheValues() {
+        let sut = makeSUT()
+
+        save(uniqueItems(), to: sut)
+
+        let latestItems = uniqueItems()
+        save(latestItems, to: sut)
+
+        expect(sut, toRetrieve: .success(CachedTodos(latestItems)))
+    }
+    
     // MARK: - Helpers
 
     private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> TodoStore {
