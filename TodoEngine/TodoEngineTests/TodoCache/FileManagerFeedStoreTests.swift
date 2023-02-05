@@ -8,40 +8,6 @@
 import TodoEngine
 import XCTest
 
-class FileManagerTodoStore {
-    
-    private let storeURL: URL
-    
-    public init(storeURL: URL) throws {
-        self.storeURL = storeURL
-    }
-}
-
-extension FileManagerTodoStore: TodoStore {
-    
-    public func save(_ items: [TodoItem]) throws {
-        let data = try JSONEncoder().encode(items)
-        let outfile = self.storeURL
-        try data.write(to: outfile)
-    }
-    
-    public func retrieve() throws -> CachedTodos? {
-        let fileURL = self.storeURL
-        guard let file = try? FileHandle(forReadingFrom: fileURL) else {
-            return nil
-        }
-        return try JSONDecoder().decode(CachedTodos.self, from: file.availableData)
-    }
-    
-    public func delete(_ item: TodoItem) throws {
-        var todos = try retrieve()
-        todos?.removeAll { $0.uuid == item.uuid }
-        if let todos = todos {
-            try save(todos)
-        }
-    }
-}
-
 class FileManagerTodoStoreTests: XCTestCase {
     
     func test_retrieve_deliversEmptyOnEmptyCache() {
