@@ -17,7 +17,7 @@ class TodoStoreSpy: TodoStore {
     
     private(set) var receivedMessages = [ReceivedMessage]()
     private var saveResult: Result<Void, Error>?
-    private var deleteResult: Result<Void, Error>?
+    private var deletionResult: Result<Void, Error>?
     private var retrievalResult: Result<CachedTodos?, Error>?
     
     func save(_ item: TodoItem) throws {
@@ -27,7 +27,7 @@ class TodoStoreSpy: TodoStore {
     
     func delete(_ item: TodoItem) throws {
         receivedMessages.append(.delete(item))
-        try deleteResult?.get()
+        try deletionResult?.get()
     }
     
     func completeInsertion(with error: Error) {
@@ -53,5 +53,13 @@ class TodoStoreSpy: TodoStore {
     
     func completeRetrieval(with items: [TodoItem]) {
         retrievalResult = .success(CachedTodos(items))
+    }
+    
+    func completeDeletion(with error: Error) {
+        deletionResult = .failure(error)
+    }
+    
+    func completeDeletionSuccessfully() {
+        deletionResult = .success(())
     }
 }
