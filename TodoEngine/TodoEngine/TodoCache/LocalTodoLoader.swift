@@ -16,19 +16,19 @@ public final class LocalTodoLoader {
 }
 
 extension LocalTodoLoader: TodoCache {
-    public func save(_ items: [TodoItem]) throws {
-        try store.save(items)
+    public func save(_ items: [TodoItem]) async throws {
+        try await store.save(items)
     }
 }
 
 extension LocalTodoLoader: TodoLoader {
-    public func load() throws -> [TodoItem] {
-        try store.retrieve() ?? []
+    public func load() async throws -> [TodoItem] {
+        try await store.retrieve()
     }
 }
 
 extension LocalTodoLoader {
-    public func delete(_ item: TodoItem) throws {
-        try store.delete(item)
+    public func delete(_ item: TodoItem) async throws {
+        try await store.delete(item)
     }
 }

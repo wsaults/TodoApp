@@ -8,5 +8,5 @@
 import Foundation
 
 public protocol TodoCache {
-    func save(_ items: [TodoItem]) throws
+    func save(_ items: [TodoItem]) async throws
 }

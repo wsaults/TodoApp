@@ -8,5 +8,5 @@
 import Foundation
 
 public protocol TodoLoader {
-    func load() throws -> [TodoItem]
+    func load() async throws -> [TodoItem]
 }

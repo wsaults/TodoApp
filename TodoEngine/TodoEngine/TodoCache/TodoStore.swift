@@ -10,7 +10,7 @@ import Foundation
 public typealias CachedTodos = [TodoItem]
 
 public protocol TodoStore {
-    func save(_ items: [TodoItem]) throws 
-    func retrieve() throws -> CachedTodos?
-    func delete(_ item: TodoItem) throws
+    func save(_ items: [TodoItem]) async throws 
+    func retrieve() async throws -> CachedTodos
+    func delete(_ item: TodoItem) async throws
 }

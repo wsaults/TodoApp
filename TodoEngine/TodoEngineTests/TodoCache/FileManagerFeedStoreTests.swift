@@ -10,83 +10,91 @@ import XCTest
 
 class FileManagerTodoStoreTests: XCTestCase {
     
-    func test_retrieve_deliversEmptyOnEmptyCache() {
-        expect(makeSUT(), toRetrieve: .success(.none))
+    func test_retrieve_deliversEmptyOnEmptyCache() async {
+        await expect(makeSUT(), toRetrieve: .success([]))
     }
     
-    func test_retrieve_hasNoSideEffectsOnEmptyCache() {
-        expect(makeSUT(), toRetrieveTwice: .success(.none))
+    func test_retrieve_hasNoSideEffectsOnEmptyCache() async {
+        await expect(makeSUT(), toRetrieveTwice: .success([]))
     }
     
-    func test_retrieve_deliversFoundValueOnNonEmptyCache() {
+    func test_retrieve_deliversFoundValueOnNonEmptyCache() async {
         let sut = makeSUT()
         let items = uniqueItems()
 
-        save(items, to: sut)
+        await save(items, to: sut)
 
-        expect(sut, toRetrieve: .success(CachedTodos(items)))
+        await expect(sut, toRetrieve: .success(CachedTodos(items)))
     }
     
-    func test_retrieve_hasNoSideEffectsOnNonEmptyCache() {
+    func test_retrieve_hasNoSideEffectsOnNonEmptyCache() async {
         let sut = makeSUT()
         let items = uniqueItems()
 
-        save(items, to: sut)
+        await save(items, to: sut)
 
-        expect(sut, toRetrieveTwice: .success(CachedTodos(items)))
+        await expect(sut, toRetrieveTwice: .success(CachedTodos(items)))
     }
     
-    func test_save_deliversNoErrorOnEmptyCache() {
+    func test_save_deliversNoErrorOnEmptyCache() async {
         let sut = makeSUT()
 
-        let saveError = save(uniqueItems(), to: sut)
+        let saveError = await save(uniqueItems(), to: sut)
 
         XCTAssertNil(saveError, "Expected to save cache successfully")
     }
     
-    func test_save_deliversNoErrorOnNonEmptyCache() {
+    func test_save_deliversNoErrorOnNonEmptyCache() async {
         let sut = makeSUT()
 
-        save(uniqueItems(), to: sut)
+        await save(uniqueItems(), to: sut)
 
-        let saveError = save(uniqueItems(), to: sut)
+        let saveError = await save(uniqueItems(), to: sut)
 
         XCTAssertNil(saveError, "Expected to override cache successfully")
     }
     
-    func test_save_overridesPreviouslySavedCacheValues() {
-        let sut = makeSUT()
+    func test_save_deliversErrorOnBadStoreURL() async {
+        let badStoreURL = cachesDirectory()
+        let sut = try! FileManagerTodoStore(storeURL: badStoreURL)
 
-        save(uniqueItems(), to: sut)
-
-        let latestItems = uniqueItems()
-        save(latestItems, to: sut)
-
-        expect(sut, toRetrieve: .success(CachedTodos(latestItems)))
+        let saveError = await save(uniqueItems(), to: sut)
+        XCTAssertNotNil(saveError, "Expected save error")
     }
     
-    func test_delete_deliversNoErrorOnNonEmptyCache() {
+    func test_save_overridesPreviouslySavedCacheValues() async {
+        let sut = makeSUT()
+
+        await save(uniqueItems(), to: sut)
+
+        let latestItems = uniqueItems()
+        await save(latestItems, to: sut)
+
+        await expect(sut, toRetrieve: .success(CachedTodos(latestItems)))
+    }
+    
+    func test_delete_deliversNoErrorOnNonEmptyCache() async {
         let sut = makeSUT()
 
         let item1 = uniqueItem()
         let item2 = uniqueItem()
-        save([item1, item2], to: sut)
+        await save([item1, item2], to: sut)
 
-        let deletionError = delete(item1 , from: sut)
+        let deletionError = await delete(item1 , from: sut)
 
         XCTAssertNil(deletionError, "Expected non-empty cache deletion to succeed")
     }
     
-    func test_delete_removesPreviouslySavedItem() {
+    func test_delete_removesPreviouslySavedItem() async {
         let sut = makeSUT()
 
         let item1 = uniqueItem()
         let item2 = uniqueItem()
-        save([item1, item2], to: sut)
+        await save([item1, item2], to: sut)
 
-        delete(item1 , from: sut)
+        await delete(item1 , from: sut)
 
-        expect(sut, toRetrieve: .success(CachedTodos([item2])))
+        await expect(sut, toRetrieve: .success(CachedTodos([item2])))
     }
     
     // MARK: - Helpers
@@ -98,9 +106,9 @@ class FileManagerTodoStoreTests: XCTestCase {
     }
     
     @discardableResult
-    func save(_ items: [TodoItem], to sut: TodoStore) -> Error? {
+    func save(_ items: [TodoItem], to sut: TodoStore) async -> Error? {
         do {
-            try sut.save(items)
+            try await sut.save(items)
             return nil
         } catch {
             return error
@@ -108,33 +116,26 @@ class FileManagerTodoStoreTests: XCTestCase {
     }
     
     @discardableResult
-    func delete(_ item: TodoItem, from sut: TodoStore) -> Error? {
+    func delete(_ item: TodoItem, from sut: TodoStore) async -> Error? {
         do {
-            try sut.delete(item)
+            try await sut.delete(item)
             return nil
         } catch {
             return error
         }
     }
     
-    func expect(_ sut: TodoStore, toRetrieveTwice expectedResult: Result<CachedTodos?, Error>, file: StaticString = #filePath, line: UInt = #line) {
-        expect(sut, toRetrieve: expectedResult, file: file, line: line)
-        expect(sut, toRetrieve: expectedResult, file: file, line: line)
+    func expect(_ sut: TodoStore, toRetrieveTwice expectedResult: Result<CachedTodos?, Error>, file: StaticString = #filePath, line: UInt = #line) async {
+        await expect(sut, toRetrieve: expectedResult, file: file, line: line)
+        await expect(sut, toRetrieve: expectedResult, file: file, line: line)
     }
     
-    func expect(_ sut: TodoStore, toRetrieve expectedResult: Result<CachedTodos?, Error>, file: StaticString = #filePath, line: UInt = #line) {
-        let retrievedResult = Result { try sut.retrieve() }
-        
-        switch (expectedResult, retrievedResult) {
-        case (.success(.none), .success(.none)),
-            (.failure, .failure):
-            break
-            
-        case let (.success(.some(expected)), .success(.some(retrieved))):
-            XCTAssertEqual(retrieved, expected, file: file, line: line)
-            
-        default:
-            XCTFail("Expected to retrieve \(expectedResult), got \(retrievedResult) instead", file: file, line: line)
+    func expect(_ sut: TodoStore, toRetrieve expectedResult: Result<CachedTodos?, Error>, file: StaticString = #filePath, line: UInt = #line) async {
+        do {
+            let receivedResult = try await sut.retrieve()
+            XCTAssertEqual(receivedResult, try expectedResult.get(), file: file, line: line)
+        } catch {
+            XCTFail("Expected to retrieve \(expectedResult)", file: file, line: line)
         }
     }
 }

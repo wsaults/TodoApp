@@ -15,51 +15,36 @@ class TodoStoreSpy: TodoStore {
         case retrieve
     }
     
+    typealias VoidResult = Result<Void, Error>
+    typealias CachedResult = Result<CachedTodos, Error>
+    
     private(set) var receivedMessages = [ReceivedMessage]()
-    private var saveResult: Result<Void, Error>?
-    private var deletionResult: Result<Void, Error>?
-    private var retrievalResult: Result<CachedTodos?, Error>?
+    private let saveResult: VoidResult
+    private let deletionResult: VoidResult
+    private let receivedResult: CachedResult
+    
+    init(
+        receivedResult: CachedResult = .failure(anyNSError),
+        saveResult: VoidResult = .failure(anyNSError),
+        deletionResult: VoidResult = .failure(anyNSError)
+    ) {
+        self.receivedResult = receivedResult
+        self.saveResult = saveResult
+        self.deletionResult = deletionResult
+    }
     
     func save(_ items: [TodoItem]) throws {
         receivedMessages.append(.save(items))
-        try saveResult?.get()
+        _ = try saveResult.get()
     }
     
     func delete(_ item: TodoItem) throws {
         receivedMessages.append(.delete(item))
-        try deletionResult?.get()
+        _ = try deletionResult.get()
     }
     
-    func completeInsertion(with error: Error) {
-        saveResult = .failure(error)
-    }
-    
-    func completeInsertionSuccessfully() {
-        saveResult = .success(())
-    }
-    
-    func retrieve() throws -> CachedTodos? {
+    func retrieve() throws -> CachedTodos {
         receivedMessages.append(.retrieve)
-        return try retrievalResult?.get()
-    }
-    
-    func completeRetrieval(with error: Error) {
-        retrievalResult = .failure(error)
-    }
-    
-    func completeRetrievalWithEmptyCache() {
-        retrievalResult = .success(.none)
-    }
-    
-    func completeRetrieval(with items: [TodoItem]) {
-        retrievalResult = .success(CachedTodos(items))
-    }
-    
-    func completeDeletion(with error: Error) {
-        deletionResult = .failure(error)
-    }
-    
-    func completeDeletionSuccessfully() {
-        deletionResult = .success(())
+        return try receivedResult.get()
     }
 }

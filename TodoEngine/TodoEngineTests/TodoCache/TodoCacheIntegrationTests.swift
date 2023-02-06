@@ -24,33 +24,33 @@ class TodoCacheIntegrationTests: XCTestCase {
     
     // MARK: LocalTodoLoader Tests
 
-    func test_loadTodos_deliversNoItemsOnEmptyCache() {
+    func test_loadTodos_deliversNoItemsOnEmptyCache() async {
         let todoLoader = makeTodoLoader()
 
-        expect(todoLoader, toLoad: [])
+        await expect(todoLoader, toLoad: [])
     }
     
-    func test_loadTodos_deliversItemsSavedOnASeparateInstance() {
+    func test_loadTodos_deliversItemsSavedOnASeparateInstance() async {
         let todoLoaderToPerformSave = makeTodoLoader()
         let todoLoaderToPerformLoad = makeTodoLoader()
         let todos = uniqueItems()
 
-        save(todos, with: todoLoaderToPerformSave)
+        await save(todos, with: todoLoaderToPerformSave)
 
-        expect(todoLoaderToPerformLoad, toLoad: todos)
+        await expect(todoLoaderToPerformLoad, toLoad: todos)
     }
     
-    func test_loadTodos_overridesItemsSavedOnASeparateInstance() {
+    func test_loadTodos_overridesItemsSavedOnASeparateInstance() async {
         let todoLoaderToPerformFirstSave = makeTodoLoader()
         let todoLoaderToPerformLastSave = makeTodoLoader()
         let todoLoaderToPerformLoad = makeTodoLoader()
         let firstTodos = uniqueItems()
         let latestTodos = uniqueItems()
 
-        save(firstTodos, with: todoLoaderToPerformFirstSave)
-        save(latestTodos, with: todoLoaderToPerformLastSave)
+        await save(firstTodos, with: todoLoaderToPerformFirstSave)
+        await save(latestTodos, with: todoLoaderToPerformLastSave)
 
-        expect(todoLoaderToPerformLoad, toLoad: latestTodos)
+        await expect(todoLoaderToPerformLoad, toLoad: latestTodos)
     }
     
     // MARK: Helpers
@@ -63,17 +63,17 @@ class TodoCacheIntegrationTests: XCTestCase {
         return sut
     }
     
-    private func save(_ todos: [TodoItem], with loader: LocalTodoLoader, file: StaticString = #filePath, line: UInt = #line) {
+    private func save(_ todos: [TodoItem], with loader: LocalTodoLoader, file: StaticString = #filePath, line: UInt = #line) async {
         do {
-            try loader.save(todos)
+            try await loader.save(todos)
         } catch {
             XCTFail("Expected to save todos successfully, got error: \(error)", file: file, line: line)
         }
     }
     
-    private func expect(_ sut: LocalTodoLoader, toLoad expectedTodos: [TodoItem], file: StaticString = #filePath, line: UInt = #line) {
+    private func expect(_ sut: LocalTodoLoader, toLoad expectedTodos: [TodoItem], file: StaticString = #filePath, line: UInt = #line) async {
         do {
-            let loadedTodos = try sut.load()
+            let loadedTodos = try await sut.load()
             XCTAssertEqual(loadedTodos, expectedTodos, file: file, line: line)
         } catch {
             XCTFail("Expected successful todos result, got \(error) instead", file: file, line: line)

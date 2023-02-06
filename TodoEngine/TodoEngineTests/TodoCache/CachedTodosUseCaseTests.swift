@@ -16,59 +16,49 @@ class CachedTodosUseCaseTests: XCTestCase {
         XCTAssertEqual(store.receivedMessages, [])
     }
     
-    func test_save() {
+    func test_save() async throws {
         let items = uniqueItems()
-        let (sut, store) = makeSUT()
+        let (sut, store) = makeSUT(result: .success(()))
         
-        try? sut.save(items)
+        try await sut.save(items)
         
         XCTAssertEqual(store.receivedMessages, [.save(items)])
     }
     
-    func test_save_failsOnSaveError() {
-        let (sut, store) = makeSUT()
-        let saveError = anyNSError
+    func test_save_failsOnSaveError() async {
+        let (sut, _) = makeSUT(result: .failure(anyNSError))
         
-        expect(sut, toCompleteWithError: saveError) {
-            store.completeInsertion(with: saveError)
+        do {
+            try await sut.save([])
+            XCTFail("Expected error: \(anyNSError)")
+        } catch {
+            XCTAssertEqual(error as NSError?, anyNSError)
         }
     }
     
-    func test_save_succeedsOnSuccessfulSave() {
-        let (sut, store) = makeSUT()
+    func test_save_succeedsOnSuccessfulSave() async {
+        let (sut, _) = makeSUT(result: .success(()))
         
-        expect(sut, toCompleteWithError: nil) {
-            store.completeInsertionSuccessfully()
+        do {
+            try await sut.save([])
+        } catch {
+            XCTFail("Received error: \(error)")
         }
     }
     
     // MARK: Helpers
     
     private func makeSUT(
+        result: TodoStoreSpy.VoidResult = .failure(anyNSError),
         file: StaticString = #filePath,
         line: UInt = #line
     ) -> (sut: LocalTodoLoader, store: TodoStoreSpy) {
-        let store = TodoStoreSpy()
+        let store = TodoStoreSpy(saveResult: result)
         let sut = LocalTodoLoader(store: store)
         
         trackForMemoryLeaks(sut, file: file, line: line)
         trackForMemoryLeaks(store, file: file, line: line)
         
         return (sut, store)
-    }
-    
-    private func expect(
-        _ sut: LocalTodoLoader,
-        toCompleteWithError expectedError: NSError?,
-        when action: () -> Void,
-        file: StaticString = #filePath,
-        line: UInt = #line
-    ) {
-        action()
-        do {
-            try sut.save(uniqueItems())
-        } catch {
-            XCTAssertEqual(error as NSError?, expectedError, file: file, line: line)
-        }
     }
 }
