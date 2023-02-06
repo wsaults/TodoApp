@@ -5,6 +5,7 @@
 //  Created by Will Saults on 2/5/23.
 //
 
+import Combine
 import TodoEngine
 import XCTest
 import UIKit
@@ -27,7 +28,10 @@ final class TodosViewController: UITableViewController {
     }
     
     @objc private func load() {
-        _ = try? loader?.load()
+        Task(priority: .userInitiated) { [weak self] in
+            _ = try? await self?.loader?.load()
+            self?.refreshControl?.endRefreshing()
+        }
     }
 }
 
@@ -41,20 +45,30 @@ class TodosViewControllerTests: XCTestCase {
     
     func test_viewDidLoad_loadsTodos() {
         let (sut, loader) = makeSUT()
-        
-        sut.loadViewIfNeeded()
-        
-        XCTAssertEqual(loader.loadCallCount, 1)
+        expect(sut: sut, loader: loader, loadCount: 1)
     }
     
     func test_pullToRefresh_loadsTodos() {
         let (sut, loader) = makeSUT()
         sut.loadViewIfNeeded()
         
+        let exp = expectation(description: "Wait for second load to finish")
+        let exp2 = expectation(description: "Wait for third load to finish")
+        var cancellable = Set<AnyCancellable>()
+        
+        loader.$loadCallCount
+            .sink {
+                if $0 == 2 { exp.fulfill() }
+                if $0 == 3 { exp2.fulfill() }
+            }
+            .store(in: &cancellable)
+        
         sut.refreshControl?.simulaterPullToRefresh()
+        wait(for: [exp], timeout: 0.1)
         XCTAssertEqual(loader.loadCallCount, 2)
         
         sut.refreshControl?.simulaterPullToRefresh()
+        wait(for: [exp2], timeout: 0.1)
         XCTAssertEqual(loader.loadCallCount, 3)
     }
     
@@ -66,13 +80,30 @@ class TodosViewControllerTests: XCTestCase {
         XCTAssertEqual(sut.refreshControl?.isRefreshing, true)
     }
     
+    func test_viewDidLoad_hidesLoadingIndicaorOnLoaderCompletes() {
+        let (sut, loader) = makeSUT()
+        
+        let exp = expectation(description: "Wait for load to finish")
+        var cancellable = Set<AnyCancellable>()
+        
+        loader.$loadCallCount
+            .sink { if $0 > 0 { exp.fulfill() } }
+            .store(in: &cancellable)
+        
+        sut.loadViewIfNeeded()
+        
+        wait(for: [exp], timeout: 0.1)
+        XCTAssertEqual(sut.refreshControl?.isRefreshing, false)
+    }
+    
     // MARK: Helpers
     
     private func makeSUT(
+        results: Result<[TodoItem], Error> = .success([]),
         file: StaticString = #filePath,
         line: UInt = #line
     ) -> (sut: TodosViewController, loader: LoaderSpy) {
-        let loader = LoaderSpy()
+        let loader = LoaderSpy(results: results)
         let sut = TodosViewController(loader: loader)
         
         trackForMemoryLeaks(sut, file: file, line: line)
@@ -82,12 +113,31 @@ class TodosViewControllerTests: XCTestCase {
     }
     
     private class LoaderSpy: TodoLoader {
-        private(set) var loadCallCount = 0
+        private let results: Result<[TodoItem], Error>
+        @Published private(set) var loadCallCount = 0
+        
+        init(results: Result<[TodoItem], Error>) {
+            self.results = results
+        }
 
         func load() throws -> [TodoItem] {
             loadCallCount += 1
-            return []
+            return try results.get()
         }
+    }
+    
+    private func expect(sut: TodosViewController, loader: LoaderSpy, loadCount: Int) {
+        let exp = expectation(description: "Wait for load to finish")
+        var cancellable = Set<AnyCancellable>()
+        
+        loader.$loadCallCount
+            .sink { if $0 >= loadCount { exp.fulfill() } }
+            .store(in: &cancellable)
+        
+        sut.loadViewIfNeeded()
+        
+        wait(for: [exp], timeout: 0.1)
+        XCTAssertEqual(loader.loadCallCount, loadCount)
     }
 }
 
