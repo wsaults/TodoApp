@@ -83,14 +83,28 @@ class TodosViewControllerTests: XCTestCase {
     func test_viewDidLoad_hidesLoadingIndicaorOnLoaderCompletes() {
         let (sut, loader) = makeSUT()
         
+        expect(sut: sut, loader: loader, isRefreshing: true)
+    }
+    
+    func test_pullToRefresh_showsLoadingIndicaor() {
+        let (sut, _) = makeSUT()
+        
+        sut.refreshControl?.simulaterPullToRefresh()
+        
+        XCTAssertEqual(sut.refreshControl?.isRefreshing, true)
+    }
+    
+    func test_pullToRefresh_hidesLoadingIndicaorOnLoaderCompletes() {
+        let (sut, loader) = makeSUT()
+        
         let exp = expectation(description: "Wait for load to finish")
         var cancellable = Set<AnyCancellable>()
         
         loader.$loadCallCount
-            .sink { if $0 > 0 { exp.fulfill() } }
+            .sink { if $0 == 1 { exp.fulfill() } }
             .store(in: &cancellable)
         
-        sut.loadViewIfNeeded()
+        sut.refreshControl?.simulaterPullToRefresh()
         
         wait(for: [exp], timeout: 0.1)
         XCTAssertEqual(sut.refreshControl?.isRefreshing, false)
@@ -126,7 +140,7 @@ class TodosViewControllerTests: XCTestCase {
         }
     }
     
-    private func expect(sut: TodosViewController, loader: LoaderSpy, loadCount: Int) {
+    private func expect(sut: TodosViewController, loader: LoaderSpy, loadCount: Int, file: StaticString = #filePath, line: UInt = #line) {
         let exp = expectation(description: "Wait for load to finish")
         var cancellable = Set<AnyCancellable>()
         
@@ -137,7 +151,21 @@ class TodosViewControllerTests: XCTestCase {
         sut.loadViewIfNeeded()
         
         wait(for: [exp], timeout: 0.1)
-        XCTAssertEqual(loader.loadCallCount, loadCount)
+        XCTAssertEqual(loader.loadCallCount, loadCount, file: file, line: line)
+    }
+    
+    private func expect(sut: TodosViewController, loader: LoaderSpy, isRefreshing: Bool, file: StaticString = #filePath, line: UInt = #line) {
+        let exp = expectation(description: "Wait for load to finish")
+        var cancellable = Set<AnyCancellable>()
+        
+        loader.$loadCallCount
+            .sink { if $0 >= 0 { exp.fulfill() } }
+            .store(in: &cancellable)
+        
+        sut.loadViewIfNeeded()
+        
+        wait(for: [exp], timeout: 0.1)
+        XCTAssertEqual(sut.refreshControl?.isRefreshing, isRefreshing, file: file, line: line)
     }
 }
 
