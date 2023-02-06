@@ -24,7 +24,7 @@ class TodosViewControllerTests: XCTestCase {
     }
     
     func test_userInitiagedReload_loadsTodos() {
-        let (sut, loader) = makeSUT()
+        let (sut, loader) = makeSUT(results: [.success([]), .success([]), .success([])])
         sut.loadViewIfNeeded()
         
         let exp = expectation(description: "Wait for second load to finish")
@@ -73,19 +73,13 @@ class TodosViewControllerTests: XCTestCase {
     }
     
     func test_userInitiagedReload_hidesLoadingIndicaorOnLoaderCompletes() {
-        let (sut, loader) = makeSUT()
+        let (sut, loader) = makeSUT(results: [.success([]), .success([])])
         
-        let exp = expectation(description: "Wait for load to finish")
-        var cancellable = Set<AnyCancellable>()
-        
-        loader.$loadCallCount
-            .sink { if $0 == 1 { exp.fulfill() } }
-            .store(in: &cancellable)
-        
-        sut.simulateUserInitiatedReload()
-        
-        wait(for: [exp], timeout: 0.1)
-        XCTAssertFalse(sut.isShowingLoadingIndicator)
+        expect(sut, loader: loader, loadCount: 2) {
+            sut.simulateUserInitiatedReload()
+        } assertion: {
+            XCTAssertFalse(sut.isShowingLoadingIndicator)
+        }
     }
     
     func test_init_rendersNoTodos() {
@@ -99,17 +93,36 @@ class TodosViewControllerTests: XCTestCase {
         let todo1 = makeTodo(text: "a second text", createdAt: Date.now)
         let todo2 = makeTodo(text: "a third text", createdAt: Date.now)
         let todo3 = makeTodo(text: "a fourth text", createdAt: Date.now)
-        let (sut, loader) = makeSUT(results: .success([todo0, todo1, todo2, todo3]))
+        let (sut, loader) = makeSUT(results: [.success([todo0, todo1, todo2, todo3])])
+        
+        expect(sut, loader: loader, loadCount: 1)  {
+            sut.loadViewIfNeeded()
+        } assertion: {
+            assertThat(sut, isRendering: [todo0, todo1, todo2, todo3])
+        }
+    }
+    
+    func test_loadCompletion_doesNotAlterCurrentRenderingStateOnError() {
+        let todo0 = makeTodo(text: "a text", createdAt: Date.now)
+        let (sut, loader) = makeSUT(results: [.success([todo0]), .failure(anyNSError)])
         
         expect(sut, loader: loader, loadCount: 1) {
-            assertThat(sut, isRendering: [todo0, todo1, todo2, todo3])
+            sut.loadViewIfNeeded()
+        } assertion: {
+            assertThat(sut, isRendering: [todo0])
+        }
+        
+        expect(sut, loader: loader, loadCount: 2) {
+            sut.simulateUserInitiatedReload()
+        } assertion: {
+            assertThat(sut, isRendering: [todo0])
         }
     }
     
     // MARK: Helpers
     
     private func makeSUT(
-        results: Result<[TodoItem], Error> = .success([]),
+        results: [Result<[TodoItem], Error>] = [.success([])],
         file: StaticString = #filePath,
         line: UInt = #line
     ) -> (sut: TodosViewController, loader: LoaderSpy) {
@@ -123,16 +136,16 @@ class TodosViewControllerTests: XCTestCase {
     }
     
     private class LoaderSpy: TodoLoader {
-        private let results: Result<[TodoItem], Error>
+        private var results = [Result<[TodoItem], Error>]()
         @Published private(set) var loadCallCount = 0
         
-        init(results: Result<[TodoItem], Error>) {
+        init(results: [Result<[TodoItem], Error>]) {
             self.results = results
         }
 
         func load() throws -> [TodoItem] {
             loadCallCount += 1
-            return try results.get()
+            return try results.removeFirst().get()
         }
     }
     
@@ -166,6 +179,7 @@ class TodosViewControllerTests: XCTestCase {
         _ sut: TodosViewController,
         loader: LoaderSpy,
         loadCount: Int = 0,
+        action: () -> Void,
         assertion: () -> Void,
         file: StaticString = #filePath,
         line: UInt = #line
@@ -177,7 +191,7 @@ class TodosViewControllerTests: XCTestCase {
             .sink { if $0 >= loadCount { exp.fulfill() } }
             .store(in: &cancellable)
         
-        sut.loadViewIfNeeded()
+        action()
         
         wait(for: [exp], timeout: 0.1)
         

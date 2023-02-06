@@ -45,6 +45,7 @@
 		BE387FDF29904CD800BA6712 /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE2E1716298E885300E504E3 /* XCTestCase+MemoryLeakTracking.swift */; };
 		BE387FE129915E5300BA6712 /* TodosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE387FE029915E5300BA6712 /* TodosViewController.swift */; };
 		BE387FE3299167E000BA6712 /* TodoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE387FE2299167E000BA6712 /* TodoCell.swift */; };
+		BE387FE429916ECC00BA6712 /* SharedTestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE2E1722298E978700E504E3 /* SharedTestHelpers.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -562,6 +563,7 @@
 			files = (
 				BE2E17672990390000E504E3 /* TodosViewControllerTests.swift in Sources */,
 				BE387FDF29904CD800BA6712 /* XCTestCase+MemoryLeakTracking.swift in Sources */,
+				BE387FE429916ECC00BA6712 /* SharedTestHelpers.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
