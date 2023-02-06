@@ -23,11 +23,11 @@ final class TodosViewController: UITableViewController {
         
         refreshControl = UIRefreshControl()
         refreshControl?.addTarget(self, action: #selector(load), for: .valueChanged)
-        refreshControl?.beginRefreshing()
         load()
     }
     
     @objc private func load() {
+        refreshControl?.beginRefreshing()
         Task(priority: .userInitiated) { [weak self] in
             _ = try? await self?.loader?.load()
             self?.refreshControl?.endRefreshing()
@@ -39,7 +39,6 @@ class TodosViewControllerTests: XCTestCase {
     
     func test_init_doesNotLoadTodos() {
         let (_, loader) = makeSUT()
-        
         XCTAssertEqual(loader.loadCallCount, 0)
     }
     
@@ -77,21 +76,24 @@ class TodosViewControllerTests: XCTestCase {
         
         sut.loadViewIfNeeded()
         
-        XCTAssertEqual(sut.refreshControl?.isRefreshing, true)
+        XCTAssertTrue(sut.isShowingLoadingIndicator)
     }
     
     func test_viewDidLoad_hidesLoadingIndicaorOnLoaderCompletes() {
         let (sut, loader) = makeSUT()
-        
         expect(sut: sut, loader: loader, isRefreshing: true)
     }
     
-    func test_userInitiagedReload_showsLoadingIndicaor() {
-        let (sut, _) = makeSUT()
+    func test_loadingIndicator_isVisibleWhileLoading() {
+        let (sut, loader) = makeSUT()
+        
+        expect(sut: sut, loader: loader, loadCount: 1)
+        
+        XCTAssertFalse(sut.isShowingLoadingIndicator, "Expected loading indicator to be hidden after view is loaded")
         
         sut.simulateUserInitiatedReload()
         
-        XCTAssertEqual(sut.refreshControl?.isRefreshing, true)
+        XCTAssertTrue(sut.isShowingLoadingIndicator, "Expected loading indicator to be visible after user initiates reload")
     }
     
     func test_userInitiagedReload_hidesLoadingIndicaorOnLoaderCompletes() {
@@ -107,7 +109,7 @@ class TodosViewControllerTests: XCTestCase {
         sut.simulateUserInitiatedReload()
         
         wait(for: [exp], timeout: 0.1)
-        XCTAssertEqual(sut.refreshControl?.isRefreshing, false)
+        XCTAssertFalse(sut.isShowingLoadingIndicator)
     }
     
     // MARK: Helpers
@@ -140,7 +142,14 @@ class TodosViewControllerTests: XCTestCase {
         }
     }
     
-    private func expect(sut: TodosViewController, loader: LoaderSpy, loadCount: Int, file: StaticString = #filePath, line: UInt = #line) {
+    private func expect(
+        sut: TodosViewController,
+        loader: LoaderSpy,
+        loadCount: Int = 0,
+        isRefreshing: Bool = false,
+        file: StaticString = #filePath,
+        line: UInt = #line
+    ) {
         let exp = expectation(description: "Wait for load to finish")
         var cancellable = Set<AnyCancellable>()
         
@@ -152,26 +161,17 @@ class TodosViewControllerTests: XCTestCase {
         
         wait(for: [exp], timeout: 0.1)
         XCTAssertEqual(loader.loadCallCount, loadCount, file: file, line: line)
-    }
-    
-    private func expect(sut: TodosViewController, loader: LoaderSpy, isRefreshing: Bool, file: StaticString = #filePath, line: UInt = #line) {
-        let exp = expectation(description: "Wait for load to finish")
-        var cancellable = Set<AnyCancellable>()
-        
-        loader.$loadCallCount
-            .sink { if $0 >= 0 { exp.fulfill() } }
-            .store(in: &cancellable)
-        
-        sut.loadViewIfNeeded()
-        
-        wait(for: [exp], timeout: 0.1)
-        XCTAssertEqual(sut.refreshControl?.isRefreshing, isRefreshing, file: file, line: line)
+        XCTAssertEqual(sut.isShowingLoadingIndicator, isRefreshing, file: file, line: line)
     }
 }
 
 private extension TodosViewController {
     func simulateUserInitiatedReload() {
         refreshControl?.simulaterPullToRefresh()
+    }
+    
+    var isShowingLoadingIndicator: Bool {
+        refreshControl?.isRefreshing == true
     }
 }
 
