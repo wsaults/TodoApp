@@ -7,33 +7,9 @@
 
 import Combine
 import TodoEngine
+import TodoiOS
 import XCTest
 import UIKit
-
-final class TodosViewController: UITableViewController {
-    private var loader: TodoLoader?
-    
-    convenience init(loader: TodoLoader) {
-        self.init()
-        self.loader = loader
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        refreshControl = UIRefreshControl()
-        refreshControl?.addTarget(self, action: #selector(load), for: .valueChanged)
-        load()
-    }
-    
-    @objc private func load() {
-        refreshControl?.beginRefreshing()
-        Task(priority: .userInitiated) { [weak self] in
-            _ = try? await self?.loader?.load()
-            self?.refreshControl?.endRefreshing()
-        }
-    }
-}
 
 class TodosViewControllerTests: XCTestCase {
     

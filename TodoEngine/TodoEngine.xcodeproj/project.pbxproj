@@ -43,6 +43,7 @@
 		BE387FDA2990402B00BA6712 /* TodoEngine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE2E16F1298E74BF00E504E3 /* TodoEngine.framework */; platformFilter = ios; };
 		BE387FDB2990402B00BA6712 /* TodoEngine.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BE2E16F1298E74BF00E504E3 /* TodoEngine.framework */; platformFilter = ios; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		BE387FDF29904CD800BA6712 /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE2E1716298E885300E504E3 /* XCTestCase+MemoryLeakTracking.swift */; };
+		BE387FE129915E5300BA6712 /* TodosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE387FE029915E5300BA6712 /* TodosViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -119,6 +120,7 @@
 		BE2E17582990342C00E504E3 /* TodoiOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TodoiOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE2E17662990390000E504E3 /* TodosViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodosViewControllerTests.swift; sourceTree = "<group>"; };
 		BE387FD729903F9100BA6712 /* TodoLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoLoader.swift; sourceTree = "<group>"; };
+		BE387FE029915E5300BA6712 /* TodosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodosViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -306,6 +308,7 @@
 			children = (
 				BE2E17512990342B00E504E3 /* TodoiOS.h */,
 				BE2E17522990342B00E504E3 /* TodoiOS.docc */,
+				BE387FE029915E5300BA6712 /* TodosViewController.swift */,
 			);
 			path = TodoiOS;
 			sourceTree = "<group>";
@@ -544,6 +547,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BE387FE129915E5300BA6712 /* TodosViewController.swift in Sources */,
 				BE2E17532990342C00E504E3 /* TodoiOS.docc in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -865,6 +869,7 @@
 		BE2E17642990342C00E504E3 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -890,6 +895,7 @@
 		BE2E17652990342C00E504E3 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
