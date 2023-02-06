@@ -10,6 +10,7 @@ import UIKit
 
 public final class TodosViewController: UITableViewController {
     private var loader: TodoLoader?
+    private var tableModel = [TodoItem]()
     
     public convenience init(loader: TodoLoader) {
         self.init()
@@ -27,8 +28,22 @@ public final class TodosViewController: UITableViewController {
     @objc private func load() {
         refreshControl?.beginRefreshing()
         Task(priority: .userInitiated) { [weak self] in
-            _ = try? await self?.loader?.load()
+            if let todos = try? await self?.loader?.load() {
+                self?.tableModel = todos
+            }
+            self?.tableView.reloadData()
             self?.refreshControl?.endRefreshing()
         }
+    }
+    
+    public override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        tableModel.count
+    }
+    
+    public override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cellModel = tableModel[indexPath.row]
+        let cell = TodoCell()
+        cell.taskLabel.text = cellModel.text
+        return cell
     }
 }

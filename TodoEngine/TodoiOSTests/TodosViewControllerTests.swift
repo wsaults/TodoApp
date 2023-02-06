@@ -20,7 +20,7 @@ class TodosViewControllerTests: XCTestCase {
     
     func test_viewDidLoad_loadsTodos() {
         let (sut, loader) = makeSUT()
-        expect(sut: sut, loader: loader, loadCount: 1)
+        expect(sut, loader: loader, loadCount: 1)
     }
     
     func test_userInitiagedReload_loadsTodos() {
@@ -57,13 +57,13 @@ class TodosViewControllerTests: XCTestCase {
     
     func test_viewDidLoad_hidesLoadingIndicaorOnLoaderCompletes() {
         let (sut, loader) = makeSUT()
-        expect(sut: sut, loader: loader, isRefreshing: true)
+        expect(sut, loader: loader, isRefreshing: true)
     }
     
     func test_loadingIndicator_isVisibleWhileLoading() {
         let (sut, loader) = makeSUT()
         
-        expect(sut: sut, loader: loader, loadCount: 1)
+        expect(sut, loader: loader, loadCount: 1)
         
         XCTAssertFalse(sut.isShowingLoadingIndicator, "Expected loading indicator to be hidden after view is loaded")
         
@@ -86,6 +86,24 @@ class TodosViewControllerTests: XCTestCase {
         
         wait(for: [exp], timeout: 0.1)
         XCTAssertFalse(sut.isShowingLoadingIndicator)
+    }
+    
+    func test_init_rendersNoTodos() {
+        let (sut, _) = makeSUT()
+        
+        assertThat(sut, isRendering: [])
+    }
+    
+    func test_loadCompletion_rendersTodos() {
+        let todo0 = makeTodo(text: "a text", createdAt: Date.now)
+        let todo1 = makeTodo(text: "a second text", createdAt: Date.now)
+        let todo2 = makeTodo(text: "a third text", createdAt: Date.now)
+        let todo3 = makeTodo(text: "a fourth text", createdAt: Date.now)
+        let (sut, loader) = makeSUT(results: .success([todo0, todo1, todo2, todo3]))
+        
+        expect(sut, loader: loader, loadCount: 1) {
+            assertThat(sut, isRendering: [todo0, todo1, todo2, todo3])
+        }
     }
     
     // MARK: Helpers
@@ -118,8 +136,12 @@ class TodosViewControllerTests: XCTestCase {
         }
     }
     
+    private func makeTodo(text: String, createdAt: Date) -> TodoItem {
+        TodoItem(uuid: UUID(), text: text, createdAt: createdAt)
+    }
+    
     private func expect(
-        sut: TodosViewController,
+        _ sut: TodosViewController,
         loader: LoaderSpy,
         loadCount: Int = 0,
         isRefreshing: Bool = false,
@@ -139,6 +161,55 @@ class TodosViewControllerTests: XCTestCase {
         XCTAssertEqual(loader.loadCallCount, loadCount, file: file, line: line)
         XCTAssertEqual(sut.isShowingLoadingIndicator, isRefreshing, file: file, line: line)
     }
+    
+    private func expect(
+        _ sut: TodosViewController,
+        loader: LoaderSpy,
+        loadCount: Int = 0,
+        assertion: () -> Void,
+        file: StaticString = #filePath,
+        line: UInt = #line
+    ) {
+        let exp = expectation(description: "Wait for load to finish")
+        var cancellable = Set<AnyCancellable>()
+        
+        loader.$loadCallCount
+            .sink { if $0 >= loadCount { exp.fulfill() } }
+            .store(in: &cancellable)
+        
+        sut.loadViewIfNeeded()
+        
+        wait(for: [exp], timeout: 0.1)
+        
+        assertion()
+    }
+    
+    private func assertThat(
+        _ sut: TodosViewController,
+        isRendering todos: [TodoItem],
+        file: StaticString = #filePath,
+        line: UInt = #line
+    ) {
+        guard sut.numberOfRenderedTodos() == todos.count else {
+            return XCTFail("Expected \(todos.count) todos, got \(sut.numberOfRenderedTodos()) instead.", file: file, line: line)
+        }
+        
+        todos.enumerated().forEach { index, todo in
+            assertThat(sut, hasViewConfiguredFor: todo, at: index)
+        }
+    }
+    
+    private func assertThat(
+        _ sut: TodosViewController,
+        hasViewConfiguredFor todo: TodoItem,
+        at row: Int,
+        file: StaticString = #filePath,
+        line: UInt = #line
+    ) {
+        let view = sut.todoView(at: row) as? TodoCell
+        XCTAssertNotNil(view, file: file, line: line)
+        XCTAssertEqual(view?.taskText, todo.text, file: file, line: line)
+    }
 }
 
 private extension TodosViewController {
@@ -148,6 +219,26 @@ private extension TodosViewController {
     
     var isShowingLoadingIndicator: Bool {
         refreshControl?.isRefreshing == true
+    }
+    
+    func numberOfRenderedTodos() -> Int {
+        tableView.numberOfRows(inSection: todosSection)
+    }
+    
+    func todoView(at row: Int) -> UITableViewCell? {
+        let dataSource = tableView.dataSource
+        let index = IndexPath(row: row, section: todosSection)
+        return dataSource?.tableView(tableView, cellForRowAt: index)
+    }
+    
+    private var todosSection: Int {
+        0
+    }
+}
+
+private extension TodoCell {
+    var taskText: String? {
+        taskLabel.text
     }
 }
 
