@@ -48,7 +48,7 @@ class TodosViewControllerTests: XCTestCase {
         expect(sut: sut, loader: loader, loadCount: 1)
     }
     
-    func test_pullToRefresh_loadsTodos() {
+    func test_userInitiagedReload_loadsTodos() {
         let (sut, loader) = makeSUT()
         sut.loadViewIfNeeded()
         
@@ -63,11 +63,11 @@ class TodosViewControllerTests: XCTestCase {
             }
             .store(in: &cancellable)
         
-        sut.refreshControl?.simulaterPullToRefresh()
+        sut.simulateUserInitiatedReload()
         wait(for: [exp], timeout: 0.1)
         XCTAssertEqual(loader.loadCallCount, 2)
         
-        sut.refreshControl?.simulaterPullToRefresh()
+        sut.simulateUserInitiatedReload()
         wait(for: [exp2], timeout: 0.1)
         XCTAssertEqual(loader.loadCallCount, 3)
     }
@@ -86,15 +86,15 @@ class TodosViewControllerTests: XCTestCase {
         expect(sut: sut, loader: loader, isRefreshing: true)
     }
     
-    func test_pullToRefresh_showsLoadingIndicaor() {
+    func test_userInitiagedReload_showsLoadingIndicaor() {
         let (sut, _) = makeSUT()
         
-        sut.refreshControl?.simulaterPullToRefresh()
+        sut.simulateUserInitiatedReload()
         
         XCTAssertEqual(sut.refreshControl?.isRefreshing, true)
     }
     
-    func test_pullToRefresh_hidesLoadingIndicaorOnLoaderCompletes() {
+    func test_userInitiagedReload_hidesLoadingIndicaorOnLoaderCompletes() {
         let (sut, loader) = makeSUT()
         
         let exp = expectation(description: "Wait for load to finish")
@@ -104,7 +104,7 @@ class TodosViewControllerTests: XCTestCase {
             .sink { if $0 == 1 { exp.fulfill() } }
             .store(in: &cancellable)
         
-        sut.refreshControl?.simulaterPullToRefresh()
+        sut.simulateUserInitiatedReload()
         
         wait(for: [exp], timeout: 0.1)
         XCTAssertEqual(sut.refreshControl?.isRefreshing, false)
@@ -166,6 +166,12 @@ class TodosViewControllerTests: XCTestCase {
         
         wait(for: [exp], timeout: 0.1)
         XCTAssertEqual(sut.refreshControl?.isRefreshing, isRefreshing, file: file, line: line)
+    }
+}
+
+private extension TodosViewController {
+    func simulateUserInitiatedReload() {
+        refreshControl?.simulaterPullToRefresh()
     }
 }
 
