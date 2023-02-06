@@ -5,35 +5,25 @@
 //  Created by Will Saults on 2/6/23.
 //
 
-import TodoEngine
 import UIKit
 
 public final class TodosViewController: UITableViewController {
-    private var loader: TodoLoader?
-    private var tableModel = [TodoItem]()
+    private var refreshController: TodosRefreshViewController?
+    var tableModel = [TodoCellController]() {
+        didSet { reloadData() }
+    }
     
-    public convenience init(loader: TodoLoader) {
+    convenience init(refreshController: TodosRefreshViewController) {
         self.init()
-        self.loader = loader
+        self.refreshController = refreshController
     }
     
     public override func viewDidLoad() {
         super.viewDidLoad()
         
-        refreshControl = UIRefreshControl()
-        refreshControl?.addTarget(self, action: #selector(load), for: .valueChanged)
-        load()
-    }
-    
-    @objc private func load() {
-        refreshControl?.beginRefreshing()
-        Task(priority: .userInitiated) { [weak self] in
-            if let todos = try? await self?.loader?.load() {
-                self?.tableModel = todos
-                self?.tableView.reloadData()
-            }
-            self?.refreshControl?.endRefreshing()
-        }
+        refreshControl = refreshController?.view
+        
+        refreshController?.refresh()
     }
     
     public override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -41,9 +31,14 @@ public final class TodosViewController: UITableViewController {
     }
     
     public override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cellModel = tableModel[indexPath.row]
-        let cell = TodoCell()
-        cell.taskLabel.text = cellModel.text
-        return cell
+        cellController(forRowAt: indexPath).view()
+    }
+    
+    private func cellController(forRowAt indexPath: IndexPath) -> TodoCellController {
+        tableModel[indexPath.row]
+    }
+    
+    private func reloadData() {
+        tableView.reloadData()
     }
 }

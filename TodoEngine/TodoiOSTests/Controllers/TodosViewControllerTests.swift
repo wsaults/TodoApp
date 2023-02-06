@@ -140,7 +140,7 @@ class TodosViewControllerTests: XCTestCase {
         line: UInt = #line
     ) -> (sut: TodosViewController, loader: LoaderSpy) {
         let loader = LoaderSpy(results: results)
-        let sut = TodosViewController(loader: loader)
+        let sut = TodosUIComposer.todosComposedWith(loader: loader)
         
         trackForMemoryLeaks(sut, file: file, line: line)
         trackForMemoryLeaks(loader, file: file, line: line)
