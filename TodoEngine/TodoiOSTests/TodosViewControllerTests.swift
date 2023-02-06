@@ -24,7 +24,7 @@ class TodosViewControllerTests: XCTestCase {
     }
     
     func test_userInitiagedReload_loadsTodos() {
-        let (sut, loader) = makeSUT(results: [.success([]), .success([]), .success([])])
+        let (sut, loader) = makeSUT(results: [emptySuccess, emptySuccess, emptySuccess])
         sut.loadViewIfNeeded()
         
         let exp = expectation(description: "Wait for second load to finish")
@@ -72,8 +72,18 @@ class TodosViewControllerTests: XCTestCase {
         XCTAssertTrue(sut.isShowingLoadingIndicator, "Expected loading indicator to be visible after user initiates reload")
     }
     
-    func test_userInitiagedReload_hidesLoadingIndicaorOnLoaderCompletes() {
-        let (sut, loader) = makeSUT(results: [.success([]), .success([])])
+    func test_userInitiatedReload_hidesLoadingIndicaorOnLoaderCompletes() {
+        let (sut, loader) = makeSUT(results: [emptySuccess, emptySuccess])
+        
+        expect(sut, loader: loader, loadCount: 2) {
+            sut.simulateUserInitiatedReload()
+        } assertion: {
+            XCTAssertFalse(sut.isShowingLoadingIndicator)
+        }
+    }
+    
+    func test_userInitiatedReload_hidesLoadingIndicaorOnLoaderError() {
+        let (sut, loader) = makeSUT(results: [emptySuccess, anyFailure])
         
         expect(sut, loader: loader, loadCount: 2) {
             sut.simulateUserInitiatedReload()
@@ -104,7 +114,7 @@ class TodosViewControllerTests: XCTestCase {
     
     func test_loadCompletion_doesNotAlterCurrentRenderingStateOnError() {
         let todo0 = makeTodo(text: "a text", createdAt: Date.now)
-        let (sut, loader) = makeSUT(results: [.success([todo0]), .failure(anyNSError)])
+        let (sut, loader) = makeSUT(results: [.success([todo0]), anyFailure])
         
         expect(sut, loader: loader, loadCount: 1) {
             sut.loadViewIfNeeded()
@@ -120,6 +130,9 @@ class TodosViewControllerTests: XCTestCase {
     }
     
     // MARK: Helpers
+    
+    private let emptySuccess: Result<[TodoItem], Error> = .success([])
+    private let anyFailure: Result<[TodoItem], Error> = .failure(anyNSError)
     
     private func makeSUT(
         results: [Result<[TodoItem], Error>] = [.success([])],

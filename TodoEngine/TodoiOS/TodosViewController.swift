@@ -30,8 +30,8 @@ public final class TodosViewController: UITableViewController {
         Task(priority: .userInitiated) { [weak self] in
             if let todos = try? await self?.loader?.load() {
                 self?.tableModel = todos
+                self?.tableView.reloadData()
             }
-            self?.tableView.reloadData()
             self?.refreshControl?.endRefreshing()
         }
     }
