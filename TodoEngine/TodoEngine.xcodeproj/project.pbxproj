@@ -318,7 +318,6 @@
 			children = (
 				BE387FF12991984700BA6712 /* Composers */,
 				BE387FE529917A0700BA6712 /* Controllers */,
-				BE387FF82991B93F00BA6712 /* Models */,
 				BE387FE629917A0F00BA6712 /* Views */,
 			);
 			path = TodoiOS;
@@ -383,13 +382,6 @@
 				BE387FF22991985400BA6712 /* TodosUIComposer.swift */,
 			);
 			path = Composers;
-			sourceTree = "<group>";
-		};
-		BE387FF82991B93F00BA6712 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
