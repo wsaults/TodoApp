@@ -9,7 +9,7 @@ import Foundation
 
 public final class TodosPresenter {
     public static var title: String {
-        NSLocalizedString("TASKS_VIEW_TITLE",
+        NSLocalizedString("TODOS_VIEW_TITLE",
               tableName: "Todos",
               bundle: Bundle(for: TodosPresenter.self),
               comment: "Title for the tasks view")

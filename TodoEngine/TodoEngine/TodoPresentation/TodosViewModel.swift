@@ -5,11 +5,10 @@
 //  Created by Will Saults on 2/6/23.
 //
 
-import TodoEngine
-import UIKit
+import Foundation
 
 public final class TodosViewModel {
-    typealias Observer<T> = (T) -> Void
+    public typealias Observer<T> = (T) -> Void
     
     private let loader: TodoLoader
     
@@ -17,10 +16,18 @@ public final class TodosViewModel {
         self.loader = loader
     }
     
-    var onLoad: Observer<[TodoItem]>?
-    var onLoadingStateChange: Observer<Bool>?
+    public var onLoad: Observer<[TodoItem]>?
+    public var onLoadingStateChange: Observer<Bool>?
     
-    func load() {
+    public var title: String {
+        NSLocalizedString(
+            "TODOS_VIEW_TITLE",
+            tableName: "Todos",
+            bundle: Bundle(for: TodosViewModel.self),
+            comment: "Title for the tasks view")
+    }
+    
+    public func load() {
         onLoadingStateChange?(true)
         Task(priority: .userInitiated) { @MainActor [weak self] in
             if let todos = try? await self?.loader.load() {

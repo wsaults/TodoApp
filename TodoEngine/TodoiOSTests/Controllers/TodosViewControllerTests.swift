@@ -47,6 +47,19 @@ class TodosViewControllerTests: XCTestCase {
         XCTAssertEqual(loader.loadCallCount, 3)
     }
     
+    func test_todsView_hasTitle() {
+        let (sut, _) = makeSUT()
+        
+        sut.loadViewIfNeeded()
+        
+        let bundle = Bundle(for: TodosViewModel.self)
+        let localizedKey = "TODOS_VIEW_TITLE"
+        let localizedTitle = bundle.localizedString(forKey: localizedKey, value: nil, table: "Todos")
+     
+        XCTAssertNotEqual(localizedKey, localizedTitle, "Missing localized string for key: \(localizedKey)")
+        XCTAssertEqual(sut.title, localizedTitle)
+    }
+    
     func test_viewDidLoad_showsLoadingIndicaor() {
         let (sut, _) = makeSUT()
         

@@ -14,7 +14,9 @@ public final class TodosUIComposer {
     public static func todosComposedWith(loader: TodoLoader) -> TodosViewController {
         let todosViewModel = TodosViewModel(loader: loader)
         let refreshController = TodosRefreshViewController(viewModel: todosViewModel)
-        let todosController = TodosViewController(refreshController: refreshController)
+        
+        let todosController = TodosViewController.makeWith(refreshController: refreshController, title: todosViewModel.title)
+        
         todosViewModel.onLoad = adaptTodosToCellControllers(forwardingTo: todosController, loader: loader)
         return todosController
     }
@@ -23,5 +25,13 @@ public final class TodosUIComposer {
         { [weak controller] todos in
             controller?.tableModel = todos.map(TodoCellController.init)
         }
+    }
+}
+
+private extension TodosViewController {
+    static func makeWith(refreshController: TodosRefreshViewController, title: String) -> TodosViewController {
+        let todosController = TodosViewController(refreshController: refreshController)
+        todosController.title = title
+        return todosController
     }
 }

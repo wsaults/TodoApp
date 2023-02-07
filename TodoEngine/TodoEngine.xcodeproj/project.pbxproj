@@ -52,7 +52,7 @@
 		BE387FF32991985400BA6712 /* TodosUIComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE387FF22991985400BA6712 /* TodosUIComposer.swift */; };
 		BE387FF5299199BF00BA6712 /* TodoCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE387FF4299199BF00BA6712 /* TodoCellController.swift */; };
 		BE387FF72991B91E00BA6712 /* TodosRefreshViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE387FF62991B91E00BA6712 /* TodosRefreshViewController.swift */; };
-		BE387FFA2991B95500BA6712 /* TodosViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE387FF92991B95500BA6712 /* TodosViewModel.swift */; };
+		BE387FFB2991D03F00BA6712 /* TodosViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE387FF92991B95500BA6712 /* TodosViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -305,6 +305,7 @@
 				BE2E173B299017D500E504E3 /* TodoItemViewModel.swift */,
 				BE2E1739299017C000E504E3 /* TodoPresenter.swift */,
 				BE2E173F299018A500E504E3 /* TodosPresenter.swift */,
+				BE387FF92991B95500BA6712 /* TodosViewModel.swift */,
 				BE2E1747299019F800E504E3 /* Todos.strings */,
 			);
 			path = TodoPresentation;
@@ -396,7 +397,6 @@
 		BE387FF82991B93F00BA6712 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				BE387FF92991B95500BA6712 /* TodosViewModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -584,6 +584,7 @@
 				BE2E172E298FE2D400E504E3 /* FileManagerTodoStore.swift in Sources */,
 				BE2E1740299018A500E504E3 /* TodosPresenter.swift in Sources */,
 				BE2E171C298E95E700E504E3 /* TodoStore.swift in Sources */,
+				BE387FFB2991D03F00BA6712 /* TodosViewModel.swift in Sources */,
 				BE2E173C299017D500E504E3 /* TodoItemViewModel.swift in Sources */,
 				BE2E1730298FE30100E504E3 /* FileManagerTodoStore+TodoStore.swift in Sources */,
 				BE387FD829903F9100BA6712 /* TodoLoader.swift in Sources */,
@@ -621,7 +622,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				BE387FE129915E5300BA6712 /* TodosViewController.swift in Sources */,
-				BE387FFA2991B95500BA6712 /* TodosViewModel.swift in Sources */,
 				BE387FE3299167E000BA6712 /* TodoCell.swift in Sources */,
 				BE387FF5299199BF00BA6712 /* TodoCellController.swift in Sources */,
 				BE2E17532990342C00E504E3 /* TodoiOS.docc in Sources */,

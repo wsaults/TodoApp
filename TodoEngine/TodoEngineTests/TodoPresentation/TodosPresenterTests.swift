@@ -11,7 +11,7 @@ import XCTest
 class TodosPresenterTests: XCTestCase {
     
     func test_hasTitle() {
-        XCTAssertEqual(TodosPresenter.title, localized("TASKS_VIEW_TITLE"))
+        XCTAssertEqual(TodosPresenter.title, localized("TODOS_VIEW_TITLE"))
     }
     
     // MARK: Helpers
