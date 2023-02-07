@@ -5,6 +5,7 @@
 //  Created by Will Saults on 2/6/23.
 //
 
+import os
 import UIKit
 import TodoEngine
 import TodoiOS
@@ -12,21 +13,44 @@ import TodoiOS
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?
     
-    func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        guard let _ = (scene as? UIWindowScene) else { return }
-        
+    private lazy var logger = Logger(subsystem: "com.Saults.TodoApp", category: "main")
+    
+    private lazy var store: TodoStore = {
         do {
-            let store = try FileManagerTodoStore(storeURL: fileURL())
-            let loader = LocalTodoLoader(store: store)
-            let todosViewController = TodosUIComposer.todosComposedWith(loader: loader)
-            
-            window?.rootViewController = todosViewController
+            return try FileManagerTodoStore(storeURL: storeURL())
         } catch {
-            print("Error \(error)")
+            assertionFailure("Failed to instantiate store with error: \(error.localizedDescription)")
+            logger.fault("Failed to instantiate store with error: \(error.localizedDescription)")
+            return NullStore()
         }
+    }()
+    
+    private lazy var localLoader: LocalTodoLoader = {
+        LocalTodoLoader(store: store)
+    }()
+    
+    private lazy var navigationController = UINavigationController(
+        rootViewController: TodosUIComposer.todosComposedWith(loader: localLoader))
+    
+    convenience init(store: TodoStore) {
+        self.init()
+        self.store = store
     }
     
-    private func fileURL() throws -> URL {
+    func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
+        guard let scene = (scene as? UIWindowScene) else { return }
+        
+        window = UIWindow(windowScene: scene)
+        
+        configureWindow()
+    }
+    
+    func configureWindow() {
+        window?.rootViewController = navigationController
+        window?.makeKeyAndVisible()
+    }
+    
+    private func storeURL() throws -> URL {
         try FileManager.default.url(for: .documentDirectory,
                                     in: .userDomainMask,
                                     appropriateFor: nil,
@@ -34,4 +58,3 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         .appendingPathComponent("todos.store")
     }
 }
-

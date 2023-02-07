@@ -34,7 +34,6 @@
 		BE2E1745299019F800E504E3 /* Todos.strings in Resources */ = {isa = PBXBuildFile; fileRef = BE2E1747299019F800E504E3 /* Todos.strings */; };
 		BE2E174929901AA400E504E3 /* SharedLocalizationTestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE2E174829901AA400E504E3 /* SharedLocalizationTestHelpers.swift */; };
 		BE2E17592990342C00E504E3 /* TodoiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE2E174F2990342B00E504E3 /* TodoiOS.framework */; };
-		BE2E17672990390000E504E3 /* TodosUIIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE2E17662990390000E504E3 /* TodosUIIntegrationTests.swift */; };
 		BE387FD829903F9100BA6712 /* TodoLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE387FD729903F9100BA6712 /* TodoLoader.swift */; };
 		BE387FDA2990402B00BA6712 /* TodoEngine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE2E16F1298E74BF00E504E3 /* TodoEngine.framework */; platformFilter = ios; };
 		BE387FDB2990402B00BA6712 /* TodoEngine.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BE2E16F1298E74BF00E504E3 /* TodoEngine.framework */; platformFilter = ios; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -42,14 +41,9 @@
 		BE387FE129915E5300BA6712 /* TodosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE387FE029915E5300BA6712 /* TodosViewController.swift */; };
 		BE387FE3299167E000BA6712 /* TodoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE387FE2299167E000BA6712 /* TodoCell.swift */; };
 		BE387FE429916ECC00BA6712 /* SharedTestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE2E1722298E978700E504E3 /* SharedTestHelpers.swift */; };
-		BE387FEA29917A3A00BA6712 /* TodosViewController+TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE387FE929917A3A00BA6712 /* TodosViewController+TestHelpers.swift */; };
-		BE387FEC29917A9400BA6712 /* UIRefreshControl+TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE387FEB29917A9400BA6712 /* UIRefreshControl+TestHelpers.swift */; };
-		BE387FEE29917AB200BA6712 /* TodoCell+TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE387FED29917AB200BA6712 /* TodoCell+TestHelpers.swift */; };
-		BE387FF32991985400BA6712 /* TodosUIComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE387FF22991985400BA6712 /* TodosUIComposer.swift */; };
 		BE387FF5299199BF00BA6712 /* TodoCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE387FF4299199BF00BA6712 /* TodoCellController.swift */; };
 		BE387FF72991B91E00BA6712 /* TodosRefreshViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE387FF62991B91E00BA6712 /* TodosRefreshViewController.swift */; };
 		BE387FFB2991D03F00BA6712 /* TodosViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE387FF92991B95500BA6712 /* TodosViewModel.swift */; };
-		BE387FFD2991D27F00BA6712 /* TodosUIIntegrationTests+Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE387FFC2991D27F00BA6712 /* TodosUIIntegrationTests+Localization.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -120,18 +114,12 @@
 		BE2E174829901AA400E504E3 /* SharedLocalizationTestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedLocalizationTestHelpers.swift; sourceTree = "<group>"; };
 		BE2E174F2990342B00E504E3 /* TodoiOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TodoiOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE2E17582990342C00E504E3 /* TodoiOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TodoiOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		BE2E17662990390000E504E3 /* TodosUIIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodosUIIntegrationTests.swift; sourceTree = "<group>"; };
 		BE387FD729903F9100BA6712 /* TodoLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoLoader.swift; sourceTree = "<group>"; };
 		BE387FE029915E5300BA6712 /* TodosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodosViewController.swift; sourceTree = "<group>"; };
 		BE387FE2299167E000BA6712 /* TodoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoCell.swift; sourceTree = "<group>"; };
-		BE387FE929917A3A00BA6712 /* TodosViewController+TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TodosViewController+TestHelpers.swift"; sourceTree = "<group>"; };
-		BE387FEB29917A9400BA6712 /* UIRefreshControl+TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIRefreshControl+TestHelpers.swift"; sourceTree = "<group>"; };
-		BE387FED29917AB200BA6712 /* TodoCell+TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TodoCell+TestHelpers.swift"; sourceTree = "<group>"; };
-		BE387FF22991985400BA6712 /* TodosUIComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodosUIComposer.swift; sourceTree = "<group>"; };
 		BE387FF4299199BF00BA6712 /* TodoCellController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoCellController.swift; sourceTree = "<group>"; };
 		BE387FF62991B91E00BA6712 /* TodosRefreshViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodosRefreshViewController.swift; sourceTree = "<group>"; };
 		BE387FF92991B95500BA6712 /* TodosViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodosViewModel.swift; sourceTree = "<group>"; };
-		BE387FFC2991D27F00BA6712 /* TodosUIIntegrationTests+Localization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TodosUIIntegrationTests+Localization.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -316,7 +304,6 @@
 		BE2E17502990342B00E504E3 /* TodoiOS */ = {
 			isa = PBXGroup;
 			children = (
-				BE387FF12991984700BA6712 /* Composers */,
 				BE387FE529917A0700BA6712 /* Controllers */,
 				BE387FE629917A0F00BA6712 /* Views */,
 			);
@@ -326,7 +313,6 @@
 		BE2E175C2990342C00E504E3 /* TodoiOSTests */ = {
 			isa = PBXGroup;
 			children = (
-				BE387FE729917A1900BA6712 /* TodosUI */,
 			);
 			path = TodoiOSTests;
 			sourceTree = "<group>";
@@ -354,34 +340,6 @@
 				BE387FE2299167E000BA6712 /* TodoCell.swift */,
 			);
 			path = Views;
-			sourceTree = "<group>";
-		};
-		BE387FE729917A1900BA6712 /* TodosUI */ = {
-			isa = PBXGroup;
-			children = (
-				BE387FE829917A2400BA6712 /* Helpers */,
-				BE2E17662990390000E504E3 /* TodosUIIntegrationTests.swift */,
-			);
-			path = TodosUI;
-			sourceTree = "<group>";
-		};
-		BE387FE829917A2400BA6712 /* Helpers */ = {
-			isa = PBXGroup;
-			children = (
-				BE387FE929917A3A00BA6712 /* TodosViewController+TestHelpers.swift */,
-				BE387FEB29917A9400BA6712 /* UIRefreshControl+TestHelpers.swift */,
-				BE387FED29917AB200BA6712 /* TodoCell+TestHelpers.swift */,
-				BE387FFC2991D27F00BA6712 /* TodosUIIntegrationTests+Localization.swift */,
-			);
-			path = Helpers;
-			sourceTree = "<group>";
-		};
-		BE387FF12991984700BA6712 /* Composers */ = {
-			isa = PBXGroup;
-			children = (
-				BE387FF22991985400BA6712 /* TodosUIComposer.swift */,
-			);
-			path = Composers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -605,7 +563,6 @@
 				BE387FE3299167E000BA6712 /* TodoCell.swift in Sources */,
 				BE387FF5299199BF00BA6712 /* TodoCellController.swift in Sources */,
 				BE387FF72991B91E00BA6712 /* TodosRefreshViewController.swift in Sources */,
-				BE387FF32991985400BA6712 /* TodosUIComposer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -613,13 +570,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BE2E17672990390000E504E3 /* TodosUIIntegrationTests.swift in Sources */,
-				BE387FEE29917AB200BA6712 /* TodoCell+TestHelpers.swift in Sources */,
-				BE387FEC29917A9400BA6712 /* UIRefreshControl+TestHelpers.swift in Sources */,
 				BE387FDF29904CD800BA6712 /* XCTestCase+MemoryLeakTracking.swift in Sources */,
-				BE387FEA29917A3A00BA6712 /* TodosViewController+TestHelpers.swift in Sources */,
 				BE387FE429916ECC00BA6712 /* SharedTestHelpers.swift in Sources */,
-				BE387FFD2991D27F00BA6712 /* TodosUIIntegrationTests+Localization.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

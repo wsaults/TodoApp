@@ -9,11 +9,11 @@ import UIKit
 
 public final class TodosViewController: UITableViewController {
     private var refreshController: TodosRefreshViewController?
-    var tableModel = [TodoCellController]() {
+    public var tableModel = [TodoCellController]() {
         didSet { reloadData() }
     }
     
-    convenience init(refreshController: TodosRefreshViewController) {
+    public convenience init(refreshController: TodosRefreshViewController) {
         self.init()
         self.refreshController = refreshController
     }

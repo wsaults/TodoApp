@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "BE2E174E2990342B00E504E3"
-               BuildableName = "TodoiOS.framework"
-               BlueprintName = "TodoiOS"
-               ReferencedContainer = "container:TodoEngine.xcodeproj">
+               BlueprintIdentifier = "BE2E16F0298E74BE00E504E3"
+               BuildableName = "TodoEngine.framework"
+               BlueprintName = "TodoEngine"
+               ReferencedContainer = "container:TodoEngine/TodoEngine.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -32,10 +32,10 @@
       <CodeCoverageTargets>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "BE2E174E2990342B00E504E3"
-            BuildableName = "TodoiOS.framework"
-            BlueprintName = "TodoiOS"
-            ReferencedContainer = "container:TodoEngine.xcodeproj">
+            BlueprintIdentifier = "BE2E16F0298E74BE00E504E3"
+            BuildableName = "TodoEngine.framework"
+            BlueprintName = "TodoEngine"
+            ReferencedContainer = "container:TodoEngine/TodoEngine.xcodeproj">
          </BuildableReference>
       </CodeCoverageTargets>
       <Testables>
@@ -45,10 +45,10 @@
             testExecutionOrdering = "random">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "BE2E17572990342C00E504E3"
-               BuildableName = "TodoiOSTests.xctest"
-               BlueprintName = "TodoiOSTests"
-               ReferencedContainer = "container:TodoEngine.xcodeproj">
+               BlueprintIdentifier = "BE2E16FA298E74BF00E504E3"
+               BuildableName = "TodoEngineTests.xctest"
+               BlueprintName = "TodoEngineTests"
+               ReferencedContainer = "container:TodoEngine/TodoEngine.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -73,10 +73,10 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "BE2E174E2990342B00E504E3"
-            BuildableName = "TodoiOS.framework"
-            BlueprintName = "TodoiOS"
-            ReferencedContainer = "container:TodoEngine.xcodeproj">
+            BlueprintIdentifier = "BE2E16F0298E74BE00E504E3"
+            BuildableName = "TodoEngine.framework"
+            BlueprintName = "TodoEngine"
+            ReferencedContainer = "container:TodoEngine/TodoEngine.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </ProfileAction>

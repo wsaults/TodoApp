@@ -9,6 +9,12 @@ import TodoiOS
 import UIKit
 
 extension TodosViewController {
+    public override func loadViewIfNeeded() {
+        super.loadViewIfNeeded()
+        
+        tableView.frame = CGRect(x: 0, y: 0, width: 1, height: 1)
+    }
+    
     func simulateUserInitiatedReload() {
         refreshControl?.simulatePullToRefresh()
     }
@@ -17,8 +23,12 @@ extension TodosViewController {
         refreshControl?.isRefreshing == true
     }
     
+    func numberOfRows(in section: Int) -> Int {
+        tableView.numberOfSections > section ? tableView.numberOfRows(inSection: section) : 0
+    }
+    
     func numberOfRenderedTodos() -> Int {
-        tableView.numberOfRows(inSection: todosSection)
+        numberOfRows(in: todosSection)
     }
     
     func todoView(at row: Int) -> UITableViewCell? {
@@ -27,7 +37,5 @@ extension TodosViewController {
         return dataSource?.tableView(tableView, cellForRowAt: index)
     }
     
-    private var todosSection: Int {
-        0
-    }
+    private var todosSection: Int { 0 }
 }

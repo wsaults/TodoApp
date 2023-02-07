@@ -8,10 +8,10 @@
 import TodoEngine
 import UIKit
 
-final class TodoCellController {
+public final class TodoCellController {
     private let viewModel: TodoItem
     
-    init(viewModel: TodoItem) {
+    public init(viewModel: TodoItem) {
         self.viewModel = viewModel
     }
     

@@ -10,6 +10,7 @@ import TodoEngine
 import TodoiOS
 import XCTest
 import UIKit
+@testable import TodoApp
 
 class TodosUIIntegrationTests: XCTestCase {
     
@@ -246,3 +247,5 @@ class TodosUIIntegrationTests: XCTestCase {
         XCTAssertEqual(view?.taskText, todo.text, file: file, line: line)
     }
 }
+
+let anyNSError = NSError(domain: "any error", code: 0)
