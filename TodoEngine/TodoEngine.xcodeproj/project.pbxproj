@@ -53,6 +53,7 @@
 		BE387FF5299199BF00BA6712 /* TodoCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE387FF4299199BF00BA6712 /* TodoCellController.swift */; };
 		BE387FF72991B91E00BA6712 /* TodosRefreshViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE387FF62991B91E00BA6712 /* TodosRefreshViewController.swift */; };
 		BE387FFB2991D03F00BA6712 /* TodosViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE387FF92991B95500BA6712 /* TodosViewModel.swift */; };
+		BE387FFD2991D27F00BA6712 /* TodosViewControllerTests+Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE387FFC2991D27F00BA6712 /* TodosViewControllerTests+Localization.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -138,6 +139,7 @@
 		BE387FF4299199BF00BA6712 /* TodoCellController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoCellController.swift; sourceTree = "<group>"; };
 		BE387FF62991B91E00BA6712 /* TodosRefreshViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodosRefreshViewController.swift; sourceTree = "<group>"; };
 		BE387FF92991B95500BA6712 /* TodosViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodosViewModel.swift; sourceTree = "<group>"; };
+		BE387FFC2991D27F00BA6712 /* TodosViewControllerTests+Localization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TodosViewControllerTests+Localization.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -382,6 +384,7 @@
 				BE387FE929917A3A00BA6712 /* TodosViewController+TestHelpers.swift */,
 				BE387FEB29917A9400BA6712 /* UIRefreshControl+TestHelpers.swift */,
 				BE387FED29917AB200BA6712 /* TodoCell+TestHelpers.swift */,
+				BE387FFC2991D27F00BA6712 /* TodosViewControllerTests+Localization.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -640,6 +643,7 @@
 				BE387FDF29904CD800BA6712 /* XCTestCase+MemoryLeakTracking.swift in Sources */,
 				BE387FEA29917A3A00BA6712 /* TodosViewController+TestHelpers.swift in Sources */,
 				BE387FE429916ECC00BA6712 /* SharedTestHelpers.swift in Sources */,
+				BE387FFD2991D27F00BA6712 /* TodosViewControllerTests+Localization.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
