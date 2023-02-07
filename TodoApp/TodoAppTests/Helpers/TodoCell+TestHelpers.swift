@@ -12,4 +12,8 @@ extension TodoCell {
     var taskText: String? {
         taskLabel.text
     }
+    
+    func simulateCompleteAction() {
+        radioButton.simulateTouchesBegan()
+    }
 }

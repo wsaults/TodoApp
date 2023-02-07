@@ -17,7 +17,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     private lazy var store: TodoStore = {
         do {
-            return try FileManagerTodoStore(storeURL: storeURL())
+            return InMemoryTodoStore.withTodosCache
+//            return try FileManagerTodoStore(storeURL: storeURL())
         } catch {
             assertionFailure("Failed to instantiate store with error: \(error.localizedDescription)")
             logger.fault("Failed to instantiate store with error: \(error.localizedDescription)")
@@ -56,5 +57,40 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                                     appropriateFor: nil,
                                     create: false)
         .appendingPathComponent("todos.store")
+    }
+}
+
+class InMemoryTodoStore {
+    private(set) var todoCache = CachedTodos()
+    
+    private init(todoCache: CachedTodos) {
+        self.todoCache = todoCache
+    }
+}
+
+extension InMemoryTodoStore: TodoStore {
+    func save(_ items: [TodoItem]) async throws {
+        todoCache = CachedTodos(items)
+    }
+    
+    func retrieve() async throws -> CachedTodos {
+        todoCache
+    }
+    
+    func delete(_ item: TodoItem) async throws {
+        todoCache = []
+    }
+}
+
+extension InMemoryTodoStore {
+    static var empty: InMemoryTodoStore {
+        InMemoryTodoStore(todoCache: CachedTodos([]))
+    }
+    
+    static var withTodosCache: InMemoryTodoStore {
+        InMemoryTodoStore(todoCache: CachedTodos([
+            TodoItem(uuid: UUID(), text: "Todo one", createdAt: Date.now),
+            TodoItem(uuid: UUID(), text: "Todo two", createdAt: Date.now, completedAt: Date.now)
+        ]))
     }
 }

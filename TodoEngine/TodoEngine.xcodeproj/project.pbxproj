@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BE288EE8299308CA005B274E /* RadioButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE288EE7299308CA005B274E /* RadioButton.swift */; };
 		BE2E16FC298E74BF00E504E3 /* TodoEngine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE2E16F1298E74BF00E504E3 /* TodoEngine.framework */; };
 		BE2E1701298E74BF00E504E3 /* TodoEngineTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE2E1700298E74BF00E504E3 /* TodoEngineTests.swift */; };
 		BE2E170D298E768F00E504E3 /* TodoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE2E170C298E768F00E504E3 /* TodoItem.swift */; };
@@ -85,6 +86,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		BE288EE7299308CA005B274E /* RadioButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioButton.swift; sourceTree = "<group>"; };
 		BE2E16F1298E74BF00E504E3 /* TodoEngine.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TodoEngine.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE2E16FB298E74BF00E504E3 /* TodoEngineTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TodoEngineTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE2E1700298E74BF00E504E3 /* TodoEngineTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoEngineTests.swift; sourceTree = "<group>"; };
@@ -338,6 +340,7 @@
 			isa = PBXGroup;
 			children = (
 				BE387FE2299167E000BA6712 /* TodoCell.swift */,
+				BE288EE7299308CA005B274E /* RadioButton.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -561,6 +564,7 @@
 			files = (
 				BE387FE129915E5300BA6712 /* TodosViewController.swift in Sources */,
 				BE387FE3299167E000BA6712 /* TodoCell.swift in Sources */,
+				BE288EE8299308CA005B274E /* RadioButton.swift in Sources */,
 				BE387FF5299199BF00BA6712 /* TodoCellController.swift in Sources */,
 				BE387FF72991B91E00BA6712 /* TodosRefreshViewController.swift in Sources */,
 			);

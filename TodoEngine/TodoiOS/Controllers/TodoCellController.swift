@@ -9,18 +9,19 @@ import TodoEngine
 import UIKit
 
 public final class TodoCellController {
-    private let viewModel: TodoItem
+    private let viewModel: TodoItemViewModel
     
-    public init(viewModel: TodoItem) {
+    public init(viewModel: TodoItemViewModel) {
         self.viewModel = viewModel
     }
     
-    func view() -> UITableViewCell {
-        binded(TodoCell())
+    func view(for tableView: UITableView) -> UITableViewCell {
+        binded(tableView.dequeueReusableCell())
     }
     
     private func binded(_ cell: TodoCell) -> TodoCell {
         cell.taskLabel.text = viewModel.text
+        cell.setCompleted(isComplete: viewModel.isComplete)
         return cell
     }
 }

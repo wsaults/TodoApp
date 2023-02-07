@@ -25,7 +25,9 @@ public final class TodosUIComposer {
     
     private static func adaptTodosToCellControllers(forwardingTo controller: TodosViewController) -> ([TodoItem]) -> Void {
         { [weak controller] todos in
-            controller?.tableModel = todos.map(TodoCellController.init)
+            controller?.tableModel = todos.map {
+                TodoCellController(viewModel: TodoPresenter.map($0))
+            }
         }
     }
 }

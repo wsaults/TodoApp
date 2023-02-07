@@ -22,8 +22,10 @@ public final class TodosViewController: UITableViewController {
         super.viewDidLoad()
         
         refreshControl = refreshController?.view
-        
         refreshController?.refresh()
+        
+        tableView.register(TodoCell.self)
+        tableView.separatorStyle = .none
     }
     
     public override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -31,7 +33,7 @@ public final class TodosViewController: UITableViewController {
     }
     
     public override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        cellController(forRowAt: indexPath).view()
+        cellController(forRowAt: indexPath).view(for: tableView)
     }
     
     private func cellController(forRowAt indexPath: IndexPath) -> TodoCellController {
@@ -40,5 +42,17 @@ public final class TodosViewController: UITableViewController {
     
     private func reloadData() {
         tableView.reloadData()
+    }
+}
+
+extension UITableView {
+    func dequeueReusableCell<T: UITableViewCell>() -> T {
+        let identifier = String(describing: T.self)
+        return dequeueReusableCell(withIdentifier: identifier) as! T
+    }
+    
+    func register(_ cell: UITableViewCell.Type) {
+        let identifier = String(describing: cell.self)
+        self.register(cell.self, forCellReuseIdentifier: identifier)
     }
 }

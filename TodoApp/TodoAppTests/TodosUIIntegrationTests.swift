@@ -138,6 +138,20 @@ class TodosUIIntegrationTests: XCTestCase {
         }
     }
     
+    func test_tappingCompleteAction_completesTodo() {
+        let todo0 = makeTodo(text: "a text", createdAt: Date.now)
+        let (sut, loader) = makeSUT(results: [.success([todo0])])
+        
+        expect(sut, loader: loader, loadCount: 1)  {
+            sut.loadViewIfNeeded()
+        } assertion: {
+            let cell = sut.todoView(at: 0)
+            XCTAssertEqual(cell?.radioButton.isSelected, false)
+            cell?.simulateCompleteAction()
+            XCTAssertEqual(cell?.radioButton.isSelected, true)
+        }
+    }
+    
     // MARK: Helpers
     
     private let emptySuccess: Result<[TodoItem], Error> = .success([])
@@ -242,9 +256,12 @@ class TodosUIIntegrationTests: XCTestCase {
         file: StaticString = #filePath,
         line: UInt = #line
     ) {
-        let view = sut.todoView(at: row) as? TodoCell
-        XCTAssertNotNil(view, file: file, line: line)
+        let view = sut.todoView(at: row)
+        
+        XCTAssertNotNil(view, "Expected \(TodoCell.self) instance, got \(String(describing: view)) instead", file: file, line: line)
         XCTAssertEqual(view?.taskText, todo.text, file: file, line: line)
+        XCTAssertNotNil(view?.radioButton, file: file, line: line)
+        XCTAssertEqual(view?.radioButton.isSelected, todo.completedAt != nil, file: file, line: line)
     }
 }
 

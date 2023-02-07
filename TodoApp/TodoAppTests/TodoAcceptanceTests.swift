@@ -29,7 +29,6 @@ class TodoAcceptanceTests: XCTestCase {
         }
 
         wait(for: [exp], timeout: 0.2)
-        
         XCTAssertEqual(numberOfRenderedTodos, 2)
     }
     

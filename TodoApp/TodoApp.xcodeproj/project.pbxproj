@@ -18,6 +18,8 @@
 		BE288EE22992CE30005B274E /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE288EE12992CE30005B274E /* XCTestCase+MemoryLeakTracking.swift */; };
 		BE288EE42992DACC005B274E /* NullStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE288EE32992DACC005B274E /* NullStore.swift */; };
 		BE288EE62992DB35005B274E /* InMemoryTodoStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE288EE52992DB35005B274E /* InMemoryTodoStore.swift */; };
+		BE288EEA2993094F005B274E /* UIButton+TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE288EE92993094F005B274E /* UIButton+TestHelpers.swift */; };
+		BE288EEC29930962005B274E /* UIControl+TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE288EEB29930962005B274E /* UIControl+TestHelpers.swift */; };
 		BE38800B2991D87E00BA6712 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE38800A2991D87E00BA6712 /* AppDelegate.swift */; };
 		BE38800D2991D87E00BA6712 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE38800C2991D87E00BA6712 /* SceneDelegate.swift */; };
 		BE3880142991D87F00BA6712 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BE3880132991D87F00BA6712 /* Assets.xcassets */; };
@@ -65,6 +67,8 @@
 		BE288EE12992CE30005B274E /* XCTestCase+MemoryLeakTracking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+MemoryLeakTracking.swift"; sourceTree = "<group>"; };
 		BE288EE32992DACC005B274E /* NullStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NullStore.swift; sourceTree = "<group>"; };
 		BE288EE52992DB35005B274E /* InMemoryTodoStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InMemoryTodoStore.swift; sourceTree = "<group>"; };
+		BE288EE92993094F005B274E /* UIButton+TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+TestHelpers.swift"; sourceTree = "<group>"; };
+		BE288EEB29930962005B274E /* UIControl+TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIControl+TestHelpers.swift"; sourceTree = "<group>"; };
 		BE3880072991D87E00BA6712 /* TodoApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TodoApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE38800A2991D87E00BA6712 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BE38800C2991D87E00BA6712 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -113,6 +117,8 @@
 				BE288ED92992CD3A005B274E /* TodosUIIntegrationTests+Localization.swift */,
 				BE288EE12992CE30005B274E /* XCTestCase+MemoryLeakTracking.swift */,
 				BE288EE52992DB35005B274E /* InMemoryTodoStore.swift */,
+				BE288EE92993094F005B274E /* UIButton+TestHelpers.swift */,
+				BE288EEB29930962005B274E /* UIControl+TestHelpers.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -283,7 +289,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				BE288ECE29926726005B274E /* TodoAcceptanceTests.swift in Sources */,
+				BE288EEA2993094F005B274E /* UIButton+TestHelpers.swift in Sources */,
 				BE288EE22992CE30005B274E /* XCTestCase+MemoryLeakTracking.swift in Sources */,
+				BE288EEC29930962005B274E /* UIControl+TestHelpers.swift in Sources */,
 				BE288EDF2992CDCE005B274E /* TodoCell+TestHelpers.swift in Sources */,
 				BE288EE62992DB35005B274E /* InMemoryTodoStore.swift in Sources */,
 				BE288EDE2992CDCB005B274E /* UIRefreshControl+TestHelpers.swift in Sources */,

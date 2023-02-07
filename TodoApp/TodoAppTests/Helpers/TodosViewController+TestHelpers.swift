@@ -31,10 +31,17 @@ extension TodosViewController {
         numberOfRows(in: todosSection)
     }
     
-    func todoView(at row: Int) -> UITableViewCell? {
+    func cell(at row: Int, section: Int) -> UITableViewCell? {
+        guard numberOfRows(in: section) > row else {
+            return nil
+        }
         let dataSource = tableView.dataSource
-        let index = IndexPath(row: row, section: todosSection)
+        let index = IndexPath(row: row, section: section)
         return dataSource?.tableView(tableView, cellForRowAt: index)
+    }
+    
+    func todoView(at row: Int) -> TodoCell? {
+        cell(at: row, section: todosSection) as? TodoCell
     }
     
     private var todosSection: Int { 0 }
