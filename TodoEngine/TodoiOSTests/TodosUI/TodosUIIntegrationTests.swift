@@ -1,5 +1,5 @@
 //
-//  TodosViewControllerTests.swift
+//  TodosUIIntegrationTests.swift
 //  TodoiOSTests
 //
 //  Created by Will Saults on 2/5/23.
@@ -11,7 +11,7 @@ import TodoiOS
 import XCTest
 import UIKit
 
-class TodosViewControllerTests: XCTestCase {
+class TodosUIIntegrationTests: XCTestCase {
     
     func test_init_doesNotLoadTodos() {
         let (_, loader) = makeSUT()

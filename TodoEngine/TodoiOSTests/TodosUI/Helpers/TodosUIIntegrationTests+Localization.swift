@@ -1,5 +1,5 @@
 //
-//  TodosViewControllerTests+Localization.swift
+//  TodosUIIntegrationTests+Localization.swift
 //  TodoiOSTests
 //
 //  Created by Will Saults on 2/6/23.
@@ -8,7 +8,7 @@
 import XCTest
 import TodoEngine
 
-extension TodosViewControllerTests {
+extension TodosUIIntegrationTests {
     func localized(_ key: String, file: StaticString = #filePath, line: UInt = #line) -> String {
         let table = "Todos"
         let bundle = Bundle(for: TodosViewModel.self)
