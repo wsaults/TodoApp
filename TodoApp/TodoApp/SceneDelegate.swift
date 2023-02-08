@@ -31,7 +31,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }()
     
     private lazy var navigationController = UINavigationController(
-        rootViewController: TodosUIComposer.todosComposedWith(loader: localLoader))
+        rootViewController: TodosUIComposer.todosComposedWith(
+            loader: localLoader,
+            cache: localLoader
+        )
+    )
     
     convenience init(store: TodoStore) {
         self.init()
@@ -68,9 +72,15 @@ class InMemoryTodoStore {
     }
 }
 
+// TODO: Remove this helper
 extension InMemoryTodoStore: TodoStore {
     func save(_ items: [TodoItem]) async throws {
         todoCache = CachedTodos(items)
+    }
+    
+    func save(_ item: TodoItem) async throws {
+        todoCache.removeAll { $0.uuid == item.uuid }
+        todoCache.append(item)
     }
     
     func retrieve() async throws -> CachedTodos {

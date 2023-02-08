@@ -7,7 +7,13 @@
 
 import UIKit
 
+public protocol TodoCellDelegate {
+    func cellDidUpdate()
+}
+
 public final class TodoCell: UITableViewCell {
+    
+    var delegate: TodoCellDelegate?
     
     enum Constants {
         static let horizontalMargin = 20.0
@@ -18,7 +24,7 @@ public final class TodoCell: UITableViewCell {
     
     public lazy var radioButton: RadioButton = {
         let button = RadioButton()
-        button.completeTodo = setCompleted
+        button.completeTodo = radioButtonTapped
         return button
     }()
     
@@ -58,6 +64,11 @@ public final class TodoCell: UITableViewCell {
             taskLabel.heightAnchor.constraint(equalToConstant: Constants.taskLabelHeight),
             taskLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -Constants.horizontalMargin),
         ])
+    }
+    
+    func radioButtonTapped(isComplete: Bool) {
+        setCompleted(isComplete: isComplete)
+        delegate?.cellDidUpdate()
     }
     
     func setCompleted(isComplete: Bool) {

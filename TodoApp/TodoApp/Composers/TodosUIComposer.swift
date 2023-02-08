@@ -13,20 +13,25 @@ public final class TodosUIComposer {
     private init() {}
     
     public static func todosComposedWith(
-        loader: TodoLoader
+        loader: TodoLoader,
+        cache: TodoCache
     ) -> TodosViewController {
         let todosViewModel = TodosViewModel(loader: loader)
+        let todosCacheController = TodosCacheController(cache: cache)
         let refreshController = TodosRefreshViewController(viewModel: todosViewModel)
         let todosController = TodosViewController.makeWith(refreshController: refreshController, title: todosViewModel.title)
         
-        todosViewModel.onLoad = adaptTodosToCellControllers(forwardingTo: todosController)
+        todosViewModel.onLoad = adaptTodosToCellControllers(forwardingTo: todosController, with: todosCacheController)
         return todosController
     }
     
-    private static func adaptTodosToCellControllers(forwardingTo controller: TodosViewController) -> ([TodoItem]) -> Void {
+    private static func adaptTodosToCellControllers(
+        forwardingTo controller: TodosViewController,
+        with delegate: TodoCellControllerDelegate
+    ) -> ([TodoItem]) -> Void {
         { [weak controller] todos in
             controller?.tableModel = todos.map {
-                TodoCellController(viewModel: TodoPresenter.map($0))
+                TodoCellController(viewModel: TodoPresenter.map($0), delegate: delegate)
             }
         }
     }
@@ -37,5 +42,11 @@ private extension TodosViewController {
         let todosController = TodosViewController(refreshController: refreshController)
         todosController.title = title
         return todosController
+    }
+}
+
+extension TodosCacheController: TodoCellControllerDelegate {
+    public func didChange(viewModel: TodoItemViewModel) {
+        save(todo: TodoPresenter.map(viewModel))
     }
 }

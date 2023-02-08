@@ -7,6 +7,20 @@
 
 import Foundation
 
+public final class TodosCacheController {
+    private let cache: TodoCache
+    
+    public init(cache: TodoCache) {
+        self.cache = cache
+    }
+    
+    public func save(todo: TodoItem) {
+        Task(priority: .userInitiated) { @MainActor [weak self] in
+            try await self?.cache.save(todo)
+        }
+    }
+}
+
 public final class TodosViewModel {
     public typealias Observer<T> = (T) -> Void
     
