@@ -30,6 +30,8 @@ public final class TodosViewController: UIViewController {
         tableView.refreshControl = refreshController?.view
         tableView.dataSource = self
         tableView.separatorStyle = .none
+        tableView.keyboardDismissMode = .onDrag
+        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 40, right: 0)
         return tableView
     }()
     
@@ -64,6 +66,8 @@ public final class TodosViewController: UIViewController {
     public override func viewDidLoad() {
         super.viewDidLoad()
         
+        view.backgroundColor = .white
+        
         addViews()
         setConstraints()
         
@@ -87,7 +91,7 @@ public final class TodosViewController: UIViewController {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         addButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            tableView.bottomAnchor.constraint(equalTo: view.keyboardLayoutGuide.topAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             tableView.topAnchor.constraint(equalTo: view.topAnchor),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
@@ -97,8 +101,8 @@ public final class TodosViewController: UIViewController {
             addButton.widthAnchor.constraint(equalToConstant: Constants.addButtonHeight),
         ])
         
-        let textFieldOnKeyboard = view.keyboardLayoutGuide.topAnchor.constraint(equalTo: addButton.bottomAnchor, constant: 30)
-        view.keyboardLayoutGuide.setConstraints([textFieldOnKeyboard], activeWhenAwayFrom: .top)
+        let addButtonOnKeyboard = view.keyboardLayoutGuide.topAnchor.constraint(equalTo: addButton.bottomAnchor, constant: 30)
+        view.keyboardLayoutGuide.setConstraints([addButtonOnKeyboard], activeWhenAwayFrom: .top)
     }
     
     private func addButtonTapped() {
