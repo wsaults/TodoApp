@@ -8,17 +8,16 @@
 import TodoEngine
 import UIKit
 
-public protocol TodoCellControllerDelegate {
+public protocol TodoCellControllerDelegate: AnyObject {
     func didChange(viewModel: TodoItemViewModel)
 }
 
 public final class TodoCellController {
     private let viewModel: TodoItemViewModel
-    private let delegate: TodoCellControllerDelegate
+    weak var delegate: TodoCellControllerDelegate?
     
-    public init(viewModel: TodoItemViewModel, delegate: TodoCellControllerDelegate) {
+    public init(viewModel: TodoItemViewModel) {
         self.viewModel = viewModel
-        self.delegate = delegate
     }
     
     func view(for tableView: UITableView) -> UITableViewCell {
@@ -34,7 +33,13 @@ public final class TodoCellController {
 }
 
 extension TodoCellController: TodoCellDelegate {    
-    public func cellDidUpdate() {
-        delegate.didChange(viewModel: viewModel)
+    public func cellDidUpdate(isComplete: Bool) {
+        let updatedViewModel = TodoItemViewModel(
+            uuid: viewModel.uuid,
+            text: viewModel.text,
+            createdAt: viewModel.createdAt,
+            completedAt: isComplete ? Date.now : nil
+        )
+        delegate?.didChange(viewModel: updatedViewModel)
     }
 }

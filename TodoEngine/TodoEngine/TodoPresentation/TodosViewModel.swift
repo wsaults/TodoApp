@@ -7,31 +7,21 @@
 
 import Foundation
 
-public final class TodosCacheController {
-    private let cache: TodoCache
-    
-    public init(cache: TodoCache) {
-        self.cache = cache
-    }
-    
-    public func save(todo: TodoItem) {
-        Task(priority: .userInitiated) { @MainActor [weak self] in
-            try await self?.cache.save(todo)
-        }
-    }
-}
-
 public final class TodosViewModel {
     public typealias Observer<T> = (T) -> Void
     
     private let loader: TodoLoader
+    private let cache: TodoCache
     
-    public init(loader: TodoLoader) {
+    public init(loader: TodoLoader, cache: TodoCache) {
         self.loader = loader
+        self.cache = cache
     }
     
     public var onLoad: Observer<[TodoItem]>?
     public var onLoadingStateChange: Observer<Bool>?
+    
+    public var onSavingStateChange: Observer<Bool>?
     
     public var title: String {
         NSLocalizedString(
@@ -48,6 +38,14 @@ public final class TodosViewModel {
                 self?.onLoad?(todos)
             }
             self?.onLoadingStateChange?(false)
+        }
+    }
+    
+    public func save(todo: TodoItem) {
+        onSavingStateChange?(true)
+        Task(priority: .userInitiated) { @MainActor [weak self] in
+            try await self?.cache.save(todo)
+            self?.onSavingStateChange?(false)
         }
     }
 }

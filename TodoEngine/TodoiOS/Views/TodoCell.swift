@@ -7,15 +7,15 @@
 
 import UIKit
 
-public protocol TodoCellDelegate {
-    func cellDidUpdate()
+public protocol TodoCellDelegate: AnyObject {
+    func cellDidUpdate(isComplete: Bool)
 }
 
 public final class TodoCell: UITableViewCell {
     
-    var delegate: TodoCellDelegate?
+    weak var delegate: TodoCellDelegate?
     
-    enum Constants {
+    private enum Constants {
         static let horizontalMargin = 20.0
         static let radioButtonHeight = 24.0
         static let spacing = 10.0
@@ -45,12 +45,12 @@ public final class TodoCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func addViews() {
+    private func addViews() {
         contentView.addSubview(taskLabel)
         contentView.addSubview(radioButton)
     }
     
-    func setConstraints() {
+    private func setConstraints() {
         radioButton.translatesAutoresizingMaskIntoConstraints = false
         taskLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -66,12 +66,12 @@ public final class TodoCell: UITableViewCell {
         ])
     }
     
-    func radioButtonTapped(isComplete: Bool) {
+    private func radioButtonTapped(isComplete: Bool) {
         setCompleted(isComplete: isComplete)
-        delegate?.cellDidUpdate()
+        delegate?.cellDidUpdate(isComplete: isComplete)
     }
     
-    func setCompleted(isComplete: Bool) {
+    public func setCompleted(isComplete: Bool) {
         taskLabel.textColor = isComplete ? UIColor.red : UIColor.black
         radioButton.isSelected = isComplete
     }

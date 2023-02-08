@@ -25,6 +25,9 @@ public final class TodosRefreshViewController: NSObject {
         viewModel.onLoadingStateChange = { [weak view] isLoading in
             isLoading ? view?.beginRefreshing() : view?.endRefreshing()
         }
+        viewModel.onSavingStateChange = { [weak self] isSaving in
+            if !isSaving { self?.refresh() }
+        }
         view.addTarget(self, action: #selector(refresh), for: .valueChanged)
         return view
     }

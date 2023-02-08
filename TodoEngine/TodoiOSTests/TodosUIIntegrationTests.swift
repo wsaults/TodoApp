@@ -9,6 +9,7 @@ import Combine
 import TodoEngine
 import XCTest
 import UIKit
+@testable import TodoiOS
 
 class TodosUIIntegrationTests: XCTestCase {
     
@@ -19,6 +20,7 @@ class TodosUIIntegrationTests: XCTestCase {
     
     func test_viewDidLoad_loadsTodos() {
         let (sut, loader) = makeSUT()
+        
         expect(sut, loader: loader, loadCount: 1)
     }
     
@@ -64,7 +66,7 @@ class TodosUIIntegrationTests: XCTestCase {
     
     func test_viewDidLoad_hidesLoadingIndicaorOnLoaderCompletes() {
         let (sut, loader) = makeSUT()
-        expect(sut, loader: loader, isRefreshing: true)
+        expect(sut, loader: loader, loadCount: 1, isRefreshing: false)
     }
     
     func test_loadingIndicator_isVisibleWhileLoading() {
@@ -81,8 +83,9 @@ class TodosUIIntegrationTests: XCTestCase {
     
     func test_userInitiatedReload_hidesLoadingIndicaorOnLoaderCompletes() {
         let (sut, loader) = makeSUT(results: [emptySuccess, emptySuccess])
+        sut.loadViewIfNeeded()
         
-        expect(sut, loader: loader, loadCount: 2) {
+        expect(loader: loader, loadCount: 2) {
             sut.simulateUserInitiatedReload()
         } assertion: {
             XCTAssertFalse(sut.isShowingLoadingIndicator)
@@ -91,8 +94,9 @@ class TodosUIIntegrationTests: XCTestCase {
     
     func test_userInitiatedReload_hidesLoadingIndicaorOnLoaderError() {
         let (sut, loader) = makeSUT(results: [emptySuccess, anyFailure])
+        sut.loadViewIfNeeded()
         
-        expect(sut, loader: loader, loadCount: 2) {
+        expect(loader: loader, loadCount: 2) {
             sut.simulateUserInitiatedReload()
         } assertion: {
             XCTAssertFalse(sut.isShowingLoadingIndicator)
@@ -112,7 +116,7 @@ class TodosUIIntegrationTests: XCTestCase {
         let todo3 = makeTodo(text: "a fourth text", createdAt: Date.now)
         let (sut, loader) = makeSUT(results: [.success([todo0, todo1, todo2, todo3])])
         
-        expect(sut, loader: loader, loadCount: 1)  {
+        expect(loader: loader, loadCount: 1)  {
             sut.loadViewIfNeeded()
         } assertion: {
             assertThat(sut, isRendering: [todo0, todo1, todo2, todo3])
@@ -123,13 +127,13 @@ class TodosUIIntegrationTests: XCTestCase {
         let todo0 = makeTodo(text: "a text", createdAt: Date.now)
         let (sut, loader) = makeSUT(results: [.success([todo0]), anyFailure])
         
-        expect(sut, loader: loader, loadCount: 1) {
+        expect(loader: loader, loadCount: 1) {
             sut.loadViewIfNeeded()
         } assertion: {
             assertThat(sut, isRendering: [todo0])
         }
         
-        expect(sut, loader: loader, loadCount: 2) {
+        expect(loader: loader, loadCount: 2) {
             sut.simulateUserInitiatedReload()
         } assertion: {
             assertThat(sut, isRendering: [todo0])
@@ -140,7 +144,7 @@ class TodosUIIntegrationTests: XCTestCase {
         let todo0 = makeTodo(text: "a text", createdAt: Date.now)
         let (sut, loader) = makeSUT(results: [.success([todo0])])
         
-        expect(sut, loader: loader, loadCount: 1)  {
+        expect(loader: loader, loadCount: 1)  {
             sut.loadViewIfNeeded()
         } assertion: {
             let cell = sut.todoView(at: 0)
@@ -152,11 +156,13 @@ class TodosUIIntegrationTests: XCTestCase {
     
     func test_tappingAdd_createsEmptyTodo() {
         let (sut, _, cache) = makeSUTWithCache()
-        sut.loadViewIfNeeded()
         
-        sut.addButton.simulateTap()
-        
-        XCTAssertEqual(cache.saveCallCount, 1)
+        expect(cache: cache, saveCount: 1) {
+            sut.loadViewIfNeeded()
+            sut.addButton.simulateTap()
+        } assertion: {
+            XCTAssertEqual(cache.saveCallCount, 1)
+        }
     }
     
     // MARK: Helpers
@@ -216,12 +222,9 @@ class TodosUIIntegrationTests: XCTestCase {
     }
     
     private class CacheSpy: TodoCache {
-        @Published private(set) var saveItemsCallCount = 0
         @Published private(set) var saveCallCount = 0
         
-        func save(_ items: [TodoEngine.TodoItem]) async throws {
-            saveItemsCallCount += 1
-        }
+        func save(_ items: [TodoEngine.TodoItem]) async throws {}
         
         func save(_ item: TodoEngine.TodoItem) async throws {
             saveCallCount += 1
@@ -244,6 +247,7 @@ class TodosUIIntegrationTests: XCTestCase {
         var cancellable = Set<AnyCancellable>()
         
         loader.$loadCallCount
+            .receive(on: DispatchQueue.main)
             .sink { if $0 >= loadCount { exp.fulfill() } }
             .store(in: &cancellable)
         
@@ -255,7 +259,6 @@ class TodosUIIntegrationTests: XCTestCase {
     }
     
     private func expect(
-        _ sut: TodosViewController,
         loader: LoaderSpy,
         loadCount: Int = 0,
         action: () -> Void,
@@ -265,15 +268,30 @@ class TodosUIIntegrationTests: XCTestCase {
     ) {
         let exp = expectation(description: "Wait for load to finish")
         var cancellable = Set<AnyCancellable>()
-        
         loader.$loadCallCount
-            .sink {
-                if $0 >= loadCount { exp.fulfill() }
-            }
+            .receive(on: DispatchQueue.main)
+            .sink { if $0 >= loadCount { exp.fulfill() } }
             .store(in: &cancellable)
-        
         action()
-        
+        wait(for: [exp], timeout: 0.1)
+        assertion()
+    }
+    
+    private func expect(
+        cache: CacheSpy,
+        saveCount: Int = 0,
+        action: () -> Void,
+        assertion: () -> Void,
+        file: StaticString = #filePath,
+        line: UInt = #line
+    ) {
+        let exp = expectation(description: "Wait for save to finish")
+        var cancellable = Set<AnyCancellable>()
+        cache.$saveCallCount
+            .receive(on: DispatchQueue.main)
+            .sink { if $0 >= saveCount { exp.fulfill() } }
+            .store(in: &cancellable)
+        action()
         wait(for: [exp], timeout: 0.1)
         
         assertion()
@@ -309,5 +327,3 @@ class TodosUIIntegrationTests: XCTestCase {
         XCTAssertEqual(view?.radioButton.isSelected, todo.completedAt != nil, file: file, line: line)
     }
 }
-
-let anyNSError = NSError(domain: "any error", code: 0)
