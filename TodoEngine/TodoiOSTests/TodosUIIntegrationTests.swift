@@ -165,6 +165,22 @@ class TodosUIIntegrationTests: XCTestCase {
         }
     }
     
+    func test_tappingDelete_removesTodo() {
+        let todo0 = makeTodo(text: "a text", createdAt: Date.now)
+        let (sut, loader, deleter) = makeSUTWithDeleter(results: [.success([todo0])])
+        
+        expect(loader: loader, loadCount: 1)  {
+            sut.loadViewIfNeeded()
+        } assertion: {
+            expect(deleter: deleter, deleteCount: 1) {
+                let cell = sut.todoView(at: 0)
+                cell?.simulateDeleteAction()
+            } assertion: {
+                XCTAssertEqual(deleter.deleteCallCount, 1)
+            }
+        }
+    }
+    
     // MARK: Helpers
     
     private let emptySuccess: Result<[TodoItem], Error> = .success([])
@@ -179,7 +195,7 @@ class TodosUIIntegrationTests: XCTestCase {
         loader: LoaderSpy
     ) {
         let loader = LoaderSpy(results: results)
-        let sut = TodosUIComposer.todosComposedWith(loader: loader, cache: CacheSpy())
+        let sut = TodosUIComposer.todosComposedWith(loader: loader, cache: CacheSpy(), deleter: DeleterSpy())
         
         trackForMemoryLeaks(sut, file: file, line: line)
         trackForMemoryLeaks(loader, file: file, line: line)
@@ -198,13 +214,33 @@ class TodosUIIntegrationTests: XCTestCase {
     ) {
         let loader = LoaderSpy(results: results)
         let cache = CacheSpy()
-        let sut = TodosUIComposer.todosComposedWith(loader: loader, cache: cache)
+        let sut = TodosUIComposer.todosComposedWith(loader: loader, cache: cache, deleter: DeleterSpy())
         
         trackForMemoryLeaks(sut, file: file, line: line)
         trackForMemoryLeaks(loader, file: file, line: line)
         trackForMemoryLeaks(cache, file: file, line: line)
         
         return (sut, loader, cache)
+    }
+    
+    private func makeSUTWithDeleter(
+        results: [Result<[TodoItem], Error>] = [.success([])],
+        file: StaticString = #filePath,
+        line: UInt = #line
+    ) -> (
+        sut: TodosViewController,
+        loader: LoaderSpy,
+        cache: DeleterSpy
+    ) {
+        let loader = LoaderSpy(results: results)
+        let deleter = DeleterSpy()
+        let sut = TodosUIComposer.todosComposedWith(loader: loader, cache: CacheSpy(), deleter: deleter)
+        
+        trackForMemoryLeaks(sut, file: file, line: line)
+        trackForMemoryLeaks(loader, file: file, line: line)
+        trackForMemoryLeaks(deleter, file: file, line: line)
+        
+        return (sut, loader, deleter)
     }
     
     private class LoaderSpy: TodoLoader {
@@ -228,6 +264,14 @@ class TodosUIIntegrationTests: XCTestCase {
         
         func save(_ item: TodoEngine.TodoItem) async throws {
             saveCallCount += 1
+        }
+    }
+    
+    private class DeleterSpy: TodoDeleter {
+        @Published private(set) var deleteCallCount = 0
+        
+        func delete(_ item: TodoEngine.TodoItem) async throws {
+            deleteCallCount += 1
         }
     }
     
@@ -290,6 +334,26 @@ class TodosUIIntegrationTests: XCTestCase {
         cache.$saveCallCount
             .receive(on: DispatchQueue.main)
             .sink { if $0 >= saveCount { exp.fulfill() } }
+            .store(in: &cancellable)
+        action()
+        wait(for: [exp], timeout: 0.1)
+        
+        assertion()
+    }
+    
+    private func expect(
+        deleter: DeleterSpy,
+        deleteCount: Int = 0,
+        action: () -> Void,
+        assertion: () -> Void,
+        file: StaticString = #filePath,
+        line: UInt = #line
+    ) {
+        let exp = expectation(description: "Wait for delete to finish")
+        var cancellable = Set<AnyCancellable>()
+        deleter.$deleteCallCount
+            .receive(on: DispatchQueue.main)
+            .sink { if $0 >= deleteCount { exp.fulfill() } }
             .store(in: &cancellable)
         action()
         wait(for: [exp], timeout: 0.1)

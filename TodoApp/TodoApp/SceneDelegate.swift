@@ -32,7 +32,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     private lazy var navigationController = UINavigationController(
         rootViewController: TodosUIComposer.todosComposedWith(
             loader: localLoader,
-            cache: localLoader
+            cache: localLoader,
+            deleter: localLoader
         )
     )
     

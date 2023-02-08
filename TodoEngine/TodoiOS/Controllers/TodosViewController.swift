@@ -50,10 +50,6 @@ public final class TodosViewController: UIViewController {
         return button
     }()
     
-    private func addButtonTapped() {
-        delegate?.didAdd()
-    }
-    
     public convenience init(
         refreshController: TodosRefreshViewController,
         delegate: TodosCacheController
@@ -99,6 +95,10 @@ public final class TodosViewController: UIViewController {
             addButton.heightAnchor.constraint(equalToConstant: Constants.addButtonHeight),
             addButton.widthAnchor.constraint(equalToConstant: Constants.addButtonHeight),
         ])
+    }
+    
+    private func addButtonTapped() {
+        delegate?.didAdd()
     }
 }
 

@@ -16,4 +16,8 @@ extension TodoCell {
     func simulateCompleteAction() {
         radioButton.simulateTouchesBegan()
     }
+    
+    func simulateDeleteAction() {
+        deleteButton.simulateTap()
+    }
 }

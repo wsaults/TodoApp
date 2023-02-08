@@ -13,9 +13,10 @@ public final class TodosUIComposer {
     
     public static func todosComposedWith(
         loader: TodoLoader,
-        cache: TodoCache
+        cache: TodoCache,
+        deleter: TodoDeleter
     ) -> TodosViewController {
-        let todosViewModel = TodosViewModel(loader: loader, cache: cache)
+        let todosViewModel = TodosViewModel(loader: loader, cache: cache, deleter: deleter)
         let refreshController = TodosRefreshViewController(viewModel: todosViewModel)
         let todosController = TodosViewController.makeWith(
             refreshController: refreshController,
@@ -47,6 +48,10 @@ private extension TodosViewController {
 extension TodosViewModel: TodoCellControllerDelegate {
     public func didChange(viewModel: TodoItemViewModel) {
         save(todo: TodoPresenter.map(viewModel))
+    }
+    
+    public func didDelete(viewModel: TodoItemViewModel) {
+        delete(todo: TodoPresenter.map(viewModel))
     }
 }
 

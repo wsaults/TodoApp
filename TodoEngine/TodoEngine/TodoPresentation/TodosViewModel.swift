@@ -12,16 +12,18 @@ public final class TodosViewModel {
     
     private let loader: TodoLoader
     private let cache: TodoCache
+    private let deleter: TodoDeleter
     
-    public init(loader: TodoLoader, cache: TodoCache) {
+    public init(loader: TodoLoader, cache: TodoCache, deleter: TodoDeleter) {
         self.loader = loader
         self.cache = cache
+        self.deleter = deleter
     }
     
     public var onLoad: Observer<[TodoItem]>?
     public var onLoadingStateChange: Observer<Bool>?
-    
     public var onSavingStateChange: Observer<Bool>?
+    public var onDeletionStateChange: Observer<Bool>?
     
     public var title: String {
         NSLocalizedString(
@@ -46,6 +48,14 @@ public final class TodosViewModel {
         Task(priority: .userInitiated) { @MainActor [weak self] in
             try await self?.cache.save(todo)
             self?.onSavingStateChange?(false)
+        }
+    }
+    
+    public func delete(todo: TodoItem) {
+        onDeletionStateChange?(true)
+        Task(priority: .userInitiated) { @MainActor [weak self] in
+            try await self?.deleter.delete(todo)
+            self?.onDeletionStateChange?(false)
         }
     }
 }

@@ -31,7 +31,7 @@ extension LocalTodoLoader: TodoLoader {
     }
 }
 
-extension LocalTodoLoader {
+extension LocalTodoLoader: TodoDeleter {
     public func delete(_ item: TodoItem) async throws {
         try await store.delete(item)
     }

@@ -10,6 +10,7 @@ import UIKit
 
 public protocol TodoCellControllerDelegate: AnyObject {
     func didChange(viewModel: TodoItemViewModel)
+    func didDelete(viewModel: TodoItemViewModel)
 }
 
 public final class TodoCellController {
@@ -33,7 +34,7 @@ public final class TodoCellController {
 }
 
 extension TodoCellController: TodoCellDelegate {    
-    public func cellDidUpdate(isComplete: Bool) {
+    public func didUpdate(isComplete: Bool) {
         let updatedViewModel = TodoItemViewModel(
             uuid: viewModel.uuid,
             text: viewModel.text,
@@ -41,5 +42,9 @@ extension TodoCellController: TodoCellDelegate {
             completedAt: isComplete ? Date.now : nil
         )
         delegate?.didChange(viewModel: updatedViewModel)
+    }
+    
+    public func didDelete() {
+        delegate?.didDelete(viewModel: viewModel)
     }
 }

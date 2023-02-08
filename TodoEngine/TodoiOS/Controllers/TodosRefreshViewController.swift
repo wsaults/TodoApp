@@ -28,6 +28,9 @@ public final class TodosRefreshViewController: NSObject {
         viewModel.onSavingStateChange = { [weak self] isSaving in
             if !isSaving { self?.refresh() }
         }
+        viewModel.onDeletionStateChange = { [weak self] isDeleting in
+            if !isDeleting { self?.refresh() }
+        }
         view.addTarget(self, action: #selector(refresh), for: .valueChanged)
         return view
     }
