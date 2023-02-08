@@ -16,11 +16,11 @@ extension TodosViewController {
     }
     
     func simulateUserInitiatedReload() {
-        refreshControl?.simulatePullToRefresh()
+        tableView.refreshControl?.simulatePullToRefresh()
     }
     
     var isShowingLoadingIndicator: Bool {
-        refreshControl?.isRefreshing == true
+        tableView.refreshControl?.isRefreshing == true
     }
     
     func numberOfRows(in section: Int) -> Int {
@@ -45,4 +45,12 @@ extension TodosViewController {
     }
     
     private var todosSection: Int { 0 }
+}
+
+extension TodosViewController {
+    
+    @discardableResult
+    func simulateTodoVisible(at index: Int) -> TodoCell? {
+        todoView(at: index)
+    }
 }

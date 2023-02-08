@@ -7,10 +7,8 @@
 
 import Combine
 import TodoEngine
-import TodoiOS
 import XCTest
 import UIKit
-@testable import TodoApp
 
 class TodosUIIntegrationTests: XCTestCase {
     
@@ -24,7 +22,7 @@ class TodosUIIntegrationTests: XCTestCase {
         expect(sut, loader: loader, loadCount: 1)
     }
     
-    func test_userInitiagedReload_loadsTodos() {
+    func test_userInitiatedReload_loadsTodos() {
         let (sut, loader) = makeSUT(results: [emptySuccess, emptySuccess, emptySuccess])
         sut.loadViewIfNeeded()
         
@@ -152,6 +150,15 @@ class TodosUIIntegrationTests: XCTestCase {
         }
     }
     
+    func test_tappingAdd_createsEmptyTodo() {
+        let (sut, _, cache) = makeSUTWithCache()
+        sut.loadViewIfNeeded()
+        
+        sut.addButton.simulateTap()
+        
+        XCTAssertEqual(cache.saveCallCount, 1)
+    }
+    
     // MARK: Helpers
     
     private let emptySuccess: Result<[TodoItem], Error> = .success([])
@@ -161,15 +168,37 @@ class TodosUIIntegrationTests: XCTestCase {
         results: [Result<[TodoItem], Error>] = [.success([])],
         file: StaticString = #filePath,
         line: UInt = #line
-    ) -> (sut: TodosViewController, loader: LoaderSpy) {
+    ) -> (
+        sut: TodosViewController,
+        loader: LoaderSpy
+    ) {
+        let loader = LoaderSpy(results: results)
+        let sut = TodosUIComposer.todosComposedWith(loader: loader, cache: CacheSpy())
+        
+        trackForMemoryLeaks(sut, file: file, line: line)
+        trackForMemoryLeaks(loader, file: file, line: line)
+        
+        return (sut, loader)
+    }
+    
+    private func makeSUTWithCache(
+        results: [Result<[TodoItem], Error>] = [.success([])],
+        file: StaticString = #filePath,
+        line: UInt = #line
+    ) -> (
+        sut: TodosViewController,
+        loader: LoaderSpy,
+        cache: CacheSpy
+    ) {
         let loader = LoaderSpy(results: results)
         let cache = CacheSpy()
         let sut = TodosUIComposer.todosComposedWith(loader: loader, cache: cache)
         
         trackForMemoryLeaks(sut, file: file, line: line)
         trackForMemoryLeaks(loader, file: file, line: line)
+        trackForMemoryLeaks(cache, file: file, line: line)
         
-        return (sut, loader)
+        return (sut, loader, cache)
     }
     
     private class LoaderSpy: TodoLoader {
@@ -238,7 +267,9 @@ class TodosUIIntegrationTests: XCTestCase {
         var cancellable = Set<AnyCancellable>()
         
         loader.$loadCallCount
-            .sink { if $0 >= loadCount { exp.fulfill() } }
+            .sink {
+                if $0 >= loadCount { exp.fulfill() }
+            }
             .store(in: &cancellable)
         
         action()

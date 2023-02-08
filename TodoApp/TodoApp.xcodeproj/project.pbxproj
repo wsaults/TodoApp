@@ -9,17 +9,9 @@
 /* Begin PBXBuildFile section */
 		BE288ECE29926726005B274E /* TodoAcceptanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE288ECD29926726005B274E /* TodoAcceptanceTests.swift */; };
 		BE288ED0299273BD005B274E /* SceneDelegateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE288ECF299273BD005B274E /* SceneDelegateTests.swift */; };
-		BE288ED52992BE0B005B274E /* TodosUIComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE288ED32992BD9D005B274E /* TodosUIComposer.swift */; };
-		BE288EDC2992CD3A005B274E /* TodosUIIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE288EDB2992CD3A005B274E /* TodosUIIntegrationTests.swift */; };
-		BE288EDD2992CD95005B274E /* TodosViewController+TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE288ED62992CD3A005B274E /* TodosViewController+TestHelpers.swift */; };
-		BE288EDE2992CDCB005B274E /* UIRefreshControl+TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE288ED72992CD3A005B274E /* UIRefreshControl+TestHelpers.swift */; };
-		BE288EDF2992CDCE005B274E /* TodoCell+TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE288ED82992CD3A005B274E /* TodoCell+TestHelpers.swift */; };
-		BE288EE02992CDD3005B274E /* TodosUIIntegrationTests+Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE288ED92992CD3A005B274E /* TodosUIIntegrationTests+Localization.swift */; };
 		BE288EE22992CE30005B274E /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE288EE12992CE30005B274E /* XCTestCase+MemoryLeakTracking.swift */; };
 		BE288EE42992DACC005B274E /* NullStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE288EE32992DACC005B274E /* NullStore.swift */; };
 		BE288EE62992DB35005B274E /* InMemoryTodoStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE288EE52992DB35005B274E /* InMemoryTodoStore.swift */; };
-		BE288EEA2993094F005B274E /* UIButton+TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE288EE92993094F005B274E /* UIButton+TestHelpers.swift */; };
-		BE288EEC29930962005B274E /* UIControl+TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE288EEB29930962005B274E /* UIControl+TestHelpers.swift */; };
 		BE38800B2991D87E00BA6712 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE38800A2991D87E00BA6712 /* AppDelegate.swift */; };
 		BE38800D2991D87E00BA6712 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE38800C2991D87E00BA6712 /* SceneDelegate.swift */; };
 		BE3880142991D87F00BA6712 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BE3880132991D87F00BA6712 /* Assets.xcassets */; };
@@ -58,17 +50,9 @@
 /* Begin PBXFileReference section */
 		BE288ECD29926726005B274E /* TodoAcceptanceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoAcceptanceTests.swift; sourceTree = "<group>"; };
 		BE288ECF299273BD005B274E /* SceneDelegateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegateTests.swift; sourceTree = "<group>"; };
-		BE288ED32992BD9D005B274E /* TodosUIComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodosUIComposer.swift; sourceTree = "<group>"; };
-		BE288ED62992CD3A005B274E /* TodosViewController+TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TodosViewController+TestHelpers.swift"; sourceTree = "<group>"; };
-		BE288ED72992CD3A005B274E /* UIRefreshControl+TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIRefreshControl+TestHelpers.swift"; sourceTree = "<group>"; };
-		BE288ED82992CD3A005B274E /* TodoCell+TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TodoCell+TestHelpers.swift"; sourceTree = "<group>"; };
-		BE288ED92992CD3A005B274E /* TodosUIIntegrationTests+Localization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TodosUIIntegrationTests+Localization.swift"; sourceTree = "<group>"; };
-		BE288EDB2992CD3A005B274E /* TodosUIIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodosUIIntegrationTests.swift; sourceTree = "<group>"; };
 		BE288EE12992CE30005B274E /* XCTestCase+MemoryLeakTracking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+MemoryLeakTracking.swift"; sourceTree = "<group>"; };
 		BE288EE32992DACC005B274E /* NullStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NullStore.swift; sourceTree = "<group>"; };
 		BE288EE52992DB35005B274E /* InMemoryTodoStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InMemoryTodoStore.swift; sourceTree = "<group>"; };
-		BE288EE92993094F005B274E /* UIButton+TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+TestHelpers.swift"; sourceTree = "<group>"; };
-		BE288EEB29930962005B274E /* UIControl+TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIControl+TestHelpers.swift"; sourceTree = "<group>"; };
 		BE3880072991D87E00BA6712 /* TodoApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TodoApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE38800A2991D87E00BA6712 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BE38800C2991D87E00BA6712 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -100,27 +84,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		BE288ED42992BD9D005B274E /* Composers */ = {
-			isa = PBXGroup;
-			children = (
-				BE288ED32992BD9D005B274E /* TodosUIComposer.swift */,
-			);
-			path = Composers;
-			sourceTree = "<group>";
-		};
 		BE288EDA2992CD3A005B274E /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				BE288ED62992CD3A005B274E /* TodosViewController+TestHelpers.swift */,
-				BE288ED72992CD3A005B274E /* UIRefreshControl+TestHelpers.swift */,
-				BE288ED82992CD3A005B274E /* TodoCell+TestHelpers.swift */,
-				BE288ED92992CD3A005B274E /* TodosUIIntegrationTests+Localization.swift */,
 				BE288EE12992CE30005B274E /* XCTestCase+MemoryLeakTracking.swift */,
 				BE288EE52992DB35005B274E /* InMemoryTodoStore.swift */,
-				BE288EE92993094F005B274E /* UIButton+TestHelpers.swift */,
-				BE288EEB29930962005B274E /* UIControl+TestHelpers.swift */,
 			);
-			path = Helpers;
+			name = Helpers;
+			path = ../../TodoEngine/TodoiOSTests/Helpers;
 			sourceTree = "<group>";
 		};
 		BE387FFE2991D87E00BA6712 = {
@@ -145,7 +116,6 @@
 		BE3880092991D87E00BA6712 /* TodoApp */ = {
 			isa = PBXGroup;
 			children = (
-				BE288ED42992BD9D005B274E /* Composers */,
 				BE38800A2991D87E00BA6712 /* AppDelegate.swift */,
 				BE38800C2991D87E00BA6712 /* SceneDelegate.swift */,
 				BE3880132991D87F00BA6712 /* Assets.xcassets */,
@@ -160,7 +130,6 @@
 			isa = PBXGroup;
 			children = (
 				BE288EDA2992CD3A005B274E /* Helpers */,
-				BE288EDB2992CD3A005B274E /* TodosUIIntegrationTests.swift */,
 				BE288ECD29926726005B274E /* TodoAcceptanceTests.swift */,
 				BE288ECF299273BD005B274E /* SceneDelegateTests.swift */,
 			);
@@ -280,7 +249,6 @@
 				BE38800B2991D87E00BA6712 /* AppDelegate.swift in Sources */,
 				BE38800D2991D87E00BA6712 /* SceneDelegate.swift in Sources */,
 				BE288EE42992DACC005B274E /* NullStore.swift in Sources */,
-				BE288ED52992BE0B005B274E /* TodosUIComposer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -289,15 +257,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				BE288ECE29926726005B274E /* TodoAcceptanceTests.swift in Sources */,
-				BE288EEA2993094F005B274E /* UIButton+TestHelpers.swift in Sources */,
 				BE288EE22992CE30005B274E /* XCTestCase+MemoryLeakTracking.swift in Sources */,
-				BE288EEC29930962005B274E /* UIControl+TestHelpers.swift in Sources */,
-				BE288EDF2992CDCE005B274E /* TodoCell+TestHelpers.swift in Sources */,
 				BE288EE62992DB35005B274E /* InMemoryTodoStore.swift in Sources */,
-				BE288EDE2992CDCB005B274E /* UIRefreshControl+TestHelpers.swift in Sources */,
-				BE288EDC2992CD3A005B274E /* TodosUIIntegrationTests.swift in Sources */,
-				BE288EE02992CDD3005B274E /* TodosUIIntegrationTests+Localization.swift in Sources */,
-				BE288EDD2992CD95005B274E /* TodosViewController+TestHelpers.swift in Sources */,
 				BE288ED0299273BD005B274E /* SceneDelegateTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
