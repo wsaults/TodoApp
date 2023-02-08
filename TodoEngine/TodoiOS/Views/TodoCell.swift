@@ -8,7 +8,7 @@
 import UIKit
 
 public protocol TodoCellDelegate: AnyObject {
-    func didUpdate(isComplete: Bool)
+    func didUpdate(text: String, isComplete: Bool)
     func didDelete()
 }
 
@@ -20,7 +20,7 @@ public final class TodoCell: UITableViewCell {
         static let horizontalMargin = 20.0
         static let radioButtonHeight = 24.0
         static let spacing = 10.0
-        static let taskLabelHeight = 30.0
+        static let taskFieldHeight = 30.0
         static let deleteButtonHeight = 40.0
         static let deleteButtonImageName = "x.circle"
     }
@@ -44,8 +44,14 @@ public final class TodoCell: UITableViewCell {
         return button
     }()
     
-    public lazy var taskLabel: UILabel = {
-        UILabel()
+    public lazy var taskField: UITextField = {
+        let textField = UITextField()
+        textField.placeholder = "You'll be done in no time!"
+        textField.delegate = self
+        textField.returnKeyType = .done
+        textField.autocapitalizationType = .sentences
+        textField.tintColor = .black
+        return textField
     }()
     
     public override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -63,12 +69,12 @@ public final class TodoCell: UITableViewCell {
     
     private func addViews() {
         contentView.addSubview(radioButton)
-        contentView.addSubview(taskLabel)
+        contentView.addSubview(taskField)
         contentView.addSubview(deleteButton)
     }
     
     private func setConstraints() {
-        taskLabel.translatesAutoresizingMaskIntoConstraints = false
+        taskField.translatesAutoresizingMaskIntoConstraints = false
         radioButton.translatesAutoresizingMaskIntoConstraints = false
         deleteButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -77,12 +83,12 @@ public final class TodoCell: UITableViewCell {
             radioButton.heightAnchor.constraint(equalToConstant: Constants.radioButtonHeight),
             radioButton.widthAnchor.constraint(equalToConstant: Constants.radioButtonHeight),
             
-            taskLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-            taskLabel.leadingAnchor.constraint(equalTo: radioButton.trailingAnchor, constant: Constants.spacing),
-            taskLabel.heightAnchor.constraint(equalToConstant: Constants.taskLabelHeight),
+            taskField.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            taskField.leadingAnchor.constraint(equalTo: radioButton.trailingAnchor, constant: Constants.spacing),
+            taskField.heightAnchor.constraint(equalToConstant: Constants.taskFieldHeight),
             
             deleteButton.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-            deleteButton.leadingAnchor.constraint(equalTo: taskLabel.trailingAnchor, constant: Constants.spacing),
+            deleteButton.leadingAnchor.constraint(equalTo: taskField.trailingAnchor, constant: Constants.spacing),
             deleteButton.heightAnchor.constraint(equalToConstant: Constants.deleteButtonHeight),
             deleteButton.widthAnchor.constraint(equalToConstant: Constants.deleteButtonHeight),
             deleteButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -Constants.horizontalMargin),
@@ -91,15 +97,25 @@ public final class TodoCell: UITableViewCell {
     
     private func radioButtonTapped(isComplete: Bool) {
         setCompleted(isComplete: isComplete)
-        delegate?.didUpdate(isComplete: isComplete)
+        delegate?.didUpdate(text: taskField.text ?? "", isComplete: isComplete)
     }
     
     public func setCompleted(isComplete: Bool) {
-        taskLabel.textColor = isComplete ? UIColor.red : UIColor.black
+        taskField.textColor = isComplete ? UIColor.red : UIColor.black
         radioButton.isSelected = isComplete
     }
     
     private func deleteButtonTapped() {
         delegate?.didDelete()
+    }
+}
+
+extension TodoCell: UITextFieldDelegate {
+    public func textFieldDidEndEditing(_ textField: UITextField) {
+        delegate?.didUpdate(text: textField.text ?? "", isComplete: radioButton.isSelected)
+    }
+    
+    public func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
     }
 }

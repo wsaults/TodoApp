@@ -24,3 +24,10 @@ public struct TodoItemViewModel {
         self.completedAt = completedAt
     }
 }
+
+extension TodoItemViewModel: Equatable {
+    public static func == (lhs: TodoItemViewModel, rhs: TodoItemViewModel) -> Bool {
+        lhs.text == rhs.text &&
+        lhs.completedAt == rhs.completedAt
+    }
+}

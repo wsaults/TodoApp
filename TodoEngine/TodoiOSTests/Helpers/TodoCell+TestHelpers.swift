@@ -10,7 +10,7 @@ import UIKit
 
 extension TodoCell {
     var taskText: String? {
-        taskLabel.text
+        taskField.text
     }
     
     func simulateCompleteAction() {

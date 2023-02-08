@@ -119,7 +119,7 @@ class TodosUIIntegrationTests: XCTestCase {
         expect(loader: loader, loadCount: 1)  {
             sut.loadViewIfNeeded()
         } assertion: {
-            assertThat(sut, isRendering: [todo0, todo1, todo2, todo3])
+            self.assertThat(sut, isRendering: [todo0, todo1, todo2, todo3])
         }
     }
     
@@ -130,13 +130,13 @@ class TodosUIIntegrationTests: XCTestCase {
         expect(loader: loader, loadCount: 1) {
             sut.loadViewIfNeeded()
         } assertion: {
-            assertThat(sut, isRendering: [todo0])
+            self.assertThat(sut, isRendering: [todo0])
         }
         
         expect(loader: loader, loadCount: 2) {
             sut.simulateUserInitiatedReload()
         } assertion: {
-            assertThat(sut, isRendering: [todo0])
+            self.assertThat(sut, isRendering: [todo0])
         }
     }
     
@@ -154,7 +154,7 @@ class TodosUIIntegrationTests: XCTestCase {
         }
     }
     
-    func test_tappingAdd_createsEmptyTodo() {
+    func test_tappingAdd_callsSave() {
         let (sut, _, cache) = makeSUTWithCache()
         
         expect(cache: cache, saveCount: 1) {
@@ -165,19 +165,59 @@ class TodosUIIntegrationTests: XCTestCase {
         }
     }
     
+    func test_tappingAdd_createsEmptyTodo() {
+        let todo0 = makeTodo(text: "a text", createdAt: Date.now)
+        let todo1 = makeTodo(text: "a text", createdAt: Date.now)
+        let (sut, loader, cache) = makeSUTWithCache(results: [.success([todo0]), .success([todo0, todo1])])
+        
+        expect(loader: loader, loadCount: 1)  {
+            sut.loadViewIfNeeded()
+            sut.addButton.simulateTap()
+        }
+        
+        expect(loader: loader, loadCount: 2)  {}
+        
+        expect(cache: cache, saveCount: 1) {} assertion: {
+            XCTAssertNotNil(sut.todoView(at: 1))
+        }
+    }
+    
     func test_tappingDelete_removesTodo() {
         let todo0 = makeTodo(text: "a text", createdAt: Date.now)
         let (sut, loader, deleter) = makeSUTWithDeleter(results: [.success([todo0])])
         
         expect(loader: loader, loadCount: 1)  {
             sut.loadViewIfNeeded()
+        }
+        
+        expect(deleter: deleter, deleteCount: 1) {
+            let cell = sut.todoView(at: 0)
+            cell?.simulateDeleteAction()
         } assertion: {
-            expect(deleter: deleter, deleteCount: 1) {
-                let cell = sut.todoView(at: 0)
-                cell?.simulateDeleteAction()
-            } assertion: {
-                XCTAssertEqual(deleter.deleteCallCount, 1)
-            }
+            XCTAssertEqual(deleter.deleteCallCount, 1)
+        }
+    }
+    
+    func test_resigningResponder_savesModifiedTodo() {
+        let oldTodo = makeTodo(text: "old text", createdAt: Date.now)
+        let newTodo = makeTodo(text: "new text", createdAt: Date.now)
+        let (sut, loader) = makeSUT(results: [.success([oldTodo]), .success([newTodo])])
+        
+        expect(loader: loader, loadCount: 1)  {
+            sut.loadViewIfNeeded()
+            let cell = sut.todoView(at: 0)
+            cell?.taskField.text = "new text"
+            cell?.taskField.resignFirstResponder()
+        } assertion: {
+            let cell = sut.todoView(at: 0)
+            XCTAssertEqual(cell?.taskField.text, "old text")
+        }
+        
+        expect(loader: loader, loadCount: 2) {
+            sut.simulateUserInitiatedReload()
+        } assertion: {
+            let cell = sut.todoView(at: 0)
+            XCTAssertEqual(cell?.taskField.text, "new text")
         }
     }
     
@@ -306,7 +346,7 @@ class TodosUIIntegrationTests: XCTestCase {
         loader: LoaderSpy,
         loadCount: Int = 0,
         action: () -> Void,
-        assertion: () -> Void,
+        assertion: (() -> Void)? = nil,
         file: StaticString = #filePath,
         line: UInt = #line
     ) {
@@ -318,14 +358,14 @@ class TodosUIIntegrationTests: XCTestCase {
             .store(in: &cancellable)
         action()
         wait(for: [exp], timeout: 0.1)
-        assertion()
+        assertion?()
     }
     
     private func expect(
         cache: CacheSpy,
         saveCount: Int = 0,
         action: () -> Void,
-        assertion: () -> Void,
+        assertion: (() -> Void)? = nil,
         file: StaticString = #filePath,
         line: UInt = #line
     ) {
@@ -337,15 +377,14 @@ class TodosUIIntegrationTests: XCTestCase {
             .store(in: &cancellable)
         action()
         wait(for: [exp], timeout: 0.1)
-        
-        assertion()
+        assertion?()
     }
     
     private func expect(
         deleter: DeleterSpy,
         deleteCount: Int = 0,
         action: () -> Void,
-        assertion: () -> Void,
+        assertion: (() -> Void)? = nil,
         file: StaticString = #filePath,
         line: UInt = #line
     ) {
@@ -357,8 +396,7 @@ class TodosUIIntegrationTests: XCTestCase {
             .store(in: &cancellable)
         action()
         wait(for: [exp], timeout: 0.1)
-        
-        assertion()
+        assertion?()
     }
     
     private func assertThat(

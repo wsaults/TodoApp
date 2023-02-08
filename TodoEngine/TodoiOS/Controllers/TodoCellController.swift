@@ -26,7 +26,7 @@ public final class TodoCellController {
     }
     
     private func binded(_ cell: TodoCell) -> TodoCell {
-        cell.taskLabel.text = viewModel.text
+        cell.taskField.text = viewModel.text
         cell.setCompleted(isComplete: viewModel.isComplete)
         cell.delegate = self
         return cell
@@ -34,14 +34,16 @@ public final class TodoCellController {
 }
 
 extension TodoCellController: TodoCellDelegate {    
-    public func didUpdate(isComplete: Bool) {
+    public func didUpdate(text: String, isComplete: Bool) {
         let updatedViewModel = TodoItemViewModel(
             uuid: viewModel.uuid,
-            text: viewModel.text,
+            text: text,
             createdAt: viewModel.createdAt,
             completedAt: isComplete ? Date.now : nil
         )
-        delegate?.didChange(viewModel: updatedViewModel)
+        if updatedViewModel != viewModel {
+            delegate?.didChange(viewModel: updatedViewModel)
+        }
     }
     
     public func didDelete() {
