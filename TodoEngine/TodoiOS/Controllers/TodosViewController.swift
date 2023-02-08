@@ -48,6 +48,7 @@ public final class TodosViewController: UIViewController {
             withConfiguration: UIImage.SymbolConfiguration(pointSize: Constants.addButtonHeight / 2, weight: .bold, scale: .large))
         let action = UIAction(handler: { [weak self] _ in self?.addButtonTapped() })
         let button = UIButton(configuration: configuration, primaryAction: action)
+        button.keyboardLayoutGuide.followsUndockedKeyboard = true
         return button
     }()
     
@@ -91,11 +92,13 @@ public final class TodosViewController: UIViewController {
             tableView.topAnchor.constraint(equalTo: view.topAnchor),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             
-            addButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -Constants.horizontalMargin),
             addButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -Constants.horizontalMargin),
             addButton.heightAnchor.constraint(equalToConstant: Constants.addButtonHeight),
             addButton.widthAnchor.constraint(equalToConstant: Constants.addButtonHeight),
         ])
+        
+        let textFieldOnKeyboard = view.keyboardLayoutGuide.topAnchor.constraint(equalTo: addButton.bottomAnchor, constant: 30)
+        view.keyboardLayoutGuide.setConstraints([textFieldOnKeyboard], activeWhenAwayFrom: .top)
     }
     
     private func addButtonTapped() {
