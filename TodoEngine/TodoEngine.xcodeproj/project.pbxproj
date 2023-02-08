@@ -8,8 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		BE288EE8299308CA005B274E /* RadioButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE288EE7299308CA005B274E /* RadioButton.swift */; };
+		BE288EEF299341B8005B274E /* UITableView+Dequeue.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE288EEE299341B8005B274E /* UITableView+Dequeue.swift */; };
 		BE2E16FC298E74BF00E504E3 /* TodoEngine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE2E16F1298E74BF00E504E3 /* TodoEngine.framework */; };
-		BE2E1701298E74BF00E504E3 /* TodoEngineTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE2E1700298E74BF00E504E3 /* TodoEngineTests.swift */; };
 		BE2E170D298E768F00E504E3 /* TodoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE2E170C298E768F00E504E3 /* TodoItem.swift */; };
 		BE2E1710298E78A100E504E3 /* TodoCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE2E170F298E78A100E504E3 /* TodoCache.swift */; };
 		BE2E1714298E7DFA00E504E3 /* CachedTodosUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE2E1713298E7DFA00E504E3 /* CachedTodosUseCaseTests.swift */; };
@@ -87,9 +87,9 @@
 
 /* Begin PBXFileReference section */
 		BE288EE7299308CA005B274E /* RadioButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioButton.swift; sourceTree = "<group>"; };
+		BE288EEE299341B8005B274E /* UITableView+Dequeue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Dequeue.swift"; sourceTree = "<group>"; };
 		BE2E16F1298E74BF00E504E3 /* TodoEngine.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TodoEngine.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE2E16FB298E74BF00E504E3 /* TodoEngineTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TodoEngineTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		BE2E1700298E74BF00E504E3 /* TodoEngineTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoEngineTests.swift; sourceTree = "<group>"; };
 		BE2E170C298E768F00E504E3 /* TodoItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoItem.swift; sourceTree = "<group>"; };
 		BE2E170F298E78A100E504E3 /* TodoCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoCache.swift; sourceTree = "<group>"; };
 		BE2E1713298E7DFA00E504E3 /* CachedTodosUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CachedTodosUseCaseTests.swift; sourceTree = "<group>"; };
@@ -159,6 +159,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BE288EED299341AB005B274E /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				BE288EEE299341B8005B274E /* UITableView+Dequeue.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 		BE2E16E7298E74BE00E504E3 = {
 			isa = PBXGroup;
 			children = (
@@ -198,9 +206,7 @@
 			children = (
 				BE2E1715298E884400E504E3 /* Helpers */,
 				BE2E1712298E7DCD00E504E3 /* TodoCache */,
-				BE2E1711298E7AB100E504E3 /* TodoFeatures */,
 				BE2E1736298FF0A100E504E3 /* TodoPresentation */,
-				BE2E1700298E74BF00E504E3 /* TodoEngineTests.swift */,
 			);
 			path = TodoEngineTests;
 			sourceTree = "<group>";
@@ -218,13 +224,6 @@
 			children = (
 				BE2E170F298E78A100E504E3 /* TodoCache.swift */,
 				BE387FD729903F9100BA6712 /* TodoLoader.swift */,
-			);
-			path = TodoFeatures;
-			sourceTree = "<group>";
-		};
-		BE2E1711298E7AB100E504E3 /* TodoFeatures */ = {
-			isa = PBXGroup;
-			children = (
 			);
 			path = TodoFeatures;
 			sourceTree = "<group>";
@@ -306,6 +305,7 @@
 		BE2E17502990342B00E504E3 /* TodoiOS */ = {
 			isa = PBXGroup;
 			children = (
+				BE288EED299341AB005B274E /* Helpers */,
 				BE387FE529917A0700BA6712 /* Controllers */,
 				BE387FE629917A0F00BA6712 /* Views */,
 			);
@@ -547,7 +547,6 @@
 				BE2E172B298F2D2700E504E3 /* FileManagerFeedStoreTests.swift in Sources */,
 				BE2E1738298FF0BC00E504E3 /* TodoPresentationTests.swift in Sources */,
 				BE2E1729298F240700E504E3 /* DeleteTodosFromCacheUseCaseTests.swift in Sources */,
-				BE2E1701298E74BF00E504E3 /* TodoEngineTests.swift in Sources */,
 				BE2E1734298FE8F100E504E3 /* TodoCacheIntegrationTests.swift in Sources */,
 				BE2E1723298E978700E504E3 /* SharedTestHelpers.swift in Sources */,
 				BE2E1727298EA84700E504E3 /* TodoTestHelpers.swift in Sources */,
@@ -562,6 +561,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BE288EEF299341B8005B274E /* UITableView+Dequeue.swift in Sources */,
 				BE387FE129915E5300BA6712 /* TodosViewController.swift in Sources */,
 				BE387FE3299167E000BA6712 /* TodoCell.swift in Sources */,
 				BE288EE8299308CA005B274E /* RadioButton.swift in Sources */,
