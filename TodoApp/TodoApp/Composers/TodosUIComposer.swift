@@ -55,7 +55,7 @@ extension TodosViewModel: TodoCellControllerDelegate {
     }
 }
 
-extension TodosViewModel: TodosViewControllerDelegate {
+extension TodosViewModel: TodosViewControllerCachingDelegate {
     public func didAdd() {
         save(todo: TodoItem(uuid: UUID(), text: "", createdAt: Date.now))
     }

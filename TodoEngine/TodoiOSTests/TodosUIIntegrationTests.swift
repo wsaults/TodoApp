@@ -206,18 +206,18 @@ class TodosUIIntegrationTests: XCTestCase {
         expect(loader: loader, loadCount: 1)  {
             sut.loadViewIfNeeded()
             let cell = sut.todoView(at: 0)
-            cell?.taskField.text = "new text"
-            cell?.taskField.resignFirstResponder()
+            cell?.taskTextView.text = "new text"
+            cell?.taskTextView.resignFirstResponder()
         } assertion: {
             let cell = sut.todoView(at: 0)
-            XCTAssertEqual(cell?.taskField.text, "old text")
+            XCTAssertEqual(cell?.taskTextView.text, "old text")
         }
         
         expect(loader: loader, loadCount: 2) {
             sut.simulateUserInitiatedReload()
         } assertion: {
             let cell = sut.todoView(at: 0)
-            XCTAssertEqual(cell?.taskField.text, "new text")
+            XCTAssertEqual(cell?.taskTextView.text, "new text")
         }
     }
     

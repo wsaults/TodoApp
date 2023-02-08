@@ -21,15 +21,19 @@ public final class TodosRefreshViewController: NSObject {
         viewModel.load()
     }
     
+    private func silentRefresh() {
+        viewModel.load(withStateChange: false)
+    }
+    
     private func binded(_ view: UIRefreshControl) -> UIRefreshControl {
         viewModel.onLoadingStateChange = { [weak view] isLoading in
             isLoading ? view?.beginRefreshing() : view?.endRefreshing()
         }
         viewModel.onSavingStateChange = { [weak self] isSaving in
-            if !isSaving { self?.refresh() }
+            if !isSaving { self?.silentRefresh() }
         }
         viewModel.onDeletionStateChange = { [weak self] isDeleting in
-            if !isDeleting { self?.refresh() }
+            if !isDeleting { self?.silentRefresh() }
         }
         view.addTarget(self, action: #selector(refresh), for: .valueChanged)
         return view

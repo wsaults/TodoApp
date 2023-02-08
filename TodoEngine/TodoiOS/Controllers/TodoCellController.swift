@@ -16,6 +16,7 @@ public protocol TodoCellControllerDelegate: AnyObject {
 public final class TodoCellController {
     private let viewModel: TodoItemViewModel
     weak var delegate: TodoCellControllerDelegate?
+    var cellContentListener: (() -> Void)?
     
     public init(viewModel: TodoItemViewModel) {
         self.viewModel = viewModel
@@ -26,7 +27,7 @@ public final class TodoCellController {
     }
     
     private func binded(_ cell: TodoCell) -> TodoCell {
-        cell.taskField.text = viewModel.text
+        cell.taskTextView.text = viewModel.text
         cell.setCompleted(isComplete: viewModel.isComplete)
         cell.delegate = self
         return cell
@@ -44,6 +45,10 @@ extension TodoCellController: TodoCellDelegate {
         if updatedViewModel != viewModel {
             delegate?.didChange(viewModel: updatedViewModel)
         }
+    }
+    
+    public func isUpdatingContent() {
+        cellContentListener?()
     }
     
     public func didDelete() {

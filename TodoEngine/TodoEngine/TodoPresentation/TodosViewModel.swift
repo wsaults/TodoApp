@@ -33,13 +33,17 @@ public final class TodosViewModel {
             comment: "Title for the tasks view")
     }
     
-    public func load() {
-        onLoadingStateChange?(true)
+    public func load(withStateChange: Bool = true) {
+        if withStateChange {
+            onLoadingStateChange?(true)
+        }
         Task(priority: .userInitiated) { @MainActor [weak self] in
             if let todos = try? await self?.loader.load() {
                 self?.onLoad?(todos)
             }
-            self?.onLoadingStateChange?(false)
+            if withStateChange {
+                self?.onLoadingStateChange?(false)
+            }
         }
     }
     

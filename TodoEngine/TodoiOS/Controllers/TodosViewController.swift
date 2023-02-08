@@ -7,12 +7,12 @@
 
 import UIKit
 
-public protocol TodosViewControllerDelegate: AnyObject {
+public protocol TodosViewControllerCachingDelegate: AnyObject {
     func didAdd()
 }
 
 public final class TodosViewController: UIViewController {
-    public typealias TodosCacheController = (TodosViewControllerDelegate & TodoCellControllerDelegate)
+    public typealias TodosCacheController = (TodosViewControllerCachingDelegate & TodoCellControllerDelegate)
     
     private enum Constants {
         static let horizontalMargin = 40.0
@@ -26,6 +26,7 @@ public final class TodosViewController: UIViewController {
     public lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.register(TodoCell.self)
+        tableView.rowHeight = UITableView.automaticDimension
         tableView.refreshControl = refreshController?.view
         tableView.dataSource = self
         tableView.separatorStyle = .none
@@ -100,6 +101,11 @@ public final class TodosViewController: UIViewController {
     private func addButtonTapped() {
         delegate?.didAdd()
     }
+    
+    private func updateTableView() {
+        tableView.beginUpdates()
+        tableView.endUpdates()
+    }
 }
 
 extension TodosViewController: UITableViewDataSource {
@@ -110,6 +116,9 @@ extension TodosViewController: UITableViewDataSource {
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cellController = cellController(forRowAt: indexPath)
         cellController.delegate = delegate
+        cellController.cellContentListener = { [weak self] in
+            self?.updateTableView()
+        }
         return cellController.view(for: tableView)
     }
 }
