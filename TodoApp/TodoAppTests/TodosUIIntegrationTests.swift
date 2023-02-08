@@ -163,7 +163,8 @@ class TodosUIIntegrationTests: XCTestCase {
         line: UInt = #line
     ) -> (sut: TodosViewController, loader: LoaderSpy) {
         let loader = LoaderSpy(results: results)
-        let sut = TodosUIComposer.todosComposedWith(loader: loader)
+        let cache = CacheSpy()
+        let sut = TodosUIComposer.todosComposedWith(loader: loader, cache: cache)
         
         trackForMemoryLeaks(sut, file: file, line: line)
         trackForMemoryLeaks(loader, file: file, line: line)
@@ -182,6 +183,19 @@ class TodosUIIntegrationTests: XCTestCase {
         func load() throws -> [TodoItem] {
             loadCallCount += 1
             return try results.removeFirst().get()
+        }
+    }
+    
+    private class CacheSpy: TodoCache {
+        @Published private(set) var saveItemsCallCount = 0
+        @Published private(set) var saveCallCount = 0
+        
+        func save(_ items: [TodoEngine.TodoItem]) async throws {
+            saveItemsCallCount += 1
+        }
+        
+        func save(_ item: TodoEngine.TodoItem) async throws {
+            saveCallCount += 1
         }
     }
     

@@ -19,6 +19,10 @@ extension LocalTodoLoader: TodoCache {
     public func save(_ items: [TodoItem]) async throws {
         try await store.save(items)
     }
+    
+    public func save(_ item: TodoItem) async throws {
+        try await store.save(item)
+    }
 }
 
 extension LocalTodoLoader: TodoLoader {

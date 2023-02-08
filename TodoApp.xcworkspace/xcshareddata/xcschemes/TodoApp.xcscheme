@@ -17,7 +17,7 @@
                BlueprintIdentifier = "BE3880062991D87E00BA6712"
                BuildableName = "TodoApp.app"
                BlueprintName = "TodoApp"
-               ReferencedContainer = "container:TodoApp.xcodeproj">
+               ReferencedContainer = "container:TodoApp/TodoApp.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -35,21 +35,21 @@
             BlueprintIdentifier = "BE3880062991D87E00BA6712"
             BuildableName = "TodoApp.app"
             BlueprintName = "TodoApp"
-            ReferencedContainer = "container:TodoApp.xcodeproj">
+            ReferencedContainer = "container:TodoApp/TodoApp.xcodeproj">
          </BuildableReference>
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "BE2E174E2990342B00E504E3"
             BuildableName = "TodoiOS.framework"
             BlueprintName = "TodoiOS"
-            ReferencedContainer = "container:../TodoEngine/TodoEngine.xcodeproj">
+            ReferencedContainer = "container:TodoEngine/TodoEngine.xcodeproj">
          </BuildableReference>
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "BE2E16F0298E74BE00E504E3"
             BuildableName = "TodoEngine.framework"
             BlueprintName = "TodoEngine"
-            ReferencedContainer = "container:../TodoEngine/TodoEngine.xcodeproj">
+            ReferencedContainer = "container:TodoEngine/TodoEngine.xcodeproj">
          </BuildableReference>
       </CodeCoverageTargets>
       <Testables>
@@ -62,7 +62,7 @@
                BlueprintIdentifier = "BE38801C2991D88000BA6712"
                BuildableName = "TodoAppTests.xctest"
                BlueprintName = "TodoAppTests"
-               ReferencedContainer = "container:TodoApp.xcodeproj">
+               ReferencedContainer = "container:TodoApp/TodoApp.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -84,7 +84,7 @@
             BlueprintIdentifier = "BE3880062991D87E00BA6712"
             BuildableName = "TodoApp.app"
             BlueprintName = "TodoApp"
-            ReferencedContainer = "container:TodoApp.xcodeproj">
+            ReferencedContainer = "container:TodoApp/TodoApp.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -101,7 +101,7 @@
             BlueprintIdentifier = "BE3880062991D87E00BA6712"
             BuildableName = "TodoApp.app"
             BlueprintName = "TodoApp"
-            ReferencedContainer = "container:TodoApp.xcodeproj">
+            ReferencedContainer = "container:TodoApp/TodoApp.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

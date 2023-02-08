@@ -27,6 +27,21 @@ class FileManagerTodoStoreTests: XCTestCase {
         await expect(sut, toRetrieve: .success(CachedTodos(items)))
     }
     
+    func test_retrieve_deliversItemsByTheDateTheyWereAdded() async {
+        let sut = makeSUT()
+        
+        let item1 = TodoItem(uuid: UUID(), text: "Fourth", createdAt: Date.now.addHours(-1))
+        let item2 = TodoItem(uuid: UUID(), text: "Second", createdAt: Date.now.addHours(-3))
+        let item3 = TodoItem(uuid: UUID(), text: "Third", createdAt: Date.now.addHours(-2))
+        let item4 = TodoItem(uuid: UUID(), text: "First", createdAt: Date.now.addDays(-1))
+
+        await save([item1, item2, item3, item4], to: sut)
+
+        await expect(sut, toRetrieve: .success(CachedTodos(
+            [item4, item2, item3, item1]
+        )))
+    }
+    
     func test_retrieve_hasNoSideEffectsOnNonEmptyCache() async {
         let sut = makeSUT()
         let items = uniqueItems()

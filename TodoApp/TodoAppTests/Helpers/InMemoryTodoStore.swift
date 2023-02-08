@@ -21,6 +21,11 @@ extension InMemoryTodoStore: TodoStore {
         todoCache = CachedTodos(items)
     }
     
+    func save(_ item: TodoItem) async throws {
+        todoCache.removeAll { $0.uuid == item.uuid }
+        todoCache.append(item)
+    }
+    
     func retrieve() async throws -> CachedTodos {
         todoCache
     }
