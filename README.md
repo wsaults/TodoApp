@@ -50,7 +50,11 @@ Task
 
 | Light | Dark |
 | ----- | ----- |
-|  |  |
+|![EMPTY_TODOS_light](https://user-images.githubusercontent.com/466656/217914327-db34d399-f4cf-49f4-bf3f-d6817ced2f99.png)|![EMPTY_TODOS_dark](https://user-images.githubusercontent.com/466656/217914346-e5b8535b-82c9-4260-a718-ce4b6c63d3e0.png)|
+|![TODOS_WITH_CONTENT_light](https://user-images.githubusercontent.com/466656/217914403-ecb46538-dd6c-4b2f-a2d9-a8f48fe42bd2.png)
+|![TODOS_WITH_CONTENT_dark](https://user-images.githubusercontent.com/466656/217914426-d05edafc-78ef-474b-b09d-bb84859f7ae5.png)|
+|![TODOS_WITH_EMPTY_CONTENT_light](https://user-images.githubusercontent.com/466656/217914552-6577aee4-ce20-4cce-90cc-2fab1cf7f7ea.png)
+|![TODOS_WITH_EMPTY_CONTENT_dark](https://user-images.githubusercontent.com/466656/217914576-680e44e9-92f3-4e0b-a506-8202b5a40971.png)|
 
 ## 🇺🇸 🇲🇽 Localization
 
