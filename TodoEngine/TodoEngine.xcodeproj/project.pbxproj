@@ -9,6 +9,19 @@
 /* Begin PBXBuildFile section */
 		BE04CA162994259700EF1945 /* TodoDeleter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE04CA152994259700EF1945 /* TodoDeleter.swift */; };
 		BE04CA1A2994975F00EF1945 /* UITextView+TextPublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE04CA192994975F00EF1945 /* UITextView+TextPublisher.swift */; };
+		BE04CA1C2995078400EF1945 /* TodosSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE04CA1B2995078400EF1945 /* TodosSnapshotTests.swift */; };
+		BE04CA2129950A0B00EF1945 /* XCTestCase+Snapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE04CA2029950A0B00EF1945 /* XCTestCase+Snapshot.swift */; };
+		BE04CA2329950A1E00EF1945 /* UIViewController+Snapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE04CA2229950A1E00EF1945 /* UIViewController+Snapshot.swift */; };
+		BE04CA3A2995166B00EF1945 /* EMPTY_TODOS_light_extraExtraExtraLarge.png in Resources */ = {isa = PBXBuildFile; fileRef = BE04CA312995166B00EF1945 /* EMPTY_TODOS_light_extraExtraExtraLarge.png */; };
+		BE04CA3B2995166B00EF1945 /* TODOS_WITH_CONTENT_extraExtraExtraLarge.png in Resources */ = {isa = PBXBuildFile; fileRef = BE04CA322995166B00EF1945 /* TODOS_WITH_CONTENT_extraExtraExtraLarge.png */; };
+		BE04CA3C2995166B00EF1945 /* TODOS_WITH_MULTILINE__extraExtraExtraLarge.png in Resources */ = {isa = PBXBuildFile; fileRef = BE04CA332995166B00EF1945 /* TODOS_WITH_MULTILINE__extraExtraExtraLarge.png */; };
+		BE04CA3D2995166B00EF1945 /* TODOS_WITH_MULTILINE__dark.png in Resources */ = {isa = PBXBuildFile; fileRef = BE04CA342995166B00EF1945 /* TODOS_WITH_MULTILINE__dark.png */; };
+		BE04CA3E2995166B00EF1945 /* EMPTY_TODOS_dark.png in Resources */ = {isa = PBXBuildFile; fileRef = BE04CA352995166B00EF1945 /* EMPTY_TODOS_dark.png */; };
+		BE04CA3F2995166B00EF1945 /* EMPTY_TODOS_light.png in Resources */ = {isa = PBXBuildFile; fileRef = BE04CA362995166B00EF1945 /* EMPTY_TODOS_light.png */; };
+		BE04CA402995166B00EF1945 /* TODOS_WITH_CONTENT_light.png in Resources */ = {isa = PBXBuildFile; fileRef = BE04CA372995166B00EF1945 /* TODOS_WITH_CONTENT_light.png */; };
+		BE04CA412995166B00EF1945 /* TODOS_WITH_MULTILINE_CONTENT_light.png in Resources */ = {isa = PBXBuildFile; fileRef = BE04CA382995166B00EF1945 /* TODOS_WITH_MULTILINE_CONTENT_light.png */; };
+		BE04CA422995166B00EF1945 /* TODOS_WITH_CONTENT_dark.png in Resources */ = {isa = PBXBuildFile; fileRef = BE04CA392995166B00EF1945 /* TODOS_WITH_CONTENT_dark.png */; };
+		BE04CA442995213600EF1945 /* UITextView+Inset.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE04CA432995213600EF1945 /* UITextView+Inset.swift */; };
 		BE288EE8299308CA005B274E /* RadioButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE288EE7299308CA005B274E /* RadioButton.swift */; };
 		BE288EEF299341B8005B274E /* UITableView+Dequeue.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE288EEE299341B8005B274E /* UITableView+Dequeue.swift */; };
 		BE288EF22993F138005B274E /* TodosUIIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE288EF02993F111005B274E /* TodosUIIntegrationTests.swift */; };
@@ -98,6 +111,19 @@
 /* Begin PBXFileReference section */
 		BE04CA152994259700EF1945 /* TodoDeleter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoDeleter.swift; sourceTree = "<group>"; };
 		BE04CA192994975F00EF1945 /* UITextView+TextPublisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextView+TextPublisher.swift"; sourceTree = "<group>"; };
+		BE04CA1B2995078400EF1945 /* TodosSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodosSnapshotTests.swift; sourceTree = "<group>"; };
+		BE04CA2029950A0B00EF1945 /* XCTestCase+Snapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+Snapshot.swift"; sourceTree = "<group>"; };
+		BE04CA2229950A1E00EF1945 /* UIViewController+Snapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Snapshot.swift"; sourceTree = "<group>"; };
+		BE04CA312995166B00EF1945 /* EMPTY_TODOS_light_extraExtraExtraLarge.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = EMPTY_TODOS_light_extraExtraExtraLarge.png; sourceTree = "<group>"; };
+		BE04CA322995166B00EF1945 /* TODOS_WITH_CONTENT_extraExtraExtraLarge.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TODOS_WITH_CONTENT_extraExtraExtraLarge.png; sourceTree = "<group>"; };
+		BE04CA332995166B00EF1945 /* TODOS_WITH_MULTILINE__extraExtraExtraLarge.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TODOS_WITH_MULTILINE__extraExtraExtraLarge.png; sourceTree = "<group>"; };
+		BE04CA342995166B00EF1945 /* TODOS_WITH_MULTILINE__dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TODOS_WITH_MULTILINE__dark.png; sourceTree = "<group>"; };
+		BE04CA352995166B00EF1945 /* EMPTY_TODOS_dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = EMPTY_TODOS_dark.png; sourceTree = "<group>"; };
+		BE04CA362995166B00EF1945 /* EMPTY_TODOS_light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = EMPTY_TODOS_light.png; sourceTree = "<group>"; };
+		BE04CA372995166B00EF1945 /* TODOS_WITH_CONTENT_light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TODOS_WITH_CONTENT_light.png; sourceTree = "<group>"; };
+		BE04CA382995166B00EF1945 /* TODOS_WITH_MULTILINE_CONTENT_light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TODOS_WITH_MULTILINE_CONTENT_light.png; sourceTree = "<group>"; };
+		BE04CA392995166B00EF1945 /* TODOS_WITH_CONTENT_dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TODOS_WITH_CONTENT_dark.png; sourceTree = "<group>"; };
+		BE04CA432995213600EF1945 /* UITextView+Inset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextView+Inset.swift"; sourceTree = "<group>"; };
 		BE288EE7299308CA005B274E /* RadioButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioButton.swift; sourceTree = "<group>"; };
 		BE288EEE299341B8005B274E /* UITableView+Dequeue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Dequeue.swift"; sourceTree = "<group>"; };
 		BE288EF02993F111005B274E /* TodosUIIntegrationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodosUIIntegrationTests.swift; sourceTree = "<group>"; };
@@ -179,11 +205,47 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BE04CA1E299509DC00EF1945 /* SnapshotTests */ = {
+			isa = PBXGroup;
+			children = (
+				BE04CA1F29950A0300EF1945 /* Helpers */,
+				BE04CA2429950B5900EF1945 /* snapshots */,
+				BE04CA1B2995078400EF1945 /* TodosSnapshotTests.swift */,
+			);
+			path = SnapshotTests;
+			sourceTree = "<group>";
+		};
+		BE04CA1F29950A0300EF1945 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				BE04CA2029950A0B00EF1945 /* XCTestCase+Snapshot.swift */,
+				BE04CA2229950A1E00EF1945 /* UIViewController+Snapshot.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		BE04CA2429950B5900EF1945 /* snapshots */ = {
+			isa = PBXGroup;
+			children = (
+				BE04CA352995166B00EF1945 /* EMPTY_TODOS_dark.png */,
+				BE04CA312995166B00EF1945 /* EMPTY_TODOS_light_extraExtraExtraLarge.png */,
+				BE04CA362995166B00EF1945 /* EMPTY_TODOS_light.png */,
+				BE04CA392995166B00EF1945 /* TODOS_WITH_CONTENT_dark.png */,
+				BE04CA322995166B00EF1945 /* TODOS_WITH_CONTENT_extraExtraExtraLarge.png */,
+				BE04CA372995166B00EF1945 /* TODOS_WITH_CONTENT_light.png */,
+				BE04CA342995166B00EF1945 /* TODOS_WITH_MULTILINE__dark.png */,
+				BE04CA332995166B00EF1945 /* TODOS_WITH_MULTILINE__extraExtraExtraLarge.png */,
+				BE04CA382995166B00EF1945 /* TODOS_WITH_MULTILINE_CONTENT_light.png */,
+			);
+			path = snapshots;
+			sourceTree = "<group>";
+		};
 		BE288EED299341AB005B274E /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				BE288EEE299341B8005B274E /* UITableView+Dequeue.swift */,
 				BE04CA192994975F00EF1945 /* UITextView+TextPublisher.swift */,
+				BE288EEE299341B8005B274E /* UITableView+Dequeue.swift */,
+				BE04CA432995213600EF1945 /* UITextView+Inset.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -360,6 +422,7 @@
 			isa = PBXGroup;
 			children = (
 				BE288EFB2993F156005B274E /* Helpers */,
+				BE04CA1E299509DC00EF1945 /* SnapshotTests */,
 				BE288EF02993F111005B274E /* TodosUIIntegrationTests.swift */,
 			);
 			path = TodoiOSTests;
@@ -558,6 +621,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BE04CA412995166B00EF1945 /* TODOS_WITH_MULTILINE_CONTENT_light.png in Resources */,
+				BE04CA3F2995166B00EF1945 /* EMPTY_TODOS_light.png in Resources */,
+				BE04CA422995166B00EF1945 /* TODOS_WITH_CONTENT_dark.png in Resources */,
+				BE04CA3B2995166B00EF1945 /* TODOS_WITH_CONTENT_extraExtraExtraLarge.png in Resources */,
+				BE04CA402995166B00EF1945 /* TODOS_WITH_CONTENT_light.png in Resources */,
+				BE04CA3C2995166B00EF1945 /* TODOS_WITH_MULTILINE__extraExtraExtraLarge.png in Resources */,
+				BE04CA3E2995166B00EF1945 /* EMPTY_TODOS_dark.png in Resources */,
+				BE04CA3A2995166B00EF1945 /* EMPTY_TODOS_light_extraExtraExtraLarge.png in Resources */,
+				BE04CA3D2995166B00EF1945 /* TODOS_WITH_MULTILINE__dark.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -614,6 +686,7 @@
 				BE387FE3299167E000BA6712 /* TodoCell.swift in Sources */,
 				BE288EE8299308CA005B274E /* RadioButton.swift in Sources */,
 				BE04CA1A2994975F00EF1945 /* UITextView+TextPublisher.swift in Sources */,
+				BE04CA442995213600EF1945 /* UITextView+Inset.swift in Sources */,
 				BE387FF5299199BF00BA6712 /* TodoCellController.swift in Sources */,
 				BE387FF72991B91E00BA6712 /* TodosRefreshViewController.swift in Sources */,
 			);
@@ -632,6 +705,9 @@
 				BE288F032993F165005B274E /* TodoCell+TestHelpers.swift in Sources */,
 				BE387FE429916ECC00BA6712 /* SharedTestHelpers.swift in Sources */,
 				BE288EFC2993F165005B274E /* UIControl+TestHelpers.swift in Sources */,
+				BE04CA1C2995078400EF1945 /* TodosSnapshotTests.swift in Sources */,
+				BE04CA2329950A1E00EF1945 /* UIViewController+Snapshot.swift in Sources */,
+				BE04CA2129950A0B00EF1945 /* XCTestCase+Snapshot.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

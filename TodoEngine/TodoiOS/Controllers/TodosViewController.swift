@@ -23,6 +23,17 @@ public final class TodosViewController: UIViewController {
     private var refreshController: TodosRefreshViewController?
     weak var delegate: TodosCacheController?
     
+    private var noTodosLabel: UILabel = {
+        var label = UILabel()
+        label.text = "Get started by tapping\n the ➕ button below 😎"
+        label.font = .preferredFont(forTextStyle: .headline)
+        label.adjustsFontForContentSizeCategory = true
+        label.isHidden = true
+        label.numberOfLines = 0
+        label.textAlignment = .center
+        return label
+    }()
+    
     public lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.register(TodoCell.self)
@@ -75,11 +86,13 @@ public final class TodosViewController: UIViewController {
     }
     
     private func reloadData() {
+        noTodosLabel.isHidden = !tableModel.isEmpty
         tableView.reloadData()
     }
     
     private func addViews() {
         view.addSubview(tableView)
+        view.addSubview(noTodosLabel)
         view.addSubview(addButton)
     }
     
@@ -89,8 +102,14 @@ public final class TodosViewController: UIViewController {
     
     private func setConstraints() {
         tableView.translatesAutoresizingMaskIntoConstraints = false
+        noTodosLabel.translatesAutoresizingMaskIntoConstraints = false
         addButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
+            noTodosLabel.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            noTodosLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            noTodosLabel.topAnchor.constraint(equalTo: view.topAnchor),
+            noTodosLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            
             tableView.bottomAnchor.constraint(equalTo: view.keyboardLayoutGuide.topAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             tableView.topAnchor.constraint(equalTo: view.topAnchor),

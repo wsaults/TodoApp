@@ -56,6 +56,7 @@ public final class TodoCell: UITableViewCell {
         textView.autocapitalizationType = .sentences
         textView.tintColor = .secondaryLabel
         textView.isScrollEnabled = false
+        textView.adjustContainerInset()
         textView.textPublisher
             .debounce(for: .milliseconds(200), scheduler: RunLoop.main)
             .sink(receiveValue: { [weak self] text in
@@ -88,7 +89,7 @@ public final class TodoCell: UITableViewCell {
         radioButton.translatesAutoresizingMaskIntoConstraints = false
         deleteButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            radioButton.topAnchor.constraint(equalTo: contentView.topAnchor, constant: Constants.spacing),
+            radioButton.topAnchor.constraint(equalTo: contentView.topAnchor, constant: Constants.halfSpacing),
             radioButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Constants.horizontalMargin),
             radioButton.heightAnchor.constraint(equalToConstant: Constants.radioButtonHeight),
             radioButton.widthAnchor.constraint(equalToConstant: Constants.radioButtonHeight),
@@ -97,7 +98,7 @@ public final class TodoCell: UITableViewCell {
             taskTextView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
             taskTextView.leadingAnchor.constraint(equalTo: radioButton.trailingAnchor, constant: Constants.spacing),
             
-            radioButton.topAnchor.constraint(equalTo: contentView.topAnchor, constant: Constants.spacing),
+            deleteButton.topAnchor.constraint(equalTo: contentView.topAnchor, constant: Constants.halfSpacing),
             deleteButton.leadingAnchor.constraint(equalTo: taskTextView.trailingAnchor, constant: Constants.spacing),
             deleteButton.heightAnchor.constraint(equalToConstant: Constants.deleteButtonHeight),
             deleteButton.widthAnchor.constraint(equalToConstant: Constants.deleteButtonHeight),
@@ -111,7 +112,7 @@ public final class TodoCell: UITableViewCell {
     }
     
     public func setCompleted(isComplete: Bool) {
-        taskTextView.textColor = isComplete ? .systemRed : .secondaryLabel
+        taskTextView.textColor = isComplete ? .systemRed : .label
         radioButton.isSelected = isComplete
     }
     
@@ -128,5 +129,6 @@ extension TodoCell: UITextViewDelegate {
     
     public func textViewDidChange(_ textView: UITextView) {
         delegate?.shouldUpdateUI()
+        textView.adjustContainerInset()
     }
 }
