@@ -41,8 +41,8 @@ public final class TodosViewController: UIViewController {
     
     public lazy var addButton: UIButton = {
         var configuration = UIButton.Configuration.filled()
-        configuration.baseForegroundColor = .white
-        configuration.baseBackgroundColor = .blue
+        configuration.baseForegroundColor = .systemGray4
+        configuration.baseBackgroundColor = .systemBlue
         configuration.cornerStyle = .capsule
         
         configuration.image = UIImage(
@@ -66,7 +66,7 @@ public final class TodosViewController: UIViewController {
     public override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = .white
+        view.backgroundColor = .systemBackground
         
         addViews()
         setConstraints()

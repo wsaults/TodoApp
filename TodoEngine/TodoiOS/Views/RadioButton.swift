@@ -35,8 +35,8 @@ public class RadioButton: UIButton {
     
     public override var isSelected: Bool {
         didSet {
-            layer.borderColor = isSelected ? UIColor.red.cgColor : UIColor.black.cgColor
-            layer.backgroundColor = isSelected ? UIColor.red.cgColor : UIColor.clear.cgColor
+            layer.borderColor = isSelected ? UIColor.systemRed.cgColor : UIColor.secondaryLabel.cgColor
+            layer.backgroundColor = isSelected ? UIColor.systemRed.cgColor : UIColor.clear.cgColor
         }
     }
     

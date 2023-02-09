@@ -23,6 +23,7 @@ public final class TodoCell: UITableViewCell {
         static let horizontalMargin = 20.0
         static let radioButtonHeight = 24.0
         static let spacing = 10.0
+        static let halfSpacing = spacing / 2
         static let deleteButtonHeight = 40.0
         static let deleteButtonImageName = "xmark"
     }
@@ -35,7 +36,7 @@ public final class TodoCell: UITableViewCell {
     
     public lazy var deleteButton: UIButton = {
         var configuration = UIButton.Configuration.plain()
-        configuration.baseForegroundColor = .red
+        configuration.baseForegroundColor = .systemRed
         configuration.baseBackgroundColor = .clear
         
         configuration.image = UIImage(
@@ -50,9 +51,10 @@ public final class TodoCell: UITableViewCell {
     public lazy var taskTextView: UITextView = {
         let textView = UITextView()
         textView.font = .preferredFont(forTextStyle: .body)
+        textView.adjustsFontForContentSizeCategory = true
         textView.delegate = self
         textView.autocapitalizationType = .sentences
-        textView.tintColor = .black
+        textView.tintColor = .secondaryLabel
         textView.isScrollEnabled = false
         textView.textPublisher
             .debounce(for: .milliseconds(200), scheduler: RunLoop.main)
@@ -91,7 +93,7 @@ public final class TodoCell: UITableViewCell {
             radioButton.heightAnchor.constraint(equalToConstant: Constants.radioButtonHeight),
             radioButton.widthAnchor.constraint(equalToConstant: Constants.radioButtonHeight),
             
-            taskTextView.topAnchor.constraint(equalTo: contentView.topAnchor),
+            taskTextView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: Constants.halfSpacing),
             taskTextView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
             taskTextView.leadingAnchor.constraint(equalTo: radioButton.trailingAnchor, constant: Constants.spacing),
             
@@ -109,7 +111,7 @@ public final class TodoCell: UITableViewCell {
     }
     
     public func setCompleted(isComplete: Bool) {
-        taskTextView.textColor = isComplete ? UIColor.red : UIColor.black
+        taskTextView.textColor = isComplete ? .systemRed : .secondaryLabel
         radioButton.isSelected = isComplete
     }
     
