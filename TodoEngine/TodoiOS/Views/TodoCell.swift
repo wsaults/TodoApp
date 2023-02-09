@@ -87,6 +87,14 @@ public final class TodoCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    public override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        radioButton.isSelected = false
+        placeholderTextField.placeholder = nil
+        taskTextView.text = nil
+    }
+    
     private func addViews() {
         contentView.addSubview(radioButton)
         contentView.addSubview(placeholderTextField)
