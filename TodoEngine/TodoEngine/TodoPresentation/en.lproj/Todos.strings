@@ -1,2 +1,3 @@
 
-"TODOS_VIEW_TITLE" = "Tasks";
+"TODOS_VIEW_TITLE" = "My Tasks";
+"TODOS_EMPTY_STATE_TEXT" = "Get started by tapping\n the ➕ button below 😎";

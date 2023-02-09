@@ -21,7 +21,8 @@ public final class TodosUIComposer {
         let todosController = TodosViewController.makeWith(
             refreshController: refreshController,
             delegate: todosViewModel,
-            title: todosViewModel.title
+            title: todosViewModel.title,
+            emptyStateText: todosViewModel.emptyStateText
         )
         
         todosViewModel.onLoad = adaptTodosToCellControllers(forwardingTo: todosController)
@@ -38,9 +39,15 @@ public final class TodosUIComposer {
 }
 
 private extension TodosViewController {
-    static func makeWith(refreshController: TodosRefreshViewController, delegate: TodosCacheController, title: String) -> TodosViewController {
+    static func makeWith(
+        refreshController: TodosRefreshViewController,
+        delegate: TodosCacheController,
+        title: String,
+        emptyStateText: String
+    ) -> TodosViewController {
         let todosController = TodosViewController(refreshController: refreshController, delegate: delegate)
         todosController.title = title
+        todosController.noTodosLabel.text = emptyStateText
         return todosController
     }
 }

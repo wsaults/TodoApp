@@ -33,6 +33,14 @@ public final class TodosViewModel {
             comment: "Title for the tasks view")
     }
     
+    public var emptyStateText: String {
+        NSLocalizedString(
+            "TODOS_EMPTY_STATE_TEXT",
+            tableName: "Todos",
+            bundle: Bundle(for: TodosViewModel.self),
+            comment: "Instruct the user to tap the plus button")
+    }
+    
     public func load(shouldNotify: Bool = true) {
         updateLoadingState(true, shouldNotify)
         Task(priority: .userInitiated) { @MainActor [weak self] in

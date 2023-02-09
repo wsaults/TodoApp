@@ -23,9 +23,8 @@ public final class TodosViewController: UIViewController {
     private var refreshController: TodosRefreshViewController?
     weak var delegate: TodosCacheController?
     
-    private var noTodosLabel: UILabel = {
+    lazy var noTodosLabel: UILabel = {
         var label = UILabel()
-        label.text = "Get started by tapping\n the ➕ button below 😎"
         label.font = .preferredFont(forTextStyle: .headline)
         label.adjustsFontForContentSizeCategory = true
         label.isHidden = true

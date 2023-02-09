@@ -45,6 +45,7 @@ class TodosSnapshotTests: XCTestCase {
     
     private func makeSUT() -> TodosViewController {
         let sut = TodosViewController()
+        sut.noTodosLabel.text = "Get started by tapping\n the ➕ button below 😎"
         sut.tableView.showsVerticalScrollIndicator = false
         sut.tableView.showsHorizontalScrollIndicator = false
         return sut
