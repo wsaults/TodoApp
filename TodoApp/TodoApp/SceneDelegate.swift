@@ -33,9 +33,32 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         rootViewController: TodosUIComposer.todosComposedWith(
             loader: localLoader,
             cache: localLoader,
-            deleter: localLoader
+            deleter: localLoader,
+            placeholderProvider: makeTodoPlaceholderProvider
         )
     )
+    
+    private lazy var makeTodoPlaceholderProvider: TodoPlaceholderProvidable = {
+        let table = "TodoPlaceholder"
+        let bundle = Bundle(for: TodoPlaceholderProvider.self)
+        let placeholderKeys = allLocalizedStringKeys(in: (bundle, Bundle.main.preferredLocalizations.first), table: table)
+        let placeholders = placeholderKeys.map {
+            NSLocalizedString($0, tableName: table, bundle: bundle, comment: "Placeholder for the tasks text")
+        }
+        return TodoPlaceholderProvider(placeholders: placeholders)
+    }()
+    
+    private typealias LocalizedBundle = (bundle: Bundle, localization: String?)
+    private func allLocalizedStringKeys(in bundle: LocalizedBundle, table: String) -> [String] {
+        guard
+            let path = bundle.bundle.path(forResource: table, ofType: "strings"),
+            let strings = NSDictionary(contentsOfFile: path)
+        else {
+            return []
+        }
+
+        return strings.allKeys as? [String] ?? []
+    }
     
     convenience init(store: TodoStore) {
         self.init()

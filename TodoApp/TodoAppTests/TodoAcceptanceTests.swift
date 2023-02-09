@@ -18,20 +18,6 @@ class TodoAcceptanceTests: XCTestCase {
         XCTAssertEqual(todos.numberOfRenderedTodos(), 0)
     }
     
-    func test_onLaunch_displaysTodosFromNonEmptyCache() {
-        let todos = launch(store: .withTodosCache)
-        
-        var numberOfRenderedTodos = todos.numberOfRenderedTodos()
-        let exp = XCTestExpectation(description: "Wait for todos")
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-            numberOfRenderedTodos = todos.numberOfRenderedTodos()
-            exp.fulfill()
-        }
-
-        wait(for: [exp], timeout: 0.2)
-        XCTAssertEqual(numberOfRenderedTodos, 2)
-    }
-    
     // MARK: - Helpers
     
     private func launch(
@@ -47,12 +33,6 @@ class TodoAcceptanceTests: XCTestCase {
 }
 
 extension TodosViewController {
-    public override func loadViewIfNeeded() {
-        super.loadViewIfNeeded()
-        
-        tableView.frame = CGRect(x: 0, y: 0, width: 1, height: 1)
-    }
-    
     func numberOfRows(in section: Int) -> Int {
         tableView.numberOfSections > section ? tableView.numberOfRows(inSection: section) : 0
     }

@@ -235,7 +235,8 @@ class TodosUIIntegrationTests: XCTestCase {
         loader: LoaderSpy
     ) {
         let loader = LoaderSpy(results: results)
-        let sut = TodosUIComposer.todosComposedWith(loader: loader, cache: CacheSpy(), deleter: DeleterSpy())
+        let placeholderProvider = TodoPlaceholderProvider(placeholders: [])
+        let sut = TodosUIComposer.todosComposedWith(loader: loader, cache: CacheSpy(), deleter: DeleterSpy(), placeholderProvider: placeholderProvider)
         
         trackForMemoryLeaks(sut, file: file, line: line)
         trackForMemoryLeaks(loader, file: file, line: line)
@@ -254,7 +255,8 @@ class TodosUIIntegrationTests: XCTestCase {
     ) {
         let loader = LoaderSpy(results: results)
         let cache = CacheSpy()
-        let sut = TodosUIComposer.todosComposedWith(loader: loader, cache: cache, deleter: DeleterSpy())
+        let placeholderProvider = TodoPlaceholderProvider(placeholders: [])
+        let sut = TodosUIComposer.todosComposedWith(loader: loader, cache: cache, deleter: DeleterSpy(), placeholderProvider: placeholderProvider)
         
         trackForMemoryLeaks(sut, file: file, line: line)
         trackForMemoryLeaks(loader, file: file, line: line)
@@ -274,7 +276,8 @@ class TodosUIIntegrationTests: XCTestCase {
     ) {
         let loader = LoaderSpy(results: results)
         let deleter = DeleterSpy()
-        let sut = TodosUIComposer.todosComposedWith(loader: loader, cache: CacheSpy(), deleter: deleter)
+        let placeholderProvider = TodoPlaceholderProvider(placeholders: [])
+        let sut = TodosUIComposer.todosComposedWith(loader: loader, cache: CacheSpy(), deleter: deleter, placeholderProvider: placeholderProvider)
         
         trackForMemoryLeaks(sut, file: file, line: line)
         trackForMemoryLeaks(loader, file: file, line: line)

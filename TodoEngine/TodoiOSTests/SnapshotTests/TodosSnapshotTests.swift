@@ -90,7 +90,8 @@ class TodosSnapshotTests: XCTestCase {
 private extension TodosViewController {
     func display(_ stubs: [TodoStub]) {
         tableModel = stubs.map { stub in
-            let cellController = TodoCellController(viewModel: stub.viewModel)
+            let placeholderProvider = TodoPlaceholderProvider(placeholders: ["You'll be done in no time!"])
+            let cellController = TodoCellController(viewModel: stub.viewModel, placeholderProvider: placeholderProvider)
             stub.controller = cellController
             return cellController
         }

@@ -14,12 +14,14 @@ public protocol TodoCellControllerDelegate: AnyObject {
 }
 
 public final class TodoCellController {
+    private let placeholderProvider: TodoPlaceholderProvidable
     private var viewModel: TodoItemViewModel
     weak var delegate: TodoCellControllerDelegate?
     var cellContentListener: (() -> Void)?
     
-    public init(viewModel: TodoItemViewModel) {
+    public init(viewModel: TodoItemViewModel, placeholderProvider: TodoPlaceholderProvidable) {
         self.viewModel = viewModel
+        self.placeholderProvider = placeholderProvider
     }
     
     func view(for tableView: UITableView) -> UITableViewCell {
@@ -28,6 +30,7 @@ public final class TodoCellController {
     
     private func binded(_ cell: TodoCell) -> TodoCell {
         cell.taskTextView.text = viewModel.text
+        cell.placeholderTextField.placeholder = placeholderProvider.placeholder()
         cell.hidePlaceholderField(!viewModel.text.isEmpty)
         cell.setCompleted(isComplete: viewModel.isComplete)
         cell.delegate = self

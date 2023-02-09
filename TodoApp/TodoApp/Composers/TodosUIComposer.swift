@@ -14,7 +14,8 @@ public final class TodosUIComposer {
     public static func todosComposedWith(
         loader: TodoLoader,
         cache: TodoCache,
-        deleter: TodoDeleter
+        deleter: TodoDeleter,
+        placeholderProvider: TodoPlaceholderProvidable
     ) -> TodosViewController {
         let todosViewModel = TodosViewModel(loader: loader, cache: cache, deleter: deleter)
         let refreshController = TodosRefreshViewController(viewModel: todosViewModel)
@@ -25,14 +26,14 @@ public final class TodosUIComposer {
             emptyStateText: todosViewModel.emptyStateText
         )
         
-        todosViewModel.onLoad = adaptTodosToCellControllers(forwardingTo: todosController)
+        todosViewModel.onLoad = adaptTodosToCellControllers(forwardingTo: todosController, placeholderProvider: placeholderProvider)
         return todosController
     }
     
-    private static func adaptTodosToCellControllers(forwardingTo controller: TodosViewController) -> ([TodoItem]) -> Void {
+    private static func adaptTodosToCellControllers(forwardingTo controller: TodosViewController, placeholderProvider: TodoPlaceholderProvidable) -> ([TodoItem]) -> Void {
         { [weak controller] todos in
             controller?.tableModel = todos.map {
-                TodoCellController(viewModel: TodoPresenter.map($0))
+                TodoCellController(viewModel: TodoPresenter.map($0), placeholderProvider: placeholderProvider)
             }
         }
     }

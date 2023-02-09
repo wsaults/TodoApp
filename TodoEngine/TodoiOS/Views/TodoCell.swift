@@ -68,7 +68,6 @@ public final class TodoCell: UITableViewCell {
     
     public lazy var placeholderTextField: UITextField = {
         let textField = UITextField()
-        textField.placeholder = "You'll be done in no time!"
         textField.font = .preferredFont(forTextStyle: .body)
         textField.adjustsFontForContentSizeCategory = true
         textField.isHidden = true
@@ -107,9 +106,9 @@ public final class TodoCell: UITableViewCell {
             radioButton.widthAnchor.constraint(equalToConstant: Constants.radioButtonHeight),
             
             placeholderTextField.topAnchor.constraint(equalTo: contentView.topAnchor, constant: -Constants.halfSpacing),
+            placeholderTextField.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
             placeholderTextField.leadingAnchor.constraint(equalTo: taskTextView.leadingAnchor, constant: Constants.halfSpacing),
             placeholderTextField.trailingAnchor.constraint(equalTo: taskTextView.trailingAnchor),
-            placeholderTextField.heightAnchor.constraint(equalToConstant: 40),
             
             taskTextView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: Constants.halfSpacing),
             taskTextView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
