@@ -9,12 +9,12 @@ import TodoEngine
 import UIKit
 
 public protocol TodoCellControllerDelegate: AnyObject {
-    func didChange(viewModel: TodoItemViewModel)
+    func didChange(viewModel: TodoItemViewModel, shouldNotify: Bool)
     func didDelete(viewModel: TodoItemViewModel)
 }
 
 public final class TodoCellController {
-    private let viewModel: TodoItemViewModel
+    private var viewModel: TodoItemViewModel
     weak var delegate: TodoCellControllerDelegate?
     var cellContentListener: (() -> Void)?
     
@@ -43,11 +43,13 @@ extension TodoCellController: TodoCellDelegate {
             completedAt: isComplete ? Date.now : nil
         )
         if updatedViewModel != viewModel {
-            delegate?.didChange(viewModel: updatedViewModel)
+            delegate?.didChange(viewModel: updatedViewModel, shouldNotify: true)
         }
     }
     
-    public func isUpdatingContent() {
+    public func isUpdatingContent(_ text: String) {
+        viewModel.text = text
+        delegate?.didChange(viewModel: viewModel, shouldNotify: false)
         cellContentListener?()
     }
     

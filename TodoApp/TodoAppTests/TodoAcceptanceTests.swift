@@ -45,3 +45,21 @@ class TodoAcceptanceTests: XCTestCase {
         return nav?.topViewController as! TodosViewController
     }
 }
+
+extension TodosViewController {
+    public override func loadViewIfNeeded() {
+        super.loadViewIfNeeded()
+        
+        tableView.frame = CGRect(x: 0, y: 0, width: 1, height: 1)
+    }
+    
+    func numberOfRows(in section: Int) -> Int {
+        tableView.numberOfSections > section ? tableView.numberOfRows(inSection: section) : 0
+    }
+    
+    func numberOfRenderedTodos() -> Int {
+        numberOfRows(in: todosSection)
+    }
+    
+    private var todosSection: Int { 0 }
+}

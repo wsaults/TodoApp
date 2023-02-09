@@ -9,9 +9,9 @@ import Foundation
 
 public struct TodoItemViewModel {
     public let uuid: UUID
-    public let text: String
+    public var text: String
     public let createdAt: Date
-    public let completedAt: Date?
+    public var completedAt: Date?
 
     public var isComplete: Bool {
         completedAt != nil

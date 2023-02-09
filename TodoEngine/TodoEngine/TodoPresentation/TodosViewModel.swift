@@ -33,25 +33,21 @@ public final class TodosViewModel {
             comment: "Title for the tasks view")
     }
     
-    public func load(withStateChange: Bool = true) {
-        if withStateChange {
-            onLoadingStateChange?(true)
-        }
+    public func load(shouldNotify: Bool = true) {
+        updateLoadingState(true, shouldNotify)
         Task(priority: .userInitiated) { @MainActor [weak self] in
             if let todos = try? await self?.loader.load() {
                 self?.onLoad?(todos)
             }
-            if withStateChange {
-                self?.onLoadingStateChange?(false)
-            }
+            self?.updateLoadingState(false, shouldNotify)
         }
     }
     
-    public func save(todo: TodoItem) {
-        onSavingStateChange?(true)
+    public func save(todo: TodoItem, shouldNotify: Bool) {
+        updateSavingState(true, shouldNotify)
         Task(priority: .userInitiated) { @MainActor [weak self] in
             try await self?.cache.save(todo)
-            self?.onSavingStateChange?(false)
+            self?.updateSavingState(false, shouldNotify)
         }
     }
     
@@ -60,6 +56,18 @@ public final class TodosViewModel {
         Task(priority: .userInitiated) { @MainActor [weak self] in
             try await self?.deleter.delete(todo)
             self?.onDeletionStateChange?(false)
+        }
+    }
+    
+    private func updateLoadingState(_ loading: Bool, _ shouldNotify: Bool) {
+        if shouldNotify {
+            onLoadingStateChange?(loading)
+        }
+    }
+    
+    private func updateSavingState(_ saving: Bool, _ shouldNotify: Bool) {
+        if shouldNotify {
+            onSavingStateChange?(saving)
         }
     }
 }

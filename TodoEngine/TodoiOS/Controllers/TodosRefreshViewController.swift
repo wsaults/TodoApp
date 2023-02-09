@@ -22,7 +22,7 @@ public final class TodosRefreshViewController: NSObject {
     }
     
     private func silentRefresh() {
-        viewModel.load(withStateChange: false)
+        viewModel.load(shouldNotify: false)
     }
     
     private func binded(_ view: UIRefreshControl) -> UIRefreshControl {

@@ -46,8 +46,8 @@ private extension TodosViewController {
 }
 
 extension TodosViewModel: TodoCellControllerDelegate {
-    public func didChange(viewModel: TodoItemViewModel) {
-        save(todo: TodoPresenter.map(viewModel))
+    public func didChange(viewModel: TodoItemViewModel, shouldNotify: Bool) {
+        save(todo: TodoPresenter.map(viewModel), shouldNotify: shouldNotify)
     }
     
     public func didDelete(viewModel: TodoItemViewModel) {
@@ -57,6 +57,6 @@ extension TodosViewModel: TodoCellControllerDelegate {
 
 extension TodosViewModel: TodosViewControllerCachingDelegate {
     public func didAdd() {
-        save(todo: TodoItem(uuid: UUID(), text: "", createdAt: Date.now))
+        save(todo: TodoItem(uuid: UUID(), text: "", createdAt: Date.now), shouldNotify: true)
     }
 }

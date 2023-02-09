@@ -8,7 +8,7 @@
 import UIKit
 
 public protocol TodoCellDelegate: AnyObject {
-    func isUpdatingContent()
+    func isUpdatingContent(_ text: String)
     func didUpdate(text: String, isComplete: Bool)
     func didDelete()
 }
@@ -117,6 +117,7 @@ extension TodoCell: UITextViewDelegate {
     }
     
     public func textViewDidChange(_ textView: UITextView) {
-        delegate?.isUpdatingContent()
+        guard let text = textView.text else { return }
+        delegate?.isUpdatingContent(text)
     }
 }
