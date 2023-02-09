@@ -69,8 +69,7 @@ Task
 
 | Regular | Large |
 | ----- | ----- |
-|![TODOS_WITH_CONTENT_light](https://user-images.githubusercontent.com/466656/217917901-2e360a93-2791-46d7-b3c2-e3068b96239f.png)|
-|![TODOS_WITH_CONTENT_dark](https://user-images.githubusercontent.com/466656/217917941-162748cc-cb65-4d50-b1fa-9c8fa16a8a85.png)|
+| ![TODOS_WITH_CONTENT_light](https://user-images.githubusercontent.com/466656/217917901-2e360a93-2791-46d7-b3c2-e3068b96239f.png)|![TODOS_WITH_CONTENT_dark](https://user-images.githubusercontent.com/466656/217917941-162748cc-cb65-4d50-b1fa-9c8fa16a8a85.png)|
 
 ## 🇺🇸 🇲🇽 Localization
 
