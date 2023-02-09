@@ -56,6 +56,11 @@ Task
 - This project does not contain a tool for linting the codebase. However, we think it makes for a valuable addition.
 - No additional code comments were added the project. The goal was to create clear implementations and test coverage to make the system easy to understand.
 
+## MVVM
+
+This application has both binding and non-bingind ViewModels. Here's an example of a binding ViewModel from the app.
+<img width="783" alt="mvvm-with-binder" src="https://user-images.githubusercontent.com/466656/217963003-d0687dcb-d26a-48c3-b2d2-81345a3923eb.png">
+
 
 ## 🌗 Light vs Dark
 
@@ -69,7 +74,8 @@ Task
 
 | Regular | Large |
 | ----- | ----- |
-| ![TODOS_WITH_CONTENT_light](https://user-images.githubusercontent.com/466656/217917901-2e360a93-2791-46d7-b3c2-e3068b96239f.png)|![TODOS_WITH_CONTENT_dark](https://user-images.githubusercontent.com/466656/217917941-162748cc-cb65-4d50-b1fa-9c8fa16a8a85.png)|
+| ![TODOS_WITH_CONTENT_light](https://user-images.githubusercontent.com/466656/217917901-2e360a93-2791-46d7-b3c2-e3068b96239f.png)|![TODOS_WITH_CONTENT_extraExtraExtraLarge](https://user-images.githubusercontent.com/466656/217961721-5beba011-93da-4c10-aac8-588b3f3a3f63.png)
+|
 
 ## 🇺🇸 🇲🇽 Localization
 
