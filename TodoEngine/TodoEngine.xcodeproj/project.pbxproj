@@ -58,8 +58,6 @@
 		BE2E1738298FF0BC00E504E3 /* TodoPresentationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE2E1737298FF0BC00E504E3 /* TodoPresentationTests.swift */; };
 		BE2E173A299017C000E504E3 /* TodoPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE2E1739299017C000E504E3 /* TodoPresenter.swift */; };
 		BE2E173C299017D500E504E3 /* TodoItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE2E173B299017D500E504E3 /* TodoItemViewModel.swift */; };
-		BE2E173E2990184000E504E3 /* TodosPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE2E173D2990184000E504E3 /* TodosPresenterTests.swift */; };
-		BE2E1740299018A500E504E3 /* TodosPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE2E173F299018A500E504E3 /* TodosPresenter.swift */; };
 		BE2E17422990194D00E504E3 /* TodosLocalizationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE2E17412990194D00E504E3 /* TodosLocalizationTests.swift */; };
 		BE2E1745299019F800E504E3 /* Todos.strings in Resources */ = {isa = PBXBuildFile; fileRef = BE2E1747299019F800E504E3 /* Todos.strings */; };
 		BE2E174929901AA400E504E3 /* SharedLocalizationTestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE2E174829901AA400E504E3 /* SharedLocalizationTestHelpers.swift */; };
@@ -169,8 +167,6 @@
 		BE2E1737298FF0BC00E504E3 /* TodoPresentationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoPresentationTests.swift; sourceTree = "<group>"; };
 		BE2E1739299017C000E504E3 /* TodoPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoPresenter.swift; sourceTree = "<group>"; };
 		BE2E173B299017D500E504E3 /* TodoItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoItemViewModel.swift; sourceTree = "<group>"; };
-		BE2E173D2990184000E504E3 /* TodosPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodosPresenterTests.swift; sourceTree = "<group>"; };
-		BE2E173F299018A500E504E3 /* TodosPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodosPresenter.swift; sourceTree = "<group>"; };
 		BE2E17412990194D00E504E3 /* TodosLocalizationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodosLocalizationTests.swift; sourceTree = "<group>"; };
 		BE2E1746299019F800E504E3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Todos.strings; sourceTree = "<group>"; };
 		BE2E174829901AA400E504E3 /* SharedLocalizationTestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedLocalizationTestHelpers.swift; sourceTree = "<group>"; };
@@ -407,7 +403,6 @@
 			children = (
 				BE2E173B299017D500E504E3 /* TodoItemViewModel.swift */,
 				BE2E1739299017C000E504E3 /* TodoPresenter.swift */,
-				BE2E173F299018A500E504E3 /* TodosPresenter.swift */,
 				BE387FF92991B95500BA6712 /* TodosViewModel.swift */,
 				BE04CA5829954E1C00EF1945 /* TodoPlaceholderProvider.swift */,
 				BE2E1747299019F800E504E3 /* Todos.strings */,
@@ -422,7 +417,6 @@
 				BE2E1737298FF0BC00E504E3 /* TodoPresentationTests.swift */,
 				BE2E17412990194D00E504E3 /* TodosLocalizationTests.swift */,
 				BE04CA5629954DCB00EF1945 /* TodoPlaceholderLocalizationTests.swift */,
-				BE2E173D2990184000E504E3 /* TodosPresenterTests.swift */,
 			);
 			path = TodoPresentation;
 			sourceTree = "<group>";
@@ -667,7 +661,6 @@
 			files = (
 				BE2E170D298E768F00E504E3 /* TodoItem.swift in Sources */,
 				BE2E172E298FE2D400E504E3 /* FileManagerTodoStore.swift in Sources */,
-				BE2E1740299018A500E504E3 /* TodosPresenter.swift in Sources */,
 				BE04CA5929954E1C00EF1945 /* TodoPlaceholderProvider.swift in Sources */,
 				BE2E171C298E95E700E504E3 /* TodoStore.swift in Sources */,
 				BE387FFB2991D03F00BA6712 /* TodosViewModel.swift in Sources */,
@@ -697,7 +690,6 @@
 				BE2E1723298E978700E504E3 /* SharedTestHelpers.swift in Sources */,
 				BE2E1727298EA84700E504E3 /* TodoTestHelpers.swift in Sources */,
 				BE2E1714298E7DFA00E504E3 /* CachedTodosUseCaseTests.swift in Sources */,
-				BE2E173E2990184000E504E3 /* TodosPresenterTests.swift in Sources */,
 				BE2E1725298E991800E504E3 /* LoadTodosFromCacheUseCaseTests.swift in Sources */,
 				BE2E1717298E885300E504E3 /* XCTestCase+MemoryLeakTracking.swift in Sources */,
 			);

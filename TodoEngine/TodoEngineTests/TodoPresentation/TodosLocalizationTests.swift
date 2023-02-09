@@ -12,7 +12,7 @@ final class TodosLocalizationTests: XCTestCase {
 
     func test_localizedStrings_haveKeysAndValuesForAllSupportedLocalizations() {
         let table = "Todos"
-        let bundle = Bundle(for: TodosPresenter.self)
+        let bundle = Bundle(for: TodosViewModel.self)
         
         assertLocalizedKeyAndValuesExist(in: bundle, table)
     }
