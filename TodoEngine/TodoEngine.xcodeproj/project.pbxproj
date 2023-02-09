@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		BE04CA162994259700EF1945 /* TodoDeleter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE04CA152994259700EF1945 /* TodoDeleter.swift */; };
+		BE04CA1A2994975F00EF1945 /* UITextView+TextPublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE04CA192994975F00EF1945 /* UITextView+TextPublisher.swift */; };
 		BE288EE8299308CA005B274E /* RadioButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE288EE7299308CA005B274E /* RadioButton.swift */; };
 		BE288EEF299341B8005B274E /* UITableView+Dequeue.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE288EEE299341B8005B274E /* UITableView+Dequeue.swift */; };
 		BE288EF22993F138005B274E /* TodosUIIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE288EF02993F111005B274E /* TodosUIIntegrationTests.swift */; };
@@ -96,6 +97,7 @@
 
 /* Begin PBXFileReference section */
 		BE04CA152994259700EF1945 /* TodoDeleter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoDeleter.swift; sourceTree = "<group>"; };
+		BE04CA192994975F00EF1945 /* UITextView+TextPublisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextView+TextPublisher.swift"; sourceTree = "<group>"; };
 		BE288EE7299308CA005B274E /* RadioButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioButton.swift; sourceTree = "<group>"; };
 		BE288EEE299341B8005B274E /* UITableView+Dequeue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Dequeue.swift"; sourceTree = "<group>"; };
 		BE288EF02993F111005B274E /* TodosUIIntegrationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodosUIIntegrationTests.swift; sourceTree = "<group>"; };
@@ -181,6 +183,7 @@
 			isa = PBXGroup;
 			children = (
 				BE288EEE299341B8005B274E /* UITableView+Dequeue.swift */,
+				BE04CA192994975F00EF1945 /* UITextView+TextPublisher.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -610,6 +613,7 @@
 				BE387FE129915E5300BA6712 /* TodosViewController.swift in Sources */,
 				BE387FE3299167E000BA6712 /* TodoCell.swift in Sources */,
 				BE288EE8299308CA005B274E /* RadioButton.swift in Sources */,
+				BE04CA1A2994975F00EF1945 /* UITextView+TextPublisher.swift in Sources */,
 				BE387FF5299199BF00BA6712 /* TodoCellController.swift in Sources */,
 				BE387FF72991B91E00BA6712 /* TodosRefreshViewController.swift in Sources */,
 			);

@@ -5,10 +5,12 @@
 //  Created by Will Saults on 2/6/23.
 //
 
+import Combine
 import UIKit
 
 public protocol TodoCellDelegate: AnyObject {
     func isUpdatingContent(_ text: String)
+    func shouldUpdateUI()
     func didUpdate(text: String, isComplete: Bool)
     func didDelete()
 }
@@ -43,7 +45,8 @@ public final class TodoCell: UITableViewCell {
         let button = UIButton(configuration: configuration, primaryAction: action)
         return button
     }()
-    
+
+    private var textPublisherCancellable = Set<AnyCancellable>()
     public lazy var taskTextView: UITextView = {
         let textView = UITextView()
         textView.font = .preferredFont(forTextStyle: .body)
@@ -51,6 +54,11 @@ public final class TodoCell: UITableViewCell {
         textView.autocapitalizationType = .sentences
         textView.tintColor = .black
         textView.isScrollEnabled = false
+        textView.textPublisher
+            .debounce(for: .milliseconds(200), scheduler: RunLoop.main)
+            .sink(receiveValue: { [weak self] text in
+                self?.delegate?.isUpdatingContent(text)
+            }).store(in: &textPublisherCancellable)
         return textView
     }()
     
@@ -117,7 +125,6 @@ extension TodoCell: UITextViewDelegate {
     }
     
     public func textViewDidChange(_ textView: UITextView) {
-        guard let text = textView.text else { return }
-        delegate?.isUpdatingContent(text)
+        delegate?.shouldUpdateUI()
     }
 }

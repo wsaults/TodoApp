@@ -50,6 +50,9 @@ extension TodoCellController: TodoCellDelegate {
     public func isUpdatingContent(_ text: String) {
         viewModel.text = text
         delegate?.didChange(viewModel: viewModel, shouldNotify: false)
+    }
+    
+    public func shouldUpdateUI() {
         cellContentListener?()
     }
     
