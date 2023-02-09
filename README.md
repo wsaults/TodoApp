@@ -7,7 +7,7 @@ This is an iOS application for creating, updating, and deleting simple task item
 ## ⚡️ Quickstart
 <img width="233" alt="Screenshot 2023-02-09 at 12 09 29 PM" src="https://user-images.githubusercontent.com/466656/217908348-f76cc7ff-f337-432b-b460-e0557306f6cd.png">
 
-> In Xcode: Select the `TodoApp` scheme and your preferred device. Then hit run.
+> With the workspace open in Xcode; Select the `TodoApp` scheme and your preferred device. Then hit run.
 
 ## 🎯 Features
 - [x] User should be able to add a task
@@ -44,7 +44,16 @@ Task
 
 <img width="586" alt="Screenshot 2023-02-09 at 12 00 05 PM" src="https://user-images.githubusercontent.com/466656/217908324-7ef2f426-dde6-4cc1-9697-485338b0189e.png">
 
-## 👀 Simplifications
+## 📝 Notes
+- The workspace is divided into two parts. `TodoEngine` and `TodoApp`. The engine drives the business logic and the app serves as the delivery system. Keeping the engine agnostic of any UI frameworks means that it can be easily used across systems.
+- Commits were made directly to the main branch. In a consumer facing project we would likely use feature branches and a PR strategy.
+- The file manager was chosen to store persistent data. This was due to its simple setup when compared to alternatives like coredata.
+- However, swapping the file manager for coredata is straight forward. Merely implement the `TodoStore` protocol and swap the `store` in `SceneDelegate` from `FileManagerTodoStore` to a new `CoreDataTodoStore` implementation.
+- There's a CI_iOS Scheme in the project. However, CI has not (yet) been configured. We'll likely opt for using github actions.
+- The UI was created programmatically. This is our preferred method since it avoids common merge conflicts found when using Storyboards.
+- This project does not contain a tool for linting the codebase. However, we think it makes for a valuable addition.
+- No additional code comments were added the the project. The goal was to create clear implemenations and test coverage to make the system easy to understand.
+
 
 ## 🌗 Light vs Dark
 
@@ -58,7 +67,8 @@ Task
 
 | Regular | Large |
 | ----- | ----- |
-|||
+|![TODOS_WITH_CONTENT_light](https://user-images.githubusercontent.com/466656/217917901-2e360a93-2791-46d7-b3c2-e3068b96239f.png)|
+|![TODOS_WITH_CONTENT_dark](https://user-images.githubusercontent.com/466656/217917941-162748cc-cb65-4d50-b1fa-9c8fa16a8a85.png)|
 
 ## 🇺🇸 🇲🇽 Localization
 
