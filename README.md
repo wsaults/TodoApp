@@ -44,11 +44,8 @@ Task
 ## 🇺🇸 🇲🇽 Localization
 
 | English | Spanish |
-| ![RocketSim_Screenshot_iPhone_14_Pro_Max_2023-02-09_11 06 03](https://user-images.githubusercontent.com/466656/217911521-11f2df37-179a-451e-9a37-aaee3d9030fe.png)
- | ![RocketSim_Screenshot_iPhone_14_Pro_Max_2023-02-09_11 05 26](https://user-images.githubusercontent.com/466656/217911535-720c6467-472c-4f79-a424-249888fb9e9e.png)
- |
-| ![RocketSim_Screenshot_iPhone_14_Pro_Max_2023-02-09_11 05 59](https://user-images.githubusercontent.com/466656/217911554-128994a4-c184-418a-b9e3-ced211e95020.png)
- | ![RocketSim_Screenshot_iPhone_14_Pro_Max_2023-02-09_11 05 39](https://user-images.githubusercontent.com/466656/217911571-f23f2232-1a3b-4f16-8891-fe4d38649584.png)
- |
+| ----- | ----- |
+|![RocketSim_Screenshot_iPhone_14_Pro_Max_2023-02-09_11 06 03](https://user-images.githubusercontent.com/466656/217911521-11f2df37-179a-451e-9a37-aaee3d9030fe.png)|![RocketSim_Screenshot_iPhone_14_Pro_Max_2023-02-09_11 05 26](https://user-images.githubusercontent.com/466656/217911535-720c6467-472c-4f79-a424-249888fb9e9e.png)|
+|![RocketSim_Screenshot_iPhone_14_Pro_Max_2023-02-09_11 05 59](https://user-images.githubusercontent.com/466656/217911554-128994a4-c184-418a-b9e3-ced211e95020.png)|![RocketSim_Screenshot_iPhone_14_Pro_Max_2023-02-09_11 05 39](https://user-images.githubusercontent.com/466656/217911571-f23f2232-1a3b-4f16-8891-fe4d38649584.png)|
 
 ## 👀 Simplifications
