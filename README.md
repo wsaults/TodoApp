@@ -46,13 +46,13 @@ Task
 
 ## 📝 Notes
 - The workspace is divided into two parts. `TodoEngine` and `TodoApp`. The engine drives the business logic and the app serves as the delivery system. Keeping the engine agnostic of any UI frameworks means that it can be easily used across systems.
-- Commits were made directly to the main branch. In a consumer facing project we would likely use feature branches and a PR strategy.
+- Commits were made directly to the main branch. In a consumer facing project, we would likely use feature branches and a PR strategy.
 - The file manager was chosen to store persistent data. This was due to its simple setup when compared to alternatives like coredata.
 - However, swapping the file manager for coredata is straight forward. Merely implement the `TodoStore` protocol and swap the `store` in `SceneDelegate` from `FileManagerTodoStore` to a new `CoreDataTodoStore` implementation.
 - There's a CI_iOS Scheme in the project. However, CI has not (yet) been configured. We'll likely opt for using github actions.
 - The UI was created programmatically. This is our preferred method since it avoids common merge conflicts found when using Storyboards.
 - This project does not contain a tool for linting the codebase. However, we think it makes for a valuable addition.
-- No additional code comments were added the the project. The goal was to create clear implemenations and test coverage to make the system easy to understand.
+- No additional code comments were added the project. The goal was to create clear implementations and test coverage to make the system easy to understand.
 
 
 ## 🌗 Light vs Dark
