@@ -21,6 +21,16 @@ class TodosSnapshotTests: XCTestCase {
         assert(snapshot: sut.snapshot(for: .iPhone14(style: .light, contentSize: .extraExtraExtraLarge)), named: "EMPTY_TODOS_light_extraExtraExtraLarge")
     }
     
+    func test_todosWithEmptyContent() {
+        let sut = makeSUT()
+        
+        sut.display(todosWithEmptyContent())
+        
+        assert(snapshot: sut.snapshot(for: .iPhone14(style: .light)), named: "TODOS_WITH_EMPTY_CONTENT_light")
+        assert(snapshot: sut.snapshot(for: .iPhone14(style: .dark)), named: "TODOS_WITH_EMPTY_CONTENT_dark")
+        assert(snapshot: sut.snapshot(for: .iPhone14(style: .light, contentSize: .extraExtraExtraLarge)), named: "TODOS_WITH_EMPTY_CONTENT_extraExtraExtraLarge")
+    }
+    
     func test_todosWithContent() {
         let sut = makeSUT()
         
@@ -37,8 +47,8 @@ class TodosSnapshotTests: XCTestCase {
         sut.display(todosWithMultiLineContent())
         
         assert(snapshot: sut.snapshot(for: .iPhone14(style: .light)), named: "TODOS_WITH_MULTILINE_CONTENT_light")
-        assert(snapshot: sut.snapshot(for: .iPhone14(style: .dark)), named: "TODOS_WITH_MULTILINE__dark")
-        assert(snapshot: sut.snapshot(for: .iPhone14(style: .light, contentSize: .extraExtraExtraLarge)), named: "TODOS_WITH_MULTILINE__extraExtraExtraLarge")
+        assert(snapshot: sut.snapshot(for: .iPhone14(style: .dark)), named: "TODOS_WITH_MULTILINE_CONTENT_dark")
+        assert(snapshot: sut.snapshot(for: .iPhone14(style: .light, contentSize: .extraExtraExtraLarge)), named: "TODOS_WITH_MULTILINE_CONTENT_extraExtraExtraLarge")
     }
     
     // MARK: Helpers
@@ -60,6 +70,13 @@ class TodosSnapshotTests: XCTestCase {
             TodoStub(text: "Complete sample iOS Todo App", createdAt: Date.now.addHours(-3), completedAt: Date.now),
             TodoStub(text: "Write article about SOLID principals", createdAt: Date.now.addHours(-2)),
             TodoStub(text: "Work on side project", createdAt: Date.now.addHours(-1))
+        ]
+    }
+    
+    private func todosWithEmptyContent() -> [TodoStub] {
+        [
+            TodoStub(text: "", createdAt: Date.now.addHours(-3), completedAt: Date.now),
+            TodoStub(text: "", createdAt: Date.now.addHours(-2))
         ]
     }
     

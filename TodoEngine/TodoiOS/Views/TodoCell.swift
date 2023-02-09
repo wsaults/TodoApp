@@ -52,6 +52,7 @@ public final class TodoCell: UITableViewCell {
         let textView = UITextView()
         textView.font = .preferredFont(forTextStyle: .body)
         textView.adjustsFontForContentSizeCategory = true
+        textView.backgroundColor = .clear
         textView.delegate = self
         textView.autocapitalizationType = .sentences
         textView.tintColor = .secondaryLabel
@@ -63,6 +64,15 @@ public final class TodoCell: UITableViewCell {
                 self?.delegate?.isUpdatingContent(text)
             }).store(in: &textPublisherCancellable)
         return textView
+    }()
+    
+    public lazy var placeholderTextField: UITextField = {
+        let textField = UITextField()
+        textField.placeholder = "You'll be done in no time!"
+        textField.font = .preferredFont(forTextStyle: .body)
+        textField.adjustsFontForContentSizeCategory = true
+        textField.isHidden = true
+        return textField
     }()
     
     public override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -80,19 +90,26 @@ public final class TodoCell: UITableViewCell {
     
     private func addViews() {
         contentView.addSubview(radioButton)
+        contentView.addSubview(placeholderTextField)
         contentView.addSubview(taskTextView)
         contentView.addSubview(deleteButton)
     }
     
     private func setConstraints() {
-        taskTextView.translatesAutoresizingMaskIntoConstraints = false
         radioButton.translatesAutoresizingMaskIntoConstraints = false
+        placeholderTextField.translatesAutoresizingMaskIntoConstraints = false
+        taskTextView.translatesAutoresizingMaskIntoConstraints = false
         deleteButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             radioButton.topAnchor.constraint(equalTo: contentView.topAnchor, constant: Constants.halfSpacing),
             radioButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Constants.horizontalMargin),
             radioButton.heightAnchor.constraint(equalToConstant: Constants.radioButtonHeight),
             radioButton.widthAnchor.constraint(equalToConstant: Constants.radioButtonHeight),
+            
+            placeholderTextField.topAnchor.constraint(equalTo: contentView.topAnchor, constant: -Constants.halfSpacing),
+            placeholderTextField.leadingAnchor.constraint(equalTo: taskTextView.leadingAnchor, constant: Constants.halfSpacing),
+            placeholderTextField.trailingAnchor.constraint(equalTo: taskTextView.trailingAnchor),
+            placeholderTextField.heightAnchor.constraint(equalToConstant: 40),
             
             taskTextView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: Constants.halfSpacing),
             taskTextView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
@@ -119,6 +136,10 @@ public final class TodoCell: UITableViewCell {
     private func deleteButtonTapped() {
         delegate?.didDelete()
     }
+    
+    public func hidePlaceholderField(_ hide: Bool) {
+        placeholderTextField.isHidden = hide
+    }
 }
 
 extension TodoCell: UITextViewDelegate {
@@ -130,5 +151,6 @@ extension TodoCell: UITextViewDelegate {
     public func textViewDidChange(_ textView: UITextView) {
         delegate?.shouldUpdateUI()
         textView.adjustContainerInset()
+        hidePlaceholderField(!textView.text.isEmpty)
     }
 }

@@ -14,14 +14,17 @@
 		BE04CA2329950A1E00EF1945 /* UIViewController+Snapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE04CA2229950A1E00EF1945 /* UIViewController+Snapshot.swift */; };
 		BE04CA3A2995166B00EF1945 /* EMPTY_TODOS_light_extraExtraExtraLarge.png in Resources */ = {isa = PBXBuildFile; fileRef = BE04CA312995166B00EF1945 /* EMPTY_TODOS_light_extraExtraExtraLarge.png */; };
 		BE04CA3B2995166B00EF1945 /* TODOS_WITH_CONTENT_extraExtraExtraLarge.png in Resources */ = {isa = PBXBuildFile; fileRef = BE04CA322995166B00EF1945 /* TODOS_WITH_CONTENT_extraExtraExtraLarge.png */; };
-		BE04CA3C2995166B00EF1945 /* TODOS_WITH_MULTILINE__extraExtraExtraLarge.png in Resources */ = {isa = PBXBuildFile; fileRef = BE04CA332995166B00EF1945 /* TODOS_WITH_MULTILINE__extraExtraExtraLarge.png */; };
-		BE04CA3D2995166B00EF1945 /* TODOS_WITH_MULTILINE__dark.png in Resources */ = {isa = PBXBuildFile; fileRef = BE04CA342995166B00EF1945 /* TODOS_WITH_MULTILINE__dark.png */; };
 		BE04CA3E2995166B00EF1945 /* EMPTY_TODOS_dark.png in Resources */ = {isa = PBXBuildFile; fileRef = BE04CA352995166B00EF1945 /* EMPTY_TODOS_dark.png */; };
 		BE04CA3F2995166B00EF1945 /* EMPTY_TODOS_light.png in Resources */ = {isa = PBXBuildFile; fileRef = BE04CA362995166B00EF1945 /* EMPTY_TODOS_light.png */; };
 		BE04CA402995166B00EF1945 /* TODOS_WITH_CONTENT_light.png in Resources */ = {isa = PBXBuildFile; fileRef = BE04CA372995166B00EF1945 /* TODOS_WITH_CONTENT_light.png */; };
-		BE04CA412995166B00EF1945 /* TODOS_WITH_MULTILINE_CONTENT_light.png in Resources */ = {isa = PBXBuildFile; fileRef = BE04CA382995166B00EF1945 /* TODOS_WITH_MULTILINE_CONTENT_light.png */; };
 		BE04CA422995166B00EF1945 /* TODOS_WITH_CONTENT_dark.png in Resources */ = {isa = PBXBuildFile; fileRef = BE04CA392995166B00EF1945 /* TODOS_WITH_CONTENT_dark.png */; };
 		BE04CA442995213600EF1945 /* UITextView+Inset.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE04CA432995213600EF1945 /* UITextView+Inset.swift */; };
+		BE04CA4B299540CD00EF1945 /* TODOS_WITH_EMPTY_CONTENT_light.png in Resources */ = {isa = PBXBuildFile; fileRef = BE04CA45299540CD00EF1945 /* TODOS_WITH_EMPTY_CONTENT_light.png */; };
+		BE04CA4C299540CD00EF1945 /* TODOS_WITH_MULTILINE_CONTENT_light.png in Resources */ = {isa = PBXBuildFile; fileRef = BE04CA46299540CD00EF1945 /* TODOS_WITH_MULTILINE_CONTENT_light.png */; };
+		BE04CA4D299540CD00EF1945 /* TODOS_WITH_EMPTY_CONTENT_dark.png in Resources */ = {isa = PBXBuildFile; fileRef = BE04CA47299540CD00EF1945 /* TODOS_WITH_EMPTY_CONTENT_dark.png */; };
+		BE04CA4E299540CD00EF1945 /* TODOS_WITH_MULTILINE_CONTENT_dark.png in Resources */ = {isa = PBXBuildFile; fileRef = BE04CA48299540CD00EF1945 /* TODOS_WITH_MULTILINE_CONTENT_dark.png */; };
+		BE04CA4F299540CD00EF1945 /* TODOS_WITH_MULTILINE_CONTENT_extraExtraExtraLarge.png in Resources */ = {isa = PBXBuildFile; fileRef = BE04CA49299540CD00EF1945 /* TODOS_WITH_MULTILINE_CONTENT_extraExtraExtraLarge.png */; };
+		BE04CA50299540CD00EF1945 /* TODOS_WITH_EMPTY_CONTENT_extraExtraExtraLarge.png in Resources */ = {isa = PBXBuildFile; fileRef = BE04CA4A299540CD00EF1945 /* TODOS_WITH_EMPTY_CONTENT_extraExtraExtraLarge.png */; };
 		BE288EE8299308CA005B274E /* RadioButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE288EE7299308CA005B274E /* RadioButton.swift */; };
 		BE288EEF299341B8005B274E /* UITableView+Dequeue.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE288EEE299341B8005B274E /* UITableView+Dequeue.swift */; };
 		BE288EF22993F138005B274E /* TodosUIIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE288EF02993F111005B274E /* TodosUIIntegrationTests.swift */; };
@@ -116,14 +119,17 @@
 		BE04CA2229950A1E00EF1945 /* UIViewController+Snapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Snapshot.swift"; sourceTree = "<group>"; };
 		BE04CA312995166B00EF1945 /* EMPTY_TODOS_light_extraExtraExtraLarge.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = EMPTY_TODOS_light_extraExtraExtraLarge.png; sourceTree = "<group>"; };
 		BE04CA322995166B00EF1945 /* TODOS_WITH_CONTENT_extraExtraExtraLarge.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TODOS_WITH_CONTENT_extraExtraExtraLarge.png; sourceTree = "<group>"; };
-		BE04CA332995166B00EF1945 /* TODOS_WITH_MULTILINE__extraExtraExtraLarge.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TODOS_WITH_MULTILINE__extraExtraExtraLarge.png; sourceTree = "<group>"; };
-		BE04CA342995166B00EF1945 /* TODOS_WITH_MULTILINE__dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TODOS_WITH_MULTILINE__dark.png; sourceTree = "<group>"; };
 		BE04CA352995166B00EF1945 /* EMPTY_TODOS_dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = EMPTY_TODOS_dark.png; sourceTree = "<group>"; };
 		BE04CA362995166B00EF1945 /* EMPTY_TODOS_light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = EMPTY_TODOS_light.png; sourceTree = "<group>"; };
 		BE04CA372995166B00EF1945 /* TODOS_WITH_CONTENT_light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TODOS_WITH_CONTENT_light.png; sourceTree = "<group>"; };
-		BE04CA382995166B00EF1945 /* TODOS_WITH_MULTILINE_CONTENT_light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TODOS_WITH_MULTILINE_CONTENT_light.png; sourceTree = "<group>"; };
 		BE04CA392995166B00EF1945 /* TODOS_WITH_CONTENT_dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TODOS_WITH_CONTENT_dark.png; sourceTree = "<group>"; };
 		BE04CA432995213600EF1945 /* UITextView+Inset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextView+Inset.swift"; sourceTree = "<group>"; };
+		BE04CA45299540CD00EF1945 /* TODOS_WITH_EMPTY_CONTENT_light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TODOS_WITH_EMPTY_CONTENT_light.png; sourceTree = "<group>"; };
+		BE04CA46299540CD00EF1945 /* TODOS_WITH_MULTILINE_CONTENT_light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TODOS_WITH_MULTILINE_CONTENT_light.png; sourceTree = "<group>"; };
+		BE04CA47299540CD00EF1945 /* TODOS_WITH_EMPTY_CONTENT_dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TODOS_WITH_EMPTY_CONTENT_dark.png; sourceTree = "<group>"; };
+		BE04CA48299540CD00EF1945 /* TODOS_WITH_MULTILINE_CONTENT_dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TODOS_WITH_MULTILINE_CONTENT_dark.png; sourceTree = "<group>"; };
+		BE04CA49299540CD00EF1945 /* TODOS_WITH_MULTILINE_CONTENT_extraExtraExtraLarge.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TODOS_WITH_MULTILINE_CONTENT_extraExtraExtraLarge.png; sourceTree = "<group>"; };
+		BE04CA4A299540CD00EF1945 /* TODOS_WITH_EMPTY_CONTENT_extraExtraExtraLarge.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TODOS_WITH_EMPTY_CONTENT_extraExtraExtraLarge.png; sourceTree = "<group>"; };
 		BE288EE7299308CA005B274E /* RadioButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioButton.swift; sourceTree = "<group>"; };
 		BE288EEE299341B8005B274E /* UITableView+Dequeue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Dequeue.swift"; sourceTree = "<group>"; };
 		BE288EF02993F111005B274E /* TodosUIIntegrationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodosUIIntegrationTests.swift; sourceTree = "<group>"; };
@@ -233,9 +239,12 @@
 				BE04CA392995166B00EF1945 /* TODOS_WITH_CONTENT_dark.png */,
 				BE04CA322995166B00EF1945 /* TODOS_WITH_CONTENT_extraExtraExtraLarge.png */,
 				BE04CA372995166B00EF1945 /* TODOS_WITH_CONTENT_light.png */,
-				BE04CA342995166B00EF1945 /* TODOS_WITH_MULTILINE__dark.png */,
-				BE04CA332995166B00EF1945 /* TODOS_WITH_MULTILINE__extraExtraExtraLarge.png */,
-				BE04CA382995166B00EF1945 /* TODOS_WITH_MULTILINE_CONTENT_light.png */,
+				BE04CA47299540CD00EF1945 /* TODOS_WITH_EMPTY_CONTENT_dark.png */,
+				BE04CA4A299540CD00EF1945 /* TODOS_WITH_EMPTY_CONTENT_extraExtraExtraLarge.png */,
+				BE04CA45299540CD00EF1945 /* TODOS_WITH_EMPTY_CONTENT_light.png */,
+				BE04CA48299540CD00EF1945 /* TODOS_WITH_MULTILINE_CONTENT_dark.png */,
+				BE04CA49299540CD00EF1945 /* TODOS_WITH_MULTILINE_CONTENT_extraExtraExtraLarge.png */,
+				BE04CA46299540CD00EF1945 /* TODOS_WITH_MULTILINE_CONTENT_light.png */,
 			);
 			path = snapshots;
 			sourceTree = "<group>";
@@ -621,15 +630,18 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BE04CA412995166B00EF1945 /* TODOS_WITH_MULTILINE_CONTENT_light.png in Resources */,
+				BE04CA4C299540CD00EF1945 /* TODOS_WITH_MULTILINE_CONTENT_light.png in Resources */,
+				BE04CA4E299540CD00EF1945 /* TODOS_WITH_MULTILINE_CONTENT_dark.png in Resources */,
+				BE04CA4B299540CD00EF1945 /* TODOS_WITH_EMPTY_CONTENT_light.png in Resources */,
 				BE04CA3F2995166B00EF1945 /* EMPTY_TODOS_light.png in Resources */,
 				BE04CA422995166B00EF1945 /* TODOS_WITH_CONTENT_dark.png in Resources */,
 				BE04CA3B2995166B00EF1945 /* TODOS_WITH_CONTENT_extraExtraExtraLarge.png in Resources */,
+				BE04CA4D299540CD00EF1945 /* TODOS_WITH_EMPTY_CONTENT_dark.png in Resources */,
 				BE04CA402995166B00EF1945 /* TODOS_WITH_CONTENT_light.png in Resources */,
-				BE04CA3C2995166B00EF1945 /* TODOS_WITH_MULTILINE__extraExtraExtraLarge.png in Resources */,
 				BE04CA3E2995166B00EF1945 /* EMPTY_TODOS_dark.png in Resources */,
 				BE04CA3A2995166B00EF1945 /* EMPTY_TODOS_light_extraExtraExtraLarge.png in Resources */,
-				BE04CA3D2995166B00EF1945 /* TODOS_WITH_MULTILINE__dark.png in Resources */,
+				BE04CA50299540CD00EF1945 /* TODOS_WITH_EMPTY_CONTENT_extraExtraExtraLarge.png in Resources */,
+				BE04CA4F299540CD00EF1945 /* TODOS_WITH_MULTILINE_CONTENT_extraExtraExtraLarge.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

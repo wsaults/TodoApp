@@ -28,6 +28,7 @@ public final class TodoCellController {
     
     private func binded(_ cell: TodoCell) -> TodoCell {
         cell.taskTextView.text = viewModel.text
+        cell.hidePlaceholderField(!viewModel.text.isEmpty)
         cell.setCompleted(isComplete: viewModel.isComplete)
         cell.delegate = self
         return cell
