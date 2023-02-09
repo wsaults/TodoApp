@@ -39,6 +39,8 @@ Task
 > Note: In the app we use the term "Todo" instead of "Task". This is due to "Task" being an object type in Swift Concurrency.
 
 ## 💡 Project Architecture
+<img width="1290" alt="diagram" src="https://user-images.githubusercontent.com/466656/217956547-97e10e53-88f9-4d40-9ac0-19b7f7c6cff4.png">
+
 
 ## 🤖 Test Coverage
 
