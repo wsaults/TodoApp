@@ -16,6 +16,15 @@ class CachedTodosUseCaseTests: XCTestCase {
         XCTAssertEqual(store.receivedMessages, [])
     }
     
+    func test_save_item() async throws {
+        let item = uniqueItem()
+        let (sut, store) = makeSUT(result: .success(()))
+        
+        try await sut.save(item)
+        
+        XCTAssertEqual(store.receivedMessages, [.save([item])])
+    }
+    
     func test_save() async throws {
         let items = uniqueItems()
         let (sut, store) = makeSUT(result: .success(()))

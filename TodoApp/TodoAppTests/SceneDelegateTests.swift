@@ -6,6 +6,7 @@
 //
 
 import XCTest
+import TodoEngine
 import TodoiOS
 @testable import TodoApp
 
@@ -31,6 +32,17 @@ class SceneDelegateTests: XCTestCase {
         
         XCTAssertNotNil(rootNavigation, "Expected a navigtion controller as root, got \(String(describing: root)) instead")
         XCTAssertTrue(topController is TodosViewController, "Expected a todos controller as top view controller, got \(String(describing: topController)) instead")
+    }
+    
+    func test_nullStore_doesNothing() async throws {
+        let sut = NullStore()
+        let item1 = TodoItem(uuid: UUID(), text: "", createdAt: Date.now)
+        let item2 = TodoItem(uuid: UUID(), text: "", createdAt: Date.now)
+        try await sut.save([item1])
+        try await sut.save(item2)
+        try await sut.delete(item1)
+        let items = try await sut.retrieve()
+        XCTAssertEqual(items, [])
     }
     
     // MARK: Helpers

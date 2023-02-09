@@ -39,7 +39,8 @@ class TodoStoreSpy: TodoStore {
     }
     
     func save(_ item: TodoEngine.TodoItem) async throws {
-        
+        receivedMessages.append(.save([item]))
+        _ = try saveResult.get()
     }
     
     func delete(_ item: TodoItem) throws {

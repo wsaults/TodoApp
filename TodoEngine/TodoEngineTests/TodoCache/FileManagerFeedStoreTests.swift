@@ -51,6 +51,56 @@ class FileManagerTodoStoreTests: XCTestCase {
         await expect(sut, toRetrieveTwice: .success(CachedTodos(items)))
     }
     
+    func test_saveItem_deliversNoErrorOnEmptyCache() async {
+        let sut = makeSUT()
+
+        let saveError = await save(uniqueItem(), to: sut)
+
+        XCTAssertNil(saveError, "Expected to save cache successfully")
+    }
+    
+    func test_saveItem_deliversNoErrorOnNonEmptyCache() async {
+        let sut = makeSUT()
+
+        await save(uniqueItem(), to: sut)
+
+        let saveError = await save(uniqueItem(), to: sut)
+
+        XCTAssertNil(saveError, "Expected to override cache successfully")
+    }
+    
+    func test_saveItem_deliversErrorOnBadStoreURL() async {
+        let badStoreURL = cachesDirectory()
+        let sut = try! FileManagerTodoStore(storeURL: badStoreURL)
+
+        let saveError = await save(uniqueItem(), to: sut)
+        XCTAssertNotNil(saveError, "Expected save error")
+    }
+    
+    func test_saveItem_overridePreviouslySavedItem() async {
+        let sut = makeSUT()
+
+        let item = TodoItem(uuid: UUID(), text: "any", createdAt: Date.now)
+        await save(item, to: sut)
+
+        let updatedItem = TodoItem(uuid: item.uuid, text: "anything else", createdAt: item.createdAt)
+        await save(updatedItem, to: sut)
+
+        await expect(sut, toRetrieve: .success(CachedTodos([updatedItem])))
+    }
+    
+    func test_saveItem_doesNotOverridePreviouslySavedCacheValues() async {
+        let sut = makeSUT()
+
+        let firstItem = TodoItem(uuid: UUID(), text: "any", createdAt: Date.now.addHours(-1))
+        await save(firstItem, to: sut)
+
+        let secondItem = TodoItem(uuid: UUID(), text: "any", createdAt: Date.now)
+        await save(secondItem, to: sut)
+
+        await expect(sut, toRetrieve: .success(CachedTodos([firstItem, secondItem])))
+    }
+    
     func test_save_deliversNoErrorOnEmptyCache() async {
         let sut = makeSUT()
 
@@ -118,6 +168,16 @@ class FileManagerTodoStoreTests: XCTestCase {
         let sut = try! FileManagerTodoStore(storeURL: testRandomStoreURL())
         trackForMemoryLeaks(sut, file: file, line: line)
         return sut
+    }
+    
+    @discardableResult
+    func save(_ item: TodoItem, to sut: TodoStore) async -> Error? {
+        do {
+            try await sut.save(item)
+            return nil
+        } catch {
+            return error
+        }
     }
     
     @discardableResult
